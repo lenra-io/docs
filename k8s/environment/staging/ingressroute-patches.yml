@@ -1,0 +1,6 @@
+- op: replace
+  path: /spec/routes/0/match
+  value: Host(`doc.staging.lenra.io`) && Path(`/laisse-moi-entrer`)
+- op: replace
+  path: /spec/routes/1/match
+  value: Host(`doc.staging.lenra.io`) && HeadersRegexp(`Cookie`, `(^|;)lenra-intra=`)

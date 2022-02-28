@@ -1,0 +1,17 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: lenra-documentation
+spec:
+  template:
+    spec:
+      volumes:
+        - name: conf-dir
+          configMap:
+            name: nginx-conf
+      containers:
+        - name: lenra-documentation
+          volumeMounts:
+            - name: conf-dir
+              mountPath: /opt/bitnami/nginx/conf/server_blocks/add-script.conf
+              subPath: add-script.conf

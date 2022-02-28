@@ -1,0 +1,10 @@
+- op: add
+  path: /metadata/annotations
+  value: 
+    app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
+    app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
+- op: add
+  path: /spec/template/metadata/annotations
+  value: 
+    app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
+    app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}

@@ -1,0 +1,132 @@
+include:
+  - project: "lenra/integration/ci/gitlab-ci"
+    file: "/lib/base.yml"
+  - project: "lenra/integration/ci/gitlab-ci"
+    file: "/lib/docker.yml"
+  - project: "lenra/integration/ci/gitlab-ci"
+    file: "/lib/kubernetes.yml"
+
+manage version:
+  variables:
+    VERSION_GETTER: cat version
+  extends: .get version
+
+clone api:
+  stage: .pre
+  script:
+    - cd src
+    - git clone https://github.com/lenra-io/components-api.git api
+  artifacts:
+    paths:
+      - src/api
+
+build:
+  image: node:16-alpine
+  script:
+    - npm i
+    - npm run build
+  cache:
+    key: ${CI_COMMIT_BRANCH}
+    paths:
+      - node_modules
+  artifacts:
+    paths:
+      - build
+
+dockerize:
+  extends: .build docker
+
+tag:
+  extends: .tag docker image
+  variables:
+    DOCKER_STAGING_TAG: release-${VERSION}
+    DOCKER_IMAGE: $CI_REGISTRY_IMAGE/client
+
+.prepare deployment:
+  before_script:
+    - cat k8s/environment/gitlab-env.yml | envsubst > k8s/environment/${KUSTOMIZE_ENV}/gitlab-env.yml
+    - mv ${GITLAB_REGISTRY_SECRET} k8s/environment/${KUSTOMIZE_ENV}/secret-gitlab-registry.yml
+    - cd k8s/environment/${KUSTOMIZE_ENV}
+    - kustomize edit add patch --kind Deployment --path gitlab-env.yml
+    - kustomize edit add patch --kind StatefulSet --path gitlab-env.yml
+    - kustomize edit add resource secret-gitlab-registry.yml
+    - kustomize edit add configmap lenra-host --from-literal HOST=${HOST}
+    
+
+deploy test:
+  extends: .deploy kustomize force update
+  variables:
+    KUSTOMIZE_ENV: test
+    HOST: doc.${CI_ENVIRONMENT_SLUG}.lenra.io
+  before_script:
+    - cat k8s/environment/test/ingressroute-patches.yml | envsubst '${HOST}' > tmp.txt
+    - cat tmp.txt > k8s/environment/test/ingressroute-patches.yml
+    - cat k8s/environment/test/add-script.conf | envsubst > tmp.txt
+    - cat tmp.txt > k8s/environment/test/add-script.conf
+    - !reference [.prepare deployment, before_script]
+    - !reference [.kubectl, before_script]
+  environment:
+    name: ${CI_COMMIT_REF_SLUG}
+    url: https://doc.${CI_ENVIRONMENT_SLUG}.lenra.io/laisse-moi-entrer
+    on_stop: stop test env
+  rules:
+    - if: '$CI_COMMIT_BRANCH != $MAIN_BRANCH && $CI_COMMIT_BRANCH != $STAGING_BRANCH'
+      when: manual
+
+stop test env:
+  extends: .stop dynamic env
+  rules: !reference [deploy test, rules]
+
+deploy staging:
+  extends: .deploy kustomize force update
+  variables:
+    HOST: doc.${CI_ENVIRONMENT_SLUG}.lenra.io
+  before_script:
+    - !reference [.prepare deployment, before_script]
+    - !reference [.kubectl, before_script]
+  dependencies:
+    - manage version
+  environment:
+    name: staging
+    url: https://doc.${CI_ENVIRONMENT_SLUG}.lenra.io/laisse-moi-entrer
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $STAGING_BRANCH'
+    - if: '$CI_COMMIT_BRANCH =~ /^release\//'
+      # Pour vérifier que les images sont bien taggées correctement
+      variables:
+        DOCKER_TAG: release-${VERSION}
+
+deploy prod:
+  extends: .deploy kustomize
+  variables:
+    HOST: doc.lenra.io
+    DOCKER_TAG: ${VERSION}
+  before_script:
+    - !reference [.prepare deployment, before_script]
+    - !reference [.kubectl, before_script]
+  dependencies:
+    - manage version
+  environment:
+    name: production
+    url: https://${HOST}/
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $MAIN_BRANCH'
+      when: manual
+
+
+prepare release:
+  extends: .prepare release
+  variables:
+    ISSUE_BASE_URL: https://lenra.atlassian.net/browse/
+    REGEX_SUBJECT_PATTERN: ^((feature|bugfix|hotfix|ignore)\/)?(LENRA-[0-9]+)?(.*)$
+  needs:
+    - job: manage version
+      artifacts: true
+
+release:
+  extends: .release
+  needs:
+    - job: manage version
+      artifacts: true
+    - job: prepare release
+      artifacts: true

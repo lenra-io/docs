@@ -1,0 +1,12 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: lenra
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`doc.lenra.io`)
+      services:
+        - kind: Service
+          name: lenra-documentation
+          port: 8080

@@ -1,0 +1,30 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: lenra
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`test.lenra.io`) && Path(`/laisse-moi-entrer`)
+      middlewares:
+        - name: auth
+          namespace: traefik
+        - name: redirect-to-base
+          namespace: traefik
+      services:
+        - kind: Service
+          name: lenra-documentation
+          port: 8080
+      priority: 50
+    - kind: Rule
+      match: Host(`test.lenra.io`) && HeadersRegexp(`Cookie`, `(^|;)lenra-intra=`)
+      middlewares:
+        - name: auth
+          namespace: traefik
+      services:
+        - kind: Service
+          name: lenra-documentation
+          port: 8080
+      priority: 20

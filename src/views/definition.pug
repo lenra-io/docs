@@ -1,0 +1,111 @@
+extends .layout.pug
+
+mixin createFirstLine(hasOther)
+    tr
+        th Attribute
+        th Description
+        th Type
+        if (hasOther)
+            th(colspan=2) Details
+
+mixin displayTypeValue(value)
+    - var type = typeof value
+    if (type == 'string')
+        | "#{value}"
+    else if (type == 'number')
+        | #{value}
+    else 
+        - console.log('Not managed value type', value, type)
+        | #{value}
+
+mixin displayType(definition, type)
+    - var name = type.name
+    if (!name)
+        if (type.values)
+            - name = typeof type.values[0]
+            each val in type.values
+                if (name != typeof val)
+                    - name = 'any'
+        else if (type.defaultValue)
+            - name = typeof type.defaultValue
+    if (type.ref)
+        if (name.includes('@'))
+            - name = definition.subDefinitionsMap[type.ref].name
+        a(href=componentsApiBasePath+type.ref.replace(/\.json/, '.html'))= name
+    else
+        | #{name}
+    if (type.isArray)
+        | []
+    if (type.values || type.defaultValue)
+        |
+        | (
+        if (type.values)
+            each val,i in type.values
+                if (i>0)
+                    | ,
+                    |
+                if (val==type.defaultValue || type.values.length==1)
+                    strong
+                        +displayTypeValue(val)
+                else
+                    +displayTypeValue(val)
+        else 
+            strong
+                +displayTypeValue(type.defaultValue)
+        | )
+
+mixin displayAttribute(definition, att)
+    if (att.name.startsWith('properties.'))
+        td= att.value.name
+        td 
+            +displayType(definition, att.value.type)
+    else
+        td= att.name
+        td= att.value
+
+mixin createPropertyLine(definition, property)
+    - var rowspan = property.attributes.length > 1 ? property.attributes.length : null
+    tr(class=property.required ? 'required' : null)
+        td(rowspan=rowspan)= property.name
+        td(rowspan=rowspan)= property.description
+        td(rowspan=rowspan)
+            +displayType(definition, property.type)
+        if (property.attributes.length)
+            each att,i in property.attributes
+                if (i>0)
+                    tr 
+                        +displayAttribute(definition, att)
+                else 
+                    +displayAttribute(definition, att)
+        else if (definition.hasOtherAttributes)
+            td
+            td
+
+mixin createPropertiesTable(definition)
+    table
+        +createFirstLine(definition.hasOtherAttributes)
+        each prop in definition.properties
+            +createPropertyLine(definition, prop)
+
+
+mixin displayIcon(definition)
+    h2 Values
+    ul
+        each val in definition.type.values
+            li= val
+
+block content
+    - var def = currentPage.definition
+    if (def.description)
+        p= def.description
+    if (def.id.endsWith('/iconData.schema.json'))
+        +displayIcon(def)
+    else
+        if (def.properties)
+            +createPropertiesTable(def)
+        each subDef in def.subDefinitions
+            h2(id=componentsApiBasePath+subDef.id)= subDef.name
+            if (subDef.description)
+                p= subDef.description
+            if (subDef.properties)
+            +createPropertiesTable(subDef)

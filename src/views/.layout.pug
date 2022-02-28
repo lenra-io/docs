@@ -1,0 +1,30 @@
+doctype html
+html(lang=language)
+  head
+    title= 'Lenra - '+currentPage.name
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(name="description" content=currentPage.description)
+    meta(property="og:title" content='Lenra - '+currentPage.name)
+    meta(property="og:type" content="website")
+    meta(property="og:url" content="!BASE_URL!"+currentPage.path)
+    meta(property="og:image" content="!IMAGE_URL!")
+    meta(property="og:description" content=currentPage.description)
+    meta(property="og:locale" content=language)
+    //- each l in otherLanguages
+      meta(property="og:locale:alternate" content=l)
+    link(rel="icon" type="image/png" href="/favicon.png")
+    link(rel="apple-touch-icon" href="/img/appicon.png")
+    link(rel='stylesheet' as='style' type='text/css' href='/css/main.css' media='print' onload='this.media="all"')
+    noscript 
+      link(rel='stylesheet' as='style' type='text/css' href='/css/main.css')
+    script(src='/js/main.js' defer)
+  body
+    include menu.pug
+    section
+      header
+        block header
+          h1= currentPage.name
+          a(href="https://dev.lenra.io/register" class="button primary") Register on Lenra
+      main
+        block content

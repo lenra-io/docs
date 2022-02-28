@@ -1,0 +1,8 @@
+{
+    "page": {
+        "/": {
+            "name": "API de composants",
+            "description": "API de composants Lenra. Comprenez la création d'interfaces utilisateurs pour Lenra"
+        }
+    }
+}

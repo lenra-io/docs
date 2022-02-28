@@ -1,0 +1,26 @@
+mixin manageCollapse(collapsable)
+    if (collapsable)
+        details(open)
+            summary Open/Close
+            block
+    else 
+        block
+
+
+mixin createMenuItem(page)
+    a(href=page.path)= page.name
+    if (page.subPages.length)
+        +manageCollapse(page.collapsable)
+            +createMenuItems(page.subPages)
+
+
+mixin createMenuItems(pages)
+    ul
+        each page in pages
+            li(class=(page.path==currentPage.path ? 'selected' : ''))
+                +createMenuItem(page)
+
+nav
+    button.tertiary(onclick="this.parentNode.className = this.parentNode.className ? '' : 'opened'") Open/Close Menu
+    a(href="https://www.lenra.io/") Lenra
+    +createMenuItems(pages)

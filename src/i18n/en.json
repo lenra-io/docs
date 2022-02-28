@@ -1,0 +1,8 @@
+{
+    "page": {
+        "/": {
+            "name": "Components API",
+            "description": "The Lenra's components API. Understand the UI creation with Lenra"
+        }
+    }
+}

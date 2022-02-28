@@ -1,0 +1,31 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: calc(var(--base) * 2);
+}
+
+td, th {
+    border: 2px solid var(--grey-super-light);
+    text-align: left;
+    height: 40px;
+    width: 216px;
+    padding-left: var(--base);
+}
+
+th {
+    background-color: var(--grey-super-light);
+}
+
+.required>td:first-of-type::before {
+    margin-right: var(--base);
+    display: inline-block;
+    content: " ";
+    border-radius: var(--base);
+    width: var(--base);
+    height: var(--base);
+    background-color: var(--yellow-pulse);
+}
+
+section tr td a {
+    color: var(--primary-color);
+}

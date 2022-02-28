@@ -1,0 +1,84 @@
+a {
+    padding: calc(var(--base) * 0.5) 0;
+}
+
+button, .button {
+    border-radius: calc(var(--base) * 0.5);
+    --border-size: 1pt;
+    border: var(--border-size) solid var(--primary-color);
+    display: inline-block;
+    text-align: center;
+    padding: var(--base) calc(var(--base) * 2);
+}
+
+button.little, .button.little {
+    padding: calc(var(--base) * 0.5) calc(var(--base) * 2);
+}
+
+button.big, .button.big {
+    padding: calc(var(--base) * 1.5) calc(var(--base) * 2);
+}
+
+/*-----------------------------------------*/
+
+button.primary, .button.primary {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+button.primary:hover, .button.primary:hover {
+    background-color: var(--primary-color-hover);
+}
+
+button.primary:active, .button.primary:active {
+    filter: brightness(1.15);
+}
+
+button.primary:disabled, .button.primary:disabled {
+    background-color: #D0E1FB;
+    cursor: not-allowed;
+}
+
+/*-----------------------------------------*/
+
+button.secondary, .button.secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+button.secondary:hover, .button.secondary:hover {
+    background-color: #D0E1FB;
+}
+
+button.secondary:active, .button.secondary:active {
+    filter: brightness(1.15);
+}
+
+button.secondary:disabled, .button.secondary:disabled {
+    border-color: #D0E1FB;
+    color: #D0E1FB;
+    cursor: not-allowed;
+}
+
+/*-----------------------------------------*/
+
+button.tertiary, .button.tertiary {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    border: none;
+}
+
+button.tertiary:hover, .button.tertiary:hover {
+    background-color: #D0E1FB;
+}
+
+button.tertiary:active, .button.tertiary:active {
+    filter: brightness(1.15);
+}
+
+button.tertiary:disabled, .button.tertiary:disabled {
+    border-color: #D0E1FB;
+    ;
+    color: #D0E1FB;
+    cursor: not-allowed;
+}

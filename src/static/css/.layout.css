@@ -1,0 +1,215 @@
+nav {
+    background-color: var(--black-moon);
+    color: var(--background-color);
+    font-size: normal;
+    min-width: calc(var(--base) * 24);
+    --logo-image: var(--logo-horizontal-image-white);
+    height: 100%;
+}
+
+nav > button {
+    display: none;
+}
+
+nav > a {
+    position: relative;
+    display: block;
+    color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow: hidden;
+    transition-property: none;
+    text-align: center;
+    height: calc(var(--base) * 4);
+    margin: calc(var(--base) * 2) auto calc(var(--base) * 6) auto;
+}
+
+nav > a::before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: var(--logo-horizontal-image-white);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+}
+
+nav > ul {
+    overflow: auto;
+    height: calc(100% - var(--base) * 9 - var(--base) * 1.5 * 2);
+    padding-bottom: calc(var(--base) * 2);
+}
+
+nav > ul li {
+    position: relative;
+}
+
+nav > ul li > a {
+    text-decoration: none;
+    display: block;
+    padding: calc(var(--base) * 0.5) calc(var(--base) * 2);
+    white-space: nowrap;
+    margin-bottom: calc(var(--base) / 2);
+}
+
+nav > ul li > details > summary {
+    --size: calc(var(--base) * 0.5 * 2 + var(--font-size) * var(--line-height));
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: var(--size);
+    height: var(--size);
+    padding-left: var(--size);
+    overflow: hidden;
+}
+
+nav > ul li > details > summary::before {
+    --w: var(--font-size) * var(--line-height);
+    --l: 2px;
+    content: ' ';
+    position: absolute;
+    left: -2px;
+    top: 2px;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, transparent calc(50% - var(--l) / 2), currentcolor calc(50% - var(--l) / 2), currentcolor calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2)),
+        linear-gradient(to bottom, transparent calc(50% - var(--l) / 2), currentcolor calc(50% - var(--l) / 2), currentcolor calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2));
+    background-repeat: no-repeat;
+    background-size: calc(var(--w) / 2) calc(var(--w) / 2);
+    background-position: calc(50% + (var(--w) - var(--l)) / 4) center, center calc(50% - (var(--w) - var(--l)) / 4);
+    transform: rotate(45deg);
+    transform-origin: calc(50% + 2px) calc(50% - 2px);
+    transition-property: transform;
+}
+
+nav > ul li > details[open] > summary::before {
+    transform: rotate(135deg);
+}
+
+nav > ul ul > li > a {
+    padding-left: calc(var(--base) * 4);
+}
+
+nav > ul ul ul > li > a {
+    padding-left: calc(var(--base) * 6);
+}
+
+nav li a:hover,
+nav li.selected > a {
+    background-color: var(--blue);
+}
+
+body > section > header {
+    position: relative;
+    height: calc(var(--base) * 8);
+    box-shadow: 0px calc(var(--base) * 0.5) calc(var(--base) * 2) rgba(169, 178, 196, 0.25), 0px 1px var(--base) rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--header-vertical-padding) var(--header-horizontal-padding);
+}
+
+body > section > header > h1 {
+    line-height: calc(var(--base) * 4);
+}
+
+@media (max-width: 800pt) {
+    nav {
+        position: absolute;
+        left: 0;
+        transform: translateX(-100%);
+        z-index: 1;
+    }
+
+    nav.opened {
+        transform: translateX(0%);
+    }
+
+    nav::before {
+        content: " ";
+        position: absolute;
+        width: 0%;
+        height: 100vh;
+        top: 0;
+        left: 100%;
+        background-color: var(--background-color);
+        opacity: 0.7;
+        z-index: -1;
+        transition-property: width;
+    }
+
+    nav.opened::before {
+        width: calc(100vw - 100%);
+    }
+
+    nav > button {
+        display: block;
+        position: absolute;
+        top: var(--header-vertical-padding);
+        right: calc(var(--header-horizontal-padding) * -1);
+        transform: translateX(100%);
+        width: calc(var(--base) * 4);
+        padding-left: calc(var(--base) * 4);
+        padding-right: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        transition-property: right, transform;
+        z-index: 100;
+    }
+
+    nav.opened > button {
+        right: calc(100% - 100vw + var(--header-horizontal-padding));
+        transform: translateX(0%);
+    }
+
+    nav > button::before,
+    nav > button::after {
+        content: " ";
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        top: 25%;
+        left: 25%;
+        display: block;
+        background-image: 
+            linear-gradient(180deg, currentcolor, currentcolor),
+            linear-gradient(180deg, currentcolor, currentcolor);
+        background-repeat: no-repeat;
+        background-position: center 0%, center 50%;
+        background-size: 100% 15%;
+        transition-property: background, transform;
+    }
+
+    nav > button::after {
+        background-image: linear-gradient(180deg, currentcolor, currentcolor);
+        background-position: center 100%;
+    }
+
+    nav.opened > button::before {
+        background-position: center 50%;
+        transform: rotate(45deg);
+    }
+
+    nav.opened > button::after {
+        background-position: center 50%;
+        transform: rotate(-45deg);
+    }
+
+    body > section > header {
+        padding-left: calc(var(--header-horizontal-padding) + var(--base) * 4 + var(--base) * 2);
+    }
+}
+
+@media (max-width: 400pt) {
+    body > section > header > a.button {
+        display: none;
+    }
+}

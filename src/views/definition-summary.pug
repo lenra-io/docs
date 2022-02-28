@@ -1,0 +1,18 @@
+extends .layout.pug
+
+
+mixin createSummaryItem(page)
+    a.button.tertiary(href=page.path)= page.name
+    if (page.subPages.length)
+        +createSummaryItems(page.subPages)
+
+
+mixin createSummaryItems(pages)
+    ul
+        each page in pages
+            li
+                +createSummaryItem(page)
+
+block content 
+    h2 Definitions
+    +createSummaryItems(currentPage.subPages)
