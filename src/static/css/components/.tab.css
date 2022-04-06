@@ -1,6 +1,7 @@
 table {
     border-collapse: collapse;
     width: 100%;
+    min-width: 500px;
     margin-bottom: calc(var(--base) * 2);
 }
 

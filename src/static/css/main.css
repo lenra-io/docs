@@ -29,6 +29,7 @@
     --line-height: calc(2 / 1.5);/* 2 * base / font-size */
     --header-vertical-padding: calc(var(--base) * 2);
     --header-horizontal-padding: calc(var(--base) * 4);
+    --header-height: calc(var(--header-vertical-padding) * 2 + var(--base) * 4);/* Button height + 2 * padding */
 }
 
 html, body {
@@ -51,14 +52,13 @@ body > section {
     width: 100%;
     position: relative;
     height: 100%;
-    overflow-y: auto;
     scroll-behavior: smooth;
 }
 
 main {
     flex: 1;
-    /* max-width: 1200px; */
     padding: calc(var(--base) * 3) calc(var(--base) * 4) calc(var(--base) * 5);
+    overflow: auto;
 }
 
 h1, h2, h3 {
@@ -72,11 +72,6 @@ h1, h2, h3 {
 h2, h3, p {
     padding-bottom: calc(var(--base) * 2);
 }
-
-/* p {
-    font-size: 14px;
-    color: var(--dark-grey);
-} */
 
 main li {
     list-style-position: inside;
