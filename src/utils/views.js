@@ -7,8 +7,8 @@ const showdown  = require('showdown');
 
 const converter = new showdown.Converter({headerLevelStart: 2});
 const viewsPath = Path.join(__dirname, '..', 'views');
-// const componentsApiBasePath = 'components-api/';
-const componentsApiBasePath = '/';
+const componentsApiBasePath = 'components-api/';
+// const componentsApiBasePath = '/';
 
 /**
  * Get the view file for the given path and language
@@ -34,7 +34,7 @@ async function getPages() {
     const api = new Page(componentsApiBasePath, 'components-api', 'The components API', 'definition-summary');
     api.subPages = generateDefinitionPages(Components.parseSchemata(await Components.loadComponents()));
     api.collapsable = false;
-    return [/* new Page('/', 'Home'), */ api];
+    return [new Page('/', 'Doc', "Lenra's documentation", 'layout'), api];
 }
 
 /**
