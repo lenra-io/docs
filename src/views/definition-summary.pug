@@ -13,6 +13,6 @@ mixin createSummaryItems(pages)
             li
                 +createSummaryItem(page)
 
-block content 
+append content 
     h2 Definitions
     +createSummaryItems(currentPage.subPages)

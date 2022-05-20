@@ -101,7 +101,9 @@ Views.getPages().then(async pages => {
     });
 
     // generate the nginx.conf file
-    fs.writeFile(Path.join(buildPath, `nginx.conf`), Nginx.generateNginxConf(langs));
+    fs.writeFile(Path.join(buildPath, `nginx.conf`), Nginx.generateNginxConf(langs, {
+        'default-src': ['unsafe-inline', 'plausible.io']
+    }));
 
     // generate the sitemap.txt file
     fs.writeFile(Path.join(staticDestPath, `sitemap.txt`),
