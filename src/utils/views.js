@@ -33,6 +33,7 @@ function getViewFile(path, lang) {
  */
 async function getPages() {
     const home = new Page('/', 'Documentation', "Lenra's documentation", 'layout');
+    home.collapsable = true;
     const componentsApi = new Page(componentsApiBasePath, 'Components API', "The Lenra's components API references. Understand the UI creation with Lenra", 'definition-summary');
     const componentsPromise = Components.loadComponents();
     const markdowns = Utils.getFilesRecursively(markdownPath);
@@ -53,8 +54,9 @@ function includeMarkdownPages(pages, markdowns) {
     // TODO: filter language specific files
     .map(({path, pagePath}) => ({path, pagePath: pagePath.replace(/\.md$/, '.html').replace(/\/index\.html$/, '/')}))
     .forEach(({path, pagePath}) => {
-        const parentPath = pagePath.substring(0, pagePath.lastIndexOf('/') + 1);
-        const parentPage = parentPath.length>1 ? getPageFromPath(pages, parentPath) : null;
+        let parentPath = pagePath.endsWith('/') ? pagePath.replace(/\/$/, '') : pagePath;
+        parentPath = parentPath.substring(0, pagePath.lastIndexOf('/') + 1);
+        const parentPage = parentPath ? getPageFromPath(pages, parentPath) : null;
         const findInPages = parentPage ? parentPage.subPages : pages;
         let page = getPageFromPath(findInPages, pagePath);
         if (!page) {
@@ -112,11 +114,22 @@ function generateDefinitionPages(definitions) {
  * @param {any} translations 
  */
 function translatePages(pages, translations) {
-    return pages.map(page => {
-        let ret = Utils.mergeDeep({}, page, translations.page[page.path] || {});
+    const repositionPages = [];
+    let retPages = pages.map(page => {
+        const translation = translations.page[page.path] || {};
+        let ret = Utils.mergeDeep({}, page, translation);
         if (page.subPages.length) ret.subPages = translatePages(ret.subPages, translations);
+        if ('position' in ret) repositionPages.push(ret);
         return ret;
     });
+    repositionPages.forEach(p => {
+        let pos = retPages.indexOf(p);
+        if (pos!=p.position) {
+            retPages.splice(pos, 1);
+            retPages.splice(p.position, 0, p);
+        }
+    });
+    return retPages;
 }
 
 class Page {

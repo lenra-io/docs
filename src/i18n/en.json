@@ -1,5 +1,9 @@
 {
     "page": {
-        
+        "/getting-started.html": {
+            "name": "Getting started",
+            "description": "Start creating Lenra applications",
+            "position": 0
+        }
     }
 }

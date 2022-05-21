@@ -1,10 +1,12 @@
+const { mergeDeep } = require('./common.js');
+
 /**
  * Generate the nginx configuration file
- * @param {string[]} languages Managed languages
- * @param {any} additionalContentSecurityPolicies Additional content security policies
+ * @param {NginxConfOptions} options The configuration options
  * @returns 
  */
-function generateNginxConf(languages, additionalContentSecurityPolicies) {
+function generateNginxConf(options) {
+    const {languages, additionalContentSecurityPolicies, rewriteRules} = options;
     return `map $http_accept_language $lang {
         default ${languages[0]};
     
@@ -66,10 +68,10 @@ function generateNginxConf(languages, additionalContentSecurityPolicies) {
             #     return 301 $redirect_uri;
             # }
 
-            
-            rewrite ^/root.schema.html$ /components-api/root.html permanent;
-            rewrite ^/(components|defs)/(.*).schema.html$ /components-api/$1/$2.html permanent;
-            rewrite ^/(components|defs)/$ /components-api/$1/ permanent;
+            ${rewriteRules
+                    .map(rule => `rewrite ${rule.from} ${rule.to} ${rule.type || ''};`)
+                    .join('\n            ')
+            }
     
             set $index 'index.html';
             
