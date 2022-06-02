@@ -104,7 +104,7 @@ Views.getPages().then(async pages => {
     fs.writeFile(Path.join(buildPath, `nginx.conf`), Nginx.generateNginxConf({
         languages: langs,
         additionalContentSecurityPolicies: {
-            'default-src': ['unsafe-inline', 'plausible.io']
+            'default-src': ['unsafe-inline', 'analytics.lenra.io']
         },
         rewriteRules: [
             new Nginx.RewriteRule('^/root.schema.html$', '/components-api/root.html', 'permanent'),
