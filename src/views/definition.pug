@@ -1,4 +1,4 @@
-extends .layout.pug
+extends layout.pug
 
 mixin createFirstLine(hasOther)
     tr
@@ -94,14 +94,17 @@ mixin displayIcon(definition)
         each val in definition.type.values
             li= val
 
-block content
+prepend content
     - var def = currentPage.definition
     if (def.description)
         p= def.description
+
+append content
     if (def.id.endsWith('/iconData.schema.json'))
         +displayIcon(def)
     else
         if (def.properties)
+            h2 Properties
             +createPropertiesTable(def)
         each subDef in def.subDefinitions
             h2(id=componentsApiBasePath+subDef.id)= subDef.name

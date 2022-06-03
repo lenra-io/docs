@@ -23,4 +23,4 @@ mixin createMenuItems(pages)
 nav
     button.tertiary(onclick="this.parentNode.className = this.parentNode.className ? '' : 'opened'") Open/Close Menu
     a(href="https://www.lenra.io/") Lenra
-    +createMenuItems(pages)
+    +createMenuItems(pages[0].subPages)

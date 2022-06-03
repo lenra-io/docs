@@ -1,8 +1,16 @@
 {
     "page": {
-        "/": {
-            "name": "Components API",
-            "description": "The Lenra's components API. Understand the UI creation with Lenra"
+        "/getting-started.html": {
+            "name": "Getting started",
+            "description": "Start creating Lenra applications"
+        },
+        "/framework.html": {
+            "name": "The framework",
+            "description": "Understand how our app development framework works"
+        },
+        "/how-it-works.html": {
+            "name": "How it works",
+            "description": "How Lenra works ? Is it magic ? Not really, it's open sources technologies"
         }
     }
 }

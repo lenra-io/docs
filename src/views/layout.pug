@@ -19,6 +19,7 @@ html(lang=language)
     noscript 
       link(rel='stylesheet' as='style' type='text/css' href='/css/main.css')
     script(src='/js/main.js' defer)
+    script(src="https://analytics.lenra.io/js/plausible.js" data-domain="!DOMAIN!" defer)
   body
     include menu.pug
     section
@@ -28,3 +29,5 @@ html(lang=language)
           a(href="https://dev.lenra.io/#/register" class="button primary") Register on Lenra
       main
         block content
+          if(currentPage.markdown)
+            | !{currentPage.markdown}
