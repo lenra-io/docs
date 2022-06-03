@@ -2,10 +2,10 @@
     "title": "Lenra",
     "description": "Lenra's components API documentation",
     "page": {
-        "/how-it-works.html": {
+        "/getting-started.html": {
             "position": 0
         },
-        "/getting-started.html": {
+        "/framework.html": {
             "position": 1
         }
     }
