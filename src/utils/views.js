@@ -5,10 +5,11 @@ const Utils = require('./common');
 const showdown  = require('showdown');
 
 
-const converter = new showdown.Converter({headerLevelStart: 2});
+const converter = new showdown.Converter();
 const viewsPath = Path.join(__dirname, '..', 'views');
-// const componentsApiBasePath = 'components-api/';
-const componentsApiBasePath = '/';
+const markdownPath = Path.join(__dirname, '..', 'markdown');
+const componentsApiBasePath = '/components-api/';
+// const componentsApiBasePath = '/';
 
 /**
  * Get the view file for the given path and language
@@ -28,23 +29,56 @@ function getViewFile(path, lang) {
 }
 
 /**
- * @returns {Page[]}
+ * @returns
  */
 async function getPages() {
-    const api = new Page(componentsApiBasePath, 'components-api', 'The components API', 'definition-summary');
-    api.subPages = generateDefinitionPages(Components.parseSchemata(await Components.loadComponents()));
-    api.collapsable = false;
-    return [/* new Page('/', 'Home'), */ api];
+    const home = new Page('/', 'Documentation', "Lenra's documentation", 'layout');
+    home.collapsable = true;
+    const componentsApi = new Page(componentsApiBasePath, 'Components API', "The Lenra's components API references. Understand the UI creation with Lenra", 'definition-summary');
+    const componentsPromise = Components.loadComponents();
+    const markdowns = Utils.getFilesRecursively(markdownPath);
+    componentsApi.subPages = generateDefinitionPages(Components.parseSchemata(await componentsPromise));
+    componentsApi.collapsable = false;
+    home.subPages = [componentsApi];
+    return includeMarkdownPages([home], markdowns);
+}
+
+/**
+ * 
+ * @param {Page[]} pages 
+ * @param {string[]} markdowns 
+ */
+function includeMarkdownPages(pages, markdowns) {
+    markdowns
+    .map(path => ({path, pagePath: '/'+Path.relative(markdownPath, path)}))
+    // TODO: filter language specific files
+    .map(({path, pagePath}) => ({path, pagePath: pagePath.replace(/\.md$/, '.html').replace(/\/index\.html$/, '/')}))
+    .forEach(({path, pagePath}) => {
+        let parentPath = pagePath.endsWith('/') ? pagePath.replace(/\/$/, '') : pagePath;
+        parentPath = parentPath.substring(0, pagePath.lastIndexOf('/') + 1);
+        const parentPage = parentPath ? getPageFromPath(pages, parentPath) : null;
+        const findInPages = parentPage ? parentPage.subPages : pages;
+        let page = getPageFromPath(findInPages, pagePath);
+        if (!page) {
+            let pageName = pagePath.endsWith('/') ? pagePath.replace(/\/$/, '') : pagePath.replace(/\.html$/, '');
+            pageName = pageName.substring(pageName.lastIndexOf('/') + 1);
+            page = new Page(pagePath, pageName, "Description is not managed yet", "layout");
+            parentPage.subPages.push(page);
+        }
+        page.markdown = converter.makeHtml(fs.readFileSync(path, 'utf8'));
+    });
+    return pages;
 }
 
 /**
  * @param {Page[]} pages 
  * @param {string} path 
- * @returns 
+ * @returns {Page}
  */
 function getPageFromPath(pages, path) {
     const p = pages.find(p => path.startsWith(p.path));
-    if (p && p.path!=path && p.subPages.length)
+    if (!p || p.path==path) return p;
+    if (p.subPages.length)
         return getPageFromPath(p.subPages, path);
     return p;
 }
@@ -70,7 +104,7 @@ function generateDefinitionPages(definitions) {
             parent = nodes[path].subPages;
             pos = def.id.indexOf('/', pos);
         }
-        parent.push(new Page(componentsApiBasePath+def.id.replace(/\.json$/, '.html'), def.name, def.description, 'definition', def));
+        parent.push(new Page(componentsApiBasePath+def.id.replace(/\.schema\.json$/, '.html'), def.name, def.description, 'definition', def));
     });
     return pages;
 }
@@ -80,19 +114,22 @@ function generateDefinitionPages(definitions) {
  * @param {any} translations 
  */
 function translatePages(pages, translations) {
-    return pages.map(page => {
-        let ret = Utils.mergeDeep({}, page, translations.page[page.path] || {});
+    const repositionPages = [];
+    let retPages = pages.map(page => {
+        const translation = translations.page[page.path] || {};
+        let ret = Utils.mergeDeep({}, page, translation);
         if (page.subPages.length) ret.subPages = translatePages(ret.subPages, translations);
+        if ('position' in ret) repositionPages.push(ret);
         return ret;
     });
-}
-
-function getPageContent() {
-    converter.makeHtml('# Coucou\nCa va ?');
-}
-
-function renderPage() {
-    
+    repositionPages.forEach(p => {
+        let pos = retPages.indexOf(p);
+        if (pos!=p.position) {
+            retPages.splice(pos, 1);
+            retPages.splice(p.position, 0, p);
+        }
+    });
+    return retPages;
 }
 
 class Page {
@@ -110,6 +147,7 @@ class Page {
         this.view = view;
         this.definition = definition;
         this.collapsable = true;
+        this.markdown = null;
         this.subPages = [];
     }
 }

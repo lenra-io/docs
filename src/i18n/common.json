@@ -1,4 +1,12 @@
 {
     "title": "Lenra",
-    "description": "Lenra's components API documentation"
+    "description": "Lenra's components API documentation",
+    "page": {
+        "/getting-started.html": {
+            "position": 0
+        },
+        "/framework.html": {
+            "position": 1
+        }
+    }
 }
