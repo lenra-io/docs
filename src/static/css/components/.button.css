@@ -63,7 +63,6 @@ button.secondary:disabled, .button.secondary:disabled {
 /*-----------------------------------------*/
 
 button.tertiary, .button.tertiary {
-    background-color: var(--background-color);
     color: var(--primary-color);
     border: none;
 }

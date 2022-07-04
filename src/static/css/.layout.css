@@ -24,26 +24,27 @@ nav > a {
     overflow: hidden;
     transition-property: none;
     text-align: center;
-    height: calc(var(--base) * 4);
-    margin: calc(var(--base) * 2) auto calc(var(--base) * 6) auto;
+    height: var(--header-height);
+    padding: var(--header-vertical-padding) auto;
 }
 
 nav > a::before {
     content: " ";
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
-    height: 100%;
+    height: calc(var(--base) * 4);
     width: 100%;
     background-image: var(--logo-horizontal-image-white);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: 50%;
+    transform: translateY(-50%);
 }
 
 nav > ul {
     overflow: auto;
-    height: calc(100% - var(--base) * 9 - var(--base) * 1.5 * 2);
+    height: calc(100% - var(--header-height));
     padding-bottom: calc(var(--base) * 2);
 }
 
@@ -108,8 +109,8 @@ nav li.selected > a {
 }
 
 body > section > header {
-    position: relative;
-    height: calc(var(--base) * 8);
+    background: white;
+    height: var(--header-height);
     box-shadow: 0px calc(var(--base) * 0.5) calc(var(--base) * 2) rgba(169, 178, 196, 0.25), 0px 1px var(--base) rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
@@ -123,7 +124,7 @@ body > section > header > h1 {
 
 @media (max-width: 800pt) {
     nav {
-        position: absolute;
+        position: fixed;
         left: 0;
         transform: translateX(-100%);
         z-index: 1;
@@ -180,8 +181,9 @@ body > section > header > h1 {
         left: 25%;
         display: block;
         background-image: 
-            linear-gradient(180deg, currentcolor, currentcolor),
-            linear-gradient(180deg, currentcolor, currentcolor);
+        linear-gradient(180deg, white, white),
+        linear-gradient(180deg, white, white),
+            linear-gradient(180deg, white, white);
         background-repeat: no-repeat;
         background-position: center 0%, center 50%;
         background-size: 100% 15%;
