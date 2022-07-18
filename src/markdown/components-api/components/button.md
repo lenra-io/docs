@@ -18,7 +18,7 @@ You can set its text, disable it, adjust its size and style, react to a click an
 }
 ```
 
-**disabled button**
+**Disabled button**
 
 ```json
 {
@@ -28,7 +28,7 @@ You can set its text, disable it, adjust its size and style, react to a click an
 }
 ```
 
-**size and style adjusted button**
+**Size and style adjusted button**
 
 ```json
 {
@@ -39,7 +39,7 @@ You can set its text, disable it, adjust its size and style, react to a click an
 }
 ```
 
-**button with icons**
+**Button with icons**
 
 ```json
 {
