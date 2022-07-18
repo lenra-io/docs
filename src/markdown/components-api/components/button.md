@@ -2,7 +2,7 @@
 
 This is the button component. 
 
-You can set its text, disable it, adjust its size and style, react to click and add left or right icons.
+You can set its text, disable it, adjust its size and style, react to a click and add left or right icons.
 
 ## Examples
 
