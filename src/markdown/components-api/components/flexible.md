@@ -6,7 +6,7 @@ The Flexible component can be used to define the way in which its child flexes.
 
 ### Simple flexible
 
-The default flexible behavior when only using the child property is to take all of the remaining space of the parent.
+The default flexible behavior when only using the child property is to take the minimal amount of space.
 
 ```json
 {
