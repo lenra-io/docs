@@ -6,7 +6,7 @@ When stacking two or more actionables of the same size and using the same attrib
  
 ## Examples
 
-**Making a text clickable**
+### Making a text clickable
 
 ```json
 {
@@ -24,7 +24,7 @@ When stacking two or more actionables of the same size and using the same attrib
 }
 ```
 
-**Handling multiple events.**
+### Handling multiple events.
 
 ```json
 {
@@ -48,7 +48,7 @@ When stacking two or more actionables of the same size and using the same attrib
 }
 ```
 
-**Stacking actionables with same attribute.**
+### Stacking actionables with same attribute.
 
 
 
