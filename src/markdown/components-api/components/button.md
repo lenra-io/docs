@@ -6,7 +6,7 @@ You can set its text, disable it, adjust its size and style, react to a click an
 
 ## Examples
 
-**Simple button**
+### Simple button
 
 ```json
 {
@@ -18,7 +18,7 @@ You can set its text, disable it, adjust its size and style, react to a click an
 }
 ```
 
-**Disabled button**
+### Disabled button
 
 ```json
 {
@@ -28,7 +28,7 @@ You can set its text, disable it, adjust its size and style, react to a click an
 }
 ```
 
-**Size and style adjusted button**
+### Size and style adjusted button
 
 ```json
 {
@@ -39,7 +39,7 @@ You can set its text, disable it, adjust its size and style, react to a click an
 }
 ```
 
-**Button with icons**
+### Button with icons
 
 ```json
 {
