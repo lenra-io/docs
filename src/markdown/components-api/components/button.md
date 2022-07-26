@@ -1,6 +1,6 @@
 # Button
 
-This is the button component. 
+This component provides a push button with several presentation options.
 
 You can set its text, disable it, adjust its size and style, react to a click and add left or right icons.
 
