@@ -1,4 +1,4 @@
-# button
+# Button
 
 This is the button component. 
 
