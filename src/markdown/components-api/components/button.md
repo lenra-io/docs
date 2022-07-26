@@ -8,6 +8,7 @@ You can set its text, disable it, adjust its size and style, react to a click an
 
 ### Simple button
 
+Here is a Button in it's simplest form.
 ```json
 {
     "type": "button",
