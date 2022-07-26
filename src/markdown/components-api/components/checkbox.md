@@ -1,6 +1,6 @@
 # checkbox
 
-The checkbox component.
+This component provides a toggleable checkbox with several presentation options.
  
 ## Examples
 
