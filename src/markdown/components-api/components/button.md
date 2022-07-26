@@ -21,6 +21,7 @@ Here is a Button in it's simplest form.
 
 ### Disabled button
 
+You can disable the button with a graphical feedback to let the user know he can't interact with it.
 ```json
 {
     "type": "button",
