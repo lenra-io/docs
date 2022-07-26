@@ -6,6 +6,7 @@ This component provides a toggleable checkbox with several presentation options.
 
 ### Simple checkbox
 
+Here is a checkbox in it's simplest form.
 ```json
 {
     "type": "checkbox",
