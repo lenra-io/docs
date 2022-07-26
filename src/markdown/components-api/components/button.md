@@ -32,6 +32,7 @@ You can disable the button with a graphical feedback to let the user know he can
 
 ### Size and style adjusted button
 
+Buttons also come with a range of different UI styles.
 ```json
 {
     "type": "button",
