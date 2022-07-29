@@ -1,13 +1,61 @@
+# Button
+
+This component provides a push button with several presentation options.
+
+You can set its text, disable it, adjust its size and style, react to a click and add left or right icons.
+
 ## Examples
 
-Simple button example:
+### Simple button
 
+Here is a Button in it's simplest form.
 ```json
 {
     "type": "button",
     "text": "My button",
     "onPressed": {
         "action": "buttonPressed"
-    }
+    },
+}
+```
+
+### Disabled button
+
+You can disable the button with a graphical feedback to let the user know he can't interact with it.
+```json
+{
+    "type": "button",
+    "text": "My button",
+    "disabled": true,
+}
+```
+
+### Size and style adjusted button
+
+Buttons also come with a range of different UI styles.
+```json
+{
+    "type": "button",
+    "text": "My button",
+    "size": "large",
+    "mainStyle": "secondary",
+}
+```
+
+### Button with icons
+
+```json
+{
+    "type": "button",
+    "text": "My button",
+    "leftIcon": {
+        "type": "icon",
+        "value": "smart_button",
+    },
+    "rightIcon": {
+        // You can also use a widget instead of an icon
+        "type": "text",
+        "value": "This can be used as an icon"
+    },
 }
 ```
