@@ -31,7 +31,7 @@ mixin displayType(definition, type)
     if (type.ref)
         if (name.includes('@'))
             - name = definition.subDefinitionsMap[type.ref].name
-        a(href=componentsApiBasePath+type.ref.replace(/\.json/, '.html'))= name
+        a(href=componentsApiBasePath+type.ref.replace(/\.schema.json/, '.html'))= name
     else
         | #{name}
     if (type.isArray)
