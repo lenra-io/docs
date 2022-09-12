@@ -2,7 +2,7 @@
 
 ## How to start a new Lenra project
 
-It is very easy to start a new Lenra project. The most important thing for you is to choose your favorite programming language with which you will be developing your application. For the moment we only provide node12 but much more will come in the future.
+It is very easy to start a new Lenra project. The most important thing for you is to choose your favorite programming language with which you will be developing your application. For the moment we only provide node and rust but much more will come in the future.
 
 The next step is to choose a template that will be used as a starting point for your application. We currently made two templates, one for Rust and one for Node, you can chose any one of them according to your language preference.
 
