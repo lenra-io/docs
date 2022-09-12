@@ -4,17 +4,37 @@
 
 It is very easy to start a new Lenra project. The most important thing for you is to choose your favorite programming language with which you will be developing your application. For the moment we only provide node12 but much more will come in the future.
 
-The next step is to choose a template that will be used as a starting point for your application. We made one specifically for node12 that can be found [here](https://github.com/lenra-io/template-hello-world-node12). You can use this template to create a new github project specifically for your application as shown in the image below.
+The next step is to choose a template that will be used as a starting point for your application. We currently made two templates, one for Rust and one for Node, you can chose any one of them according to your language preference.
 
-![New project from template](./img/new-template-project.png)
-
-Then, clone this newly created repository by running the following command. Make sure to change the URL to match your github username and project name.
+You then need to run the following command using the Lenra CLI to create your new project using the template of your choice.
 
 ```console
-git clone https://github.com/jonas-martinez/lenra-hello-world-template.git
+lenra new node my-app
 ```
 
-Now that your app is ready you have the choice between using the devtools to get your app running locally or deploy it to the online platform to share it with other users.
+or
+
+```console
+lenra new rust my-app
+```
+
+
+Now that your app is ready you have the choice between using the Lenra CLI to get started faster, using the devtools or deploy it to the online platform to share it with other users.
+
+Using the Lenra CLI you first need to build your application.
+
+```console
+lenra build
+```
+
+Then your application can be started.
+
+```console
+lenra start
+```
+
+The CLI directly uses the devtools so that you do not have to take care of launching it as could be done in the `Start and use the devtools` section.
+
 
 ## Start and use the devtools
 
