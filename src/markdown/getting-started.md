@@ -14,7 +14,9 @@ lenra new node my-app
 
 Now that your app is ready you can use the Lenra CLI to get started faster, using the devtools.
 
-Using the Lenra CLI you first need to build your application.
+For installation instructions, you can directly check the cli repository : https://github.com/lenra-io/lenra_cli
+
+Using the CLI you first need to build your application.
 
 ```console
 lenra build
