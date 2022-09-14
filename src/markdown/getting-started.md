@@ -11,12 +11,6 @@ You then need to run the following command using the Lenra CLI to create your ne
 lenra new node my-app
 ```
 
-or
-
-```console
-lenra new rust my-app
-```
-
 
 Now that your app is ready you have the choice between using the Lenra CLI to get started faster, using the devtools or deploy it to the online platform to share it with other users.
 
