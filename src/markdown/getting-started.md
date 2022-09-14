@@ -12,7 +12,7 @@ lenra new node my-app
 ```
 
 
-Now that your app is ready you have the choice between using the Lenra CLI to get started faster, using the devtools or deploy it to the online platform to share it with other users.
+Now that your app is ready you can use the Lenra CLI to get started faster, using the devtools.
 
 Using the Lenra CLI you first need to build your application.
 
