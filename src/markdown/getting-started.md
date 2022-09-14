@@ -26,21 +26,6 @@ Then your application can be started.
 lenra start
 ```
 
-The CLI directly uses the devtools so that you do not have to take care of launching it as could be done in the `Start and use the devtools` section.
-
-
-## Start and use the devtools
-
-The devtools are a way to run and debug your application locally, there is a specific version of the devtools for each language that Lenra supports. In your case if you followed the instructions above, you need to run the `devtools-node12`.
-
-Go to your application folder and use our devtools docker image by running the following command.
-
-```bash
-docker run -it --rm -p 4000:4000 -v "${PWD}:/home/app/function" lenra/devtools-node12:beta
-```
-
-You can now access the <a href="http://localhost:4000/" target="_blank" rel="noopener">Devtools</a> to test your app.
-
 ## Deploy the hello world example to the online platform
 
 When your application is ready to be shared with others you might find interest into deploying it to the online platform.
