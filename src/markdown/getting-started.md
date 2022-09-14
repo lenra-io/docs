@@ -2,9 +2,8 @@
 
 ## How to start a new Lenra project
 
-It is very easy to start a new Lenra project. The most important thing for you is to choose your favorite programming language with which you will be developing your application. For the moment we only provide node and rust but much more will come in the future.
-
-The next step is to choose a template that will be used as a starting point for your application. We currently made two templates, one for Rust and one for Node, you can chose any one of them according to your language preference.
+It is very easy to start a new Lenra project. The most important thing for you is to choose your favorite programming language with which you will be developing your application.
+Choose one in [the template list](https://github.com/orgs/lenra-io/repositories?q=&type=template&language=&sort=stargazers) that will be used as a starting point for your application. 
 
 You then need to run the following command using the Lenra CLI to create your new project using the template of your choice.
 
