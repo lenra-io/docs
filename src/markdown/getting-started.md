@@ -1,11 +1,22 @@
 # Getting Started
 
+## Prerequisites
+
+To properly run the commands through this tutorial, you will need to install these :
+
+- Docker
+- Docker Compose
+- Lenra CLI
+
+For installation instructions, you can directly check the CLI repository : https://github.com/lenra-io/lenra_cli.
+
 ## How to start a new Lenra project
 
 It is very easy to start a new Lenra project. The most important thing for you is to choose your favorite programming language with which you will be developing your application.
 Choose one in [the template list](https://github.com/orgs/lenra-io/repositories?q=&type=template&language=&sort=stargazers) that will be used as a starting point for your application. 
 
-You then need to run the following command using the Lenra CLI to create your new project using the template of your choice. See the next example using the **template-node** template:
+You then need to run the following command using the Lenra CLI to create your new project using the template of your choice. 
+See the next example using the **template-node** template:
 
 ```console
 lenra new node my-app
@@ -14,7 +25,7 @@ lenra new node my-app
 
 Now that your app is ready you can use the Lenra CLI to get started faster, using the devtools.
 
-For installation instructions, you can directly check the cli repository : https://github.com/lenra-io/lenra_cli
+
 
 Using the CLI you first need to build your application.
 
@@ -39,4 +50,6 @@ After successfully completing this step you will be redirected to the creation o
 
 ![New Lenra project](./img/new-lenra-project.png)
 
-Then you will have to click `Publish my application` at the top right corner, your application will be sent to Lenra's servers and deployed to be accessible directly for the Lenra Store. Once your application is fully deployed on our servers, it will be accessible by clicking the `See my application` button. You can share this application by changing its visibility to `public` in the settings and sending the link to people (which should look close to app.lenra.io/#/app/f6279d6a-3b71-4520-a7f8-0f7b28700de9).
+Then you will have to click `Publish my application` at the top right corner, your application will be sent to Lenra's servers and deployed to be accessible directly for the Lenra Store. 
+Once your application is fully deployed on our servers, it will be accessible by clicking the `See my application` button. 
+You can share this application by changing its visibility to `public` in the settings and sending the link to people (which should look close to app.lenra.io/#/app/f6279d6a-3b71-4520-a7f8-0f7b28700de9).
