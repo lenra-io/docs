@@ -28,7 +28,7 @@ Then your application can be started.
 lenra start
 ```
 
-## Deploy the hello world example to the online platform
+## Deploy your app to the online platform
 
 When your application is ready to be shared with others you might find interest into deploying it to the online platform.
 
