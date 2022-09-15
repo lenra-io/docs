@@ -32,7 +32,10 @@ lenra start
 
 When your application is ready to be shared with others you might find interest into deploying it to the online platform.
 
-Create an account on [dev.lenra.io](http://dev.lenra.io). You will be asked for a token to join our developer platform, we will be sending you one as soon as possible. After successfully completing this step you will be redirected to the creation of your first project, just enter a name and the URL of the github repository that you created at the beginning of this documentation.
+Create an account on [dev.lenra.io](http://dev.lenra.io).
+You will be asked for a token to join our developer platform as our platform is in private beta phase.
+We will be sending you one as soon as possible.
+After successfully completing this step you will be redirected to the creation of your first project, just enter a name and the URL of the app git repository.
 
 ![New Lenra project](./img/new-lenra-project.png)
 
