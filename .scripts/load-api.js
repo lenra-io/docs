@@ -21,10 +21,10 @@ for (const component of components_yaml.components) {
 
         fs.mkdirSync(component_path, { recursive: true })
 
-        const file_path = Path.join(component_path, `${component.name}.zip`)
+        const file_path = Path.join(component_path, component.file)
         const downloaded_stream = fs.createWriteStream(file_path);
 
-        const url = `${component.url}/releases/download/${component.version}/${component.name}-${component.version}.zip`
+        const url = `${component.url}/releases/download/${component.version}/${component.file}`
         const download_zip = function (response) {
             response.pipe(downloaded_stream)
 

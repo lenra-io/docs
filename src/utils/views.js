@@ -44,9 +44,9 @@ async function getPages() {
 }
 
 /**
- * 
- * @param {Page[]} pages 
- * @param {string[]} markdowns 
+ *
+ * @param {Page[]} pages
+ * @param {string[]} markdowns
  */
 function includeMarkdownPages(pages, markdowns) {
     markdowns
@@ -71,8 +71,8 @@ function includeMarkdownPages(pages, markdowns) {
 }
 
 /**
- * @param {Page[]} pages 
- * @param {string} path 
+ * @param {Page[]} pages
+ * @param {string} path
  * @returns {Page}
  */
 function getPageFromPath(pages, path) {
@@ -86,7 +86,7 @@ function getPageFromPath(pages, path) {
 /**
  * Generates a map of components pages from the components ids
  * @param {Definition[]} definitions The components definitions
- * @returns 
+ * @returns
  */
 function generateDefinitionPages(definitions) {
     const pages = [];
@@ -110,8 +110,8 @@ function generateDefinitionPages(definitions) {
 }
 
 /**
- * @param {Page[]} pages 
- * @param {any} translations 
+ * @param {Page[]} pages
+ * @param {any} translations
  */
 function translatePages(pages, translations) {
     const repositionPages = [];
@@ -134,11 +134,11 @@ function translatePages(pages, translations) {
 
 class Page {
     /**
-     * @param {string} path 
-     * @param {string} name 
-     * @param {string} description 
+     * @param {string} path
+     * @param {string} name
+     * @param {string} description
      * @param {string} view
-     * @param {Definition} definition 
+     * @param {Definition} definition
      */
     constructor(path, name, description, view, definition) {
         this.path = path;

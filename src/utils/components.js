@@ -3,7 +3,7 @@ const path = require('path');
 const { getFilesRecursively } = require('./common');
 
 const compFileRegex = /^(.+[.]json)$/;
-const componentsPath = path.join(__dirname, '..', 'api/api');
+const componentsPath = path.join(__dirname, '..', 'api/');
 const subDefinitionSeparator = '@';
 
 /**
@@ -20,7 +20,7 @@ function getManagedComponents() {
 
 /**
  * Load all the translations managed
- * @returns 
+ * @returns
  */
 async function loadComponents() {
     const components = {};
@@ -46,8 +46,8 @@ const classicProps = ['$schema', '$id', 'title', 'additionalProperties', '$ref',
 
 /**
  * Compare two strings
- * @param {string} a 
- * @param {string} b 
+ * @param {string} a
+ * @param {string} b
  * @returns {number}
  */
 function compareStrings(a, b) {
@@ -97,10 +97,10 @@ function parseSchemata(schemata, parent) {
         const properties = parseProperties(schema.properties);
         const title = schema.title || id;
         return new Definition(
-            parent ? `${parent.id}@${id}` : id, 
-            parent ? `${parent.name}@${title}` : title, 
-            schema.description, 
-            properties ? null : parseType(schema), 
+            parent ? `${parent.id}@${id}` : id,
+            parent ? `${parent.name}@${title}` : title,
+            schema.description,
+            properties ? null : parseType(schema),
             properties
         );
 
@@ -136,9 +136,9 @@ function parseSchemata(schemata, parent) {
             return new Type(content.type, description, ref, content, isArray, content.enum, content.default);
         }
         /**
-         * @param {string} name 
-         * @param {any} property 
-         * @returns 
+         * @param {string} name
+         * @param {any} property
+         * @returns
          */
         function parseProperty(name, property) {
             const type = parseType(property);
@@ -152,9 +152,9 @@ function parseSchemata(schemata, parent) {
                     return [new Attribute(key, value)];
                 });
             return new Property(
-                name, 
-                property.description || type.description, 
-                type, 
+                name,
+                property.description || type.description,
+                type,
                 schema.required && schema.required.includes(name),
                 attributes
             );
@@ -230,13 +230,13 @@ class Property {
 
 class Type {
     /**
-     * @param {string} name 
-     * @param {string} description 
-     * @param {string} ref 
-     * @param {any} target 
-     * @param {boolean} isArray 
-     * @param {any[]} values 
-     * @param {any} defaultValue 
+     * @param {string} name
+     * @param {string} description
+     * @param {string} ref
+     * @param {any} target
+     * @param {boolean} isArray
+     * @param {any[]} values
+     * @param {any} defaultValue
      */
     constructor(name, description, ref, target, isArray, values, defaultValue) {
         this.name = name;
