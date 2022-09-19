@@ -3,7 +3,8 @@ const Path = require('path');
 const Components = require('./components');
 const Utils = require('./common');
 const showdown  = require('showdown');
-
+const glob = require('glob');
+const { basename } = require('path');
 
 const converter = new showdown.Converter();
 const viewsPath = Path.join(__dirname, '..', 'views');
@@ -31,16 +32,53 @@ function getViewFile(path, lang) {
 /**
  * @returns
  */
+// async function getPages() {
+//     const home = new Page('/', 'Documentation', "Lenra's documentation", 'layout');
+//     home.collapsable = true;
+//     const componentsApi = new Page(componentsApiBasePath, 'Components API', "The Lenra's components API references. Understand the UI creation with Lenra", 'definition-summary');
+//     const componentsPromise = Components.loadComponents();
+//     const markdowns = Utils.getFilesRecursively(markdownPath);
+//     componentsApi.subPages = generateDefinitionPages(Components.parseSchemata(await componentsPromise));
+//     componentsApi.collapsable = false;
+//     home.subPages = [componentsApi];
+//     return includeMarkdownPages([home], markdowns);
+// }
+
 async function getPages() {
     const home = new Page('/', 'Documentation', "Lenra's documentation", 'layout');
     home.collapsable = true;
-    const componentsApi = new Page(componentsApiBasePath, 'Components API', "The Lenra's components API references. Understand the UI creation with Lenra", 'definition-summary');
-    const componentsPromise = Components.loadComponents();
-    const markdowns = Utils.getFilesRecursively(markdownPath);
-    componentsApi.subPages = generateDefinitionPages(Components.parseSchemata(await componentsPromise));
-    componentsApi.collapsable = false;
-    home.subPages = [componentsApi];
-    return includeMarkdownPages([home], markdowns);
+
+    let all_pages = [home];
+
+    const api_dir = Path.join(__dirname, '../api/')
+    if ((await fs.stat(api_dir)).isDirectory()) {
+        home.subPages = await Promise.all(fs.readdirSync(api_dir).map(async api_name => {
+            const api_path = Path.join(api_dir, api_name)
+            const api = new Page(`/${api_name}/`, api_name, `The Lenra's ${api_name} references. Understand the UI creation with Lenra`, 'definition-summary');
+            console.log(api)
+
+            const components_paths = await new Promise((resolve, reject) =>
+                glob(
+                    Path.join(api_path, '*.html'),
+                    (error, match) => error ? reject(error) : resolve(match)
+                )
+            ).catch(err => {
+                console.error(err);
+            });
+            api.subPages = components_paths.map(component_path =>
+                new Page(`${api.path}/${basename(component_path)}`, Path.basename(component_path, '.html'), null, 'definition-summary')
+            );
+            all_pages = [...all_pages, api, ...api.subPages]
+
+            api.collapsable = false;
+            return api;
+        })).catch(err => {
+            console.error(err)
+        });
+    } else {
+        console.error(`${api_dir} wasn't a correct directory. Make sure it exist`)
+    }
+    return all_pages;
 }
 
 /**
