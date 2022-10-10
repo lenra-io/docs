@@ -16,7 +16,7 @@ html(lang=language)
     link(rel="icon" type="image/png" href="/favicon.png")
     link(rel="apple-touch-icon" href="/img/appicon.png")
     link(rel='stylesheet' as='style' type='text/css' href='/css/main.css' media='print' onload='this.media="all"')
-    noscript 
+    noscript
       link(rel='stylesheet' as='style' type='text/css' href='/css/main.css')
     script(src='/js/main.js' defer)
     script(src="https://analytics.lenra.io/js/plausible.js" data-domain="!DOMAIN!" defer)
@@ -29,5 +29,5 @@ html(lang=language)
           a(href="https://dev.lenra.io/#/register" class="button primary") Register on Lenra
       main
         block content
-          if(currentPage.markdown)
-            | !{currentPage.markdown}
+          if(currentPage.content)
+            | !{currentPage.content}

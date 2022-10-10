@@ -1,5 +1,5 @@
 components:
 - name: components-api
   url: https://github.com/lenra-io/components-api
-  version: v1.0.0-beta.60
-  file: lenra-api-docs-v1.0.0-beta.60.zip
+  version: v1.0.0-beta.61
+  file: lenra-api-docs-v1.0.0-beta.61.zip

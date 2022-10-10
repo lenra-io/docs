@@ -1,14 +1,11 @@
 const fs = require('fs-extra');
 const Path = require('path');
-const Components = require('./components');
 const Utils = require('./common');
 const showdown  = require('showdown');
 const glob = require('glob');
 const { basename } = require('path');
 
-const converter = new showdown.Converter();
 const viewsPath = Path.join(__dirname, '..', 'views');
-const markdownPath = Path.join(__dirname, '..', 'markdown');
 const componentsApiBasePath = '/components-api/';
 // const componentsApiBasePath = '/';
 
@@ -29,33 +26,17 @@ function getViewFile(path, lang) {
     return null;
 }
 
-/**
- * @returns
- */
-// async function getPages() {
-//     const home = new Page('/', 'Documentation', "Lenra's documentation", 'layout');
-//     home.collapsable = true;
-//     const componentsApi = new Page(componentsApiBasePath, 'Components API', "The Lenra's components API references. Understand the UI creation with Lenra", 'definition-summary');
-//     const componentsPromise = Components.loadComponents();
-//     const markdowns = Utils.getFilesRecursively(markdownPath);
-//     componentsApi.subPages = generateDefinitionPages(Components.parseSchemata(await componentsPromise));
-//     componentsApi.collapsable = false;
-//     home.subPages = [componentsApi];
-//     return includeMarkdownPages([home], markdowns);
-// }
-
 async function getPages() {
     const home = new Page('/', 'Documentation', "Lenra's documentation", 'layout');
     home.collapsable = true;
 
     let all_pages = [home];
 
-    const api_dir = Path.join(__dirname, '../api/')
+    const api_dir = Path.join(__dirname, '../api/', componentsApiBasePath)
     if ((await fs.stat(api_dir)).isDirectory()) {
         home.subPages = await Promise.all(fs.readdirSync(api_dir).map(async api_name => {
             const api_path = Path.join(api_dir, api_name)
             const api = new Page(`/${api_name}/`, api_name, `The Lenra's ${api_name} references. Understand the UI creation with Lenra`, 'definition-summary');
-            console.log(api)
 
             const components_paths = await new Promise((resolve, reject) =>
                 glob(
@@ -65,8 +46,11 @@ async function getPages() {
             ).catch(err => {
                 console.error(err);
             });
-            api.subPages = components_paths.map(component_path =>
-                new Page(`${api.path}/${basename(component_path)}`, Path.basename(component_path, '.html'), null, 'definition-summary')
+            api.subPages = components_paths.map(component_path => {
+                if(component_path == '/home/shiishii/Documents/dev/github.com/lenra-io/docs/src/api/components-api/components/actionable.html')
+                console.log(fs.readFileSync(component_path).toString())
+                return new Page(Path.join(api.path, basename(component_path)), Path.basename(component_path, '.html'), null, 'definition', fs.readFileSync(component_path).toString())
+            }
             );
             all_pages = [...all_pages, api, ...api.subPages]
 
@@ -79,33 +63,6 @@ async function getPages() {
         console.error(`${api_dir} wasn't a correct directory. Make sure it exist`)
     }
     return all_pages;
-}
-
-/**
- *
- * @param {Page[]} pages
- * @param {string[]} markdowns
- */
-function includeMarkdownPages(pages, markdowns) {
-    markdowns
-    .map(path => ({path, pagePath: '/'+Path.relative(markdownPath, path)}))
-    // TODO: filter language specific files
-    .map(({path, pagePath}) => ({path, pagePath: pagePath.replace(/\.md$/, '.html').replace(/\/index\.html$/, '/')}))
-    .forEach(({path, pagePath}) => {
-        let parentPath = pagePath.endsWith('/') ? pagePath.replace(/\/$/, '') : pagePath;
-        parentPath = parentPath.substring(0, pagePath.lastIndexOf('/') + 1);
-        const parentPage = parentPath ? getPageFromPath(pages, parentPath) : null;
-        const findInPages = parentPage ? parentPage.subPages : pages;
-        let page = getPageFromPath(findInPages, pagePath);
-        if (!page) {
-            let pageName = pagePath.endsWith('/') ? pagePath.replace(/\/$/, '') : pagePath.replace(/\.html$/, '');
-            pageName = pageName.substring(pageName.lastIndexOf('/') + 1);
-            page = new Page(pagePath, pageName, "Description is not managed yet", "layout");
-            parentPage.subPages.push(page);
-        }
-        page.markdown = converter.makeHtml(fs.readFileSync(path, 'utf8'));
-    });
-    return pages;
 }
 
 /**
@@ -122,32 +79,6 @@ function getPageFromPath(pages, path) {
 }
 
 /**
- * Generates a map of components pages from the components ids
- * @param {Definition[]} definitions The components definitions
- * @returns
- */
-function generateDefinitionPages(definitions) {
-    const pages = [];
-    const nodes = {};
-    definitions.forEach(def => {
-        let pos = def.id.indexOf('/');
-        let parent = pages;
-        while (pos!=-1) {
-            const path = def.id.substring(0, ++pos);
-            if (!(path in nodes)) {
-                let name = path.substring(0, pos-1);
-                name = name.substring(name.lastIndexOf('/')+1);
-                pages.push(nodes[path] = new Page(componentsApiBasePath+path, name, null, 'definition-summary'));
-            }
-            parent = nodes[path].subPages;
-            pos = def.id.indexOf('/', pos);
-        }
-        parent.push(new Page(componentsApiBasePath+def.id.replace(/\.schema\.json$/, '.html'), def.name, def.description, 'definition', def));
-    });
-    return pages;
-}
-
-/**
  * @param {Page[]} pages
  * @param {any} translations
  */
@@ -156,7 +87,7 @@ function translatePages(pages, translations) {
     let retPages = pages.map(page => {
         const translation = translations.page[page.path] || {};
         let ret = Utils.mergeDeep({}, page, translation);
-        if (page.subPages.length) ret.subPages = translatePages(ret.subPages, translations);
+        if (page.subPages?.length) ret.subPages = translatePages(ret.subPages, translations);
         if ('position' in ret) repositionPages.push(ret);
         return ret;
     });
@@ -178,14 +109,13 @@ class Page {
      * @param {string} view
      * @param {Definition} definition
      */
-    constructor(path, name, description, view, definition) {
+    constructor(path, name, description, view, content = null) {
         this.path = path;
         this.name = name;
         this.description = description;
         this.view = view;
-        this.definition = definition;
         this.collapsable = true;
-        this.markdown = null;
+        this.content = content;
         this.subPages = [];
     }
 }

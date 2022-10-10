@@ -58,11 +58,10 @@ function getPagesToGenerate(page) {
     ];
 }
 
-const traslationsP = Translations.loadTranslations();
+const translationsP = Translations.loadTranslations();
 
 Views.getPages().then(async pages => {
-
-    const translations = await traslationsP;
+    const translations = await translationsP;
 
     const langs = Object.keys(translations).sort((a, b) => {
         const posA = languagePriority.indexOf(a);
