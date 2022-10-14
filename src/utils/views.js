@@ -34,7 +34,7 @@ async function getPages() {
 
     const api_dir = Path.join(__dirname, '../api/', componentsApiBasePath)
     if ((await fs.stat(api_dir)).isDirectory()) {
-        home.subPages = await Promise.all(fs.readdirSync(api_dir).map(async api_name => {
+        home.subPages = await Promise.all(fs.readdirSync(api_dir).filter(api_name => !api_name.startsWith('.')).map(async api_name => {
             const api_path = Path.join(api_dir, api_name)
             const api = new Page(`/${api_name}/`, api_name, `The Lenra's ${api_name} references. Understand the UI creation with Lenra`, 'definition-summary');
 
@@ -46,12 +46,8 @@ async function getPages() {
             ).catch(err => {
                 console.error(err);
             });
-            api.subPages = components_paths.map(component_path => {
-                if(component_path == '/home/shiishii/Documents/dev/github.com/lenra-io/docs/src/api/components-api/components/actionable.html')
-                console.log(fs.readFileSync(component_path).toString())
-                return new Page(Path.join(api.path, basename(component_path)), Path.basename(component_path, '.html'), null, 'definition', fs.readFileSync(component_path).toString())
-            }
-            );
+            api.subPages = components_paths
+                .map(component_path => new Page(Path.join(api.path, basename(component_path)), Path.basename(component_path, '.html'), null, 'definition', fs.readFileSync(component_path).toString()));
             all_pages = [...all_pages, api, ...api.subPages]
 
             api.collapsable = false;
