@@ -64,7 +64,6 @@ async function getPages() {
 				.map(component_path => new Page(Path.join(api.path, basename(component_path)), Path.basename(component_path, '.html'), 'Description is not managed yet', 'definition', fs.readFileSync(component_path).toString()));
 			all_pages = [...all_pages, api, ...api.subPages]
 
-			api.collapsable = false;
 			return api;
 		})).catch(err => {
 			console.error(err)
@@ -125,7 +124,7 @@ class Page {
 		this.name = name;
 		this.description = description;
 		this.view = view;
-		this.collapsable = true;
+		this.collapsable = false;
 		this.content = content;
 		this.subPages = [];
 	}
