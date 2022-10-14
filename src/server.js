@@ -15,7 +15,6 @@ app.get('/(*/)?(*.html)?', async (req, res) => {
     const Views = require('./utils/views');
     const common = require('./i18n/common.json');
     const lang = req.query.lang ||  languagePriority[0];
-    console.log(req.path, lang);
     const pTranslation = Translations.loadTranslation(lang);
 
     const pages = Views.translatePages(await Views.getPages(), await pTranslation);
