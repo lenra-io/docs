@@ -4,7 +4,8 @@ const Utils = require('./common');
 const showdown  = require('showdown');
 const glob = require('glob');
 
-const config = require('../i18n/common.json')
+const config = require('../i18n/common.json');
+const { file } = require('jszip');
 
 const converter = new showdown.Converter();
 
@@ -39,8 +40,9 @@ async function getPages() {
 	const static_pages = markdowns
 		.filter(file => file.endsWith('.md'))
 		.map(file => {
+			const filename = Path.basename(file, '.md')
 			const page = new Page(file.substring(file.lastIndexOf('/')).replace('.md', '.html'),
-				Path.basename(file, '.md'),
+				filename.charAt(0).toUpperCase() + filename.substring(1),
 				"Description is not managed yet",
 				"layout");
 			page.content = converter.makeHtml(fs.readFileSync(file, 'utf8'));
@@ -59,7 +61,7 @@ async function getPages() {
 	if ((await fs.stat(api_dir)).isDirectory()) {
 		home.subPages = home.subPages.concat(await Promise.all(fs.readdirSync(api_dir).filter(api_name => !api_name.startsWith('.')).map(async api_name => {
 			const api_path = Path.join(api_dir, api_name)
-			const api = new Page(`/${api_name}/`, api_name, 'Description is not managed yet', 'definition-summary');
+			const api = new Page(`/${api_name}/`, api_name.charAt(0).toUpperCase() + api_name.substring(1), 'Description is not managed yet', 'definition-summary');
 			api.collapsable = true
 
 			const components_paths = await new Promise((resolve, reject) =>
@@ -71,7 +73,15 @@ async function getPages() {
 				console.error(err);
 			});
 			api.subPages = components_paths
-				.map(component_path => new Page(Path.join(api.path, Path.basename(component_path)), Path.basename(component_path, '.html'), 'Description is not managed yet', 'definition', fs.readFileSync(component_path).toString()));
+				.map(component_path => {
+					const filename = Path.basename(component_path, '.html')
+					return new Page(
+						Path.join(api.path, Path.basename(component_path)),
+						filename.charAt(0).toUpperCase() + filename.substring(1),
+						'Description is not managed yet',
+						'definition',
+						fs.readFileSync(component_path).toString())
+				});
 			all_pages = [...all_pages, api, ...api.subPages]
 			return api;
 		})).catch(err => {
