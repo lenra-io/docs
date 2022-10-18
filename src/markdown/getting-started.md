@@ -28,12 +28,14 @@ export PATH="/my/path/to/lenra_cli:$PATH"
 
 To create a new lenra project you can just run the `lenra new` command.
 
-This commande takes two parameters : The **template name** ([see list of templates](https://github.com/orgs/lenra-io/repositories?q=&type=template&language=&sort=stargazers)) and the **project name**. We will use the node template for most of the guides in this documentation.
+This commande takes two parameters : The **template name** ([see list of templates](https://github.com/orgs/lenra-io/repositories?q=&type=template&language=&sort=stargazers)) and the **project name**.
 
 ```bash
 lenra new node todo
 cd todo
 ```
+
+> Note : All the guide in this documentation will focus on the node template (using javascript). Other languages work about the same and main principles remain the same too. **Don't be afraid to follow these guide using another language !**
 
 ## Directory structure
 

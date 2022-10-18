@@ -2,6 +2,8 @@
 
 Now that you know the basics of a lenra app, we can create our first app : a basic TODO List.
 
+> Note : To follow this guide, you must have basic knowledge about javascript, Mongo query language and API call (using axios).
+
 First of all, we want to organise our model (database). 
 
 We will have only one collection : the **task** collection that will store all of our tasks. 
