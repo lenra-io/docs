@@ -9,7 +9,7 @@ const { default: js } = require('minify/lib/js');
 const srcPath = Path.join(__dirname, '..', 'src');
 const apiPath = Path.join(srcPath, 'api');
 
-const components_yaml = yaml.parse(fs.readFileSync(Path.join(__dirname, 'components.yml')).toString())
+const components_yaml = yaml.parse(fs.readFileSync(Path.join(__dirname, 'doc-deps.yml')).toString())
 
 for (const component of components_yaml.components) {
     const component_path = Path.join(apiPath, component.name)
