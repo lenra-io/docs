@@ -4,7 +4,7 @@
 
 ## General requirements
 
-First of all, you have to install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [docker](https://docs.docker.com/engine/install/) in your computer.
+First of all, you have to install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [docker](https://docs.docker.com/engine/install/) on your computer.
 
 ## Install Lenra CLI using [**cargo**](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 
