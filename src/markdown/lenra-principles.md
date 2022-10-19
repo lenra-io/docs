@@ -1,6 +1,6 @@
 # How does Lenra works ?
 
-Lenra use a simple but efficient realtime MVC patten. This means that any changes to the Model will update the view in real time for every connected users. 
+Lenra uses a simple but efficient realtime MVC pattern. This means that any changes to the Model will update the view in real time for every connected users. 
 
 1. First, your widgets will take care of creating your UI according to your model. 
 2. Then your listener will first change document(s) in your mongo instance 
@@ -8,12 +8,12 @@ Lenra use a simple but efficient realtime MVC patten. This means that any change
 
 ## The Widgets
 
-The widgets are simple functions with 2 arguments : the **data**, a property object (**props**). This function will return a json tree composed by native components or other widgets. If one of the two argument change, the widget is rebuild.
+The widgets are simple functions with 2 arguments : the **data**, a property object (**props**). This function will return a json tree composed by native components or other widgets. If one of the two argument changes, the widget is rebuilt.
 
 You can find all of the existing components by [checking our documentation.](components-api/)
 
 
-For example, the counter widget (in the template app) use the `props` to customise the printed message and the `data` to get the counter value.x
+For example, the counter widget (in the template app) uses the `props` to customize the printed message and the `data` to get the counter value.x
 When the `+` button is pressed, the `increment` listener will be called.
 
 ```jsx
@@ -50,9 +50,9 @@ module.exports = (data, counter) => {
 
 If we want to change the model, we must call a listener. Your listener is a function that is able to call the data API to get/create/update/delete a document. This function is called when an action is performed by the user on the UI (button pressed, click, checkbox checked…). 
 
-The listener take 3 arguments : a property object (**props**), the **event** that triggered this listener and an **api** object that contains all the necessary the data API informations. 
+The listener takes 3 arguments : a property object (**props**), the **event** that triggered this listener and an **api** object that contains all the necessary API informations. 
 
-To update the model simply call the HTTP data API in your listener. For example, the increment listener in the node template simply increment the counter given in the props. Here, the event is irrelevant (button click).
+To update the model, simply call the HTTP data API in your listener. For example, the increment listener in the node template simply increments the counter given in the props. Here, the event is irrelevant (button click).
 
 ```jsx
 const apiService = require("../services/api");

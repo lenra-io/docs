@@ -4,7 +4,7 @@ Now that you know the basics of a lenra app, we can create our first app : a bas
 
 > Note : To follow this guide, you must have basic knowledge about javascript, Mongo query language and API call (using axios).
 
-First of all, we want to organise our model (database). 
+First of all, we want to organize our model (database). 
 
 We will have only one collection : the **task** collection that will store all of our tasks. 
 
@@ -30,7 +30,7 @@ Our document will look like that :
 
 ## Create a new task
 
-Now that we know how a task look like, we want to create a new widget to let the user create tasks. To do that, we will create a new file in the widgets directory : `addTaskForm.js`
+Now that we know what a task looks like, we want to create a new widget to let the user create tasks. To do that, we will create a new file in the widgets directory : `addTaskForm.js`
 
 Before anything else, we will register this widget to our application. This will link this function to the `addTaskForm` ****action. To do this, go to the `index.js` file and add a line in the `widgets` object.
 
@@ -114,23 +114,23 @@ module.exports = (data, props) => {
 <figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">widgets/addTaskForm.js</figcaption>
 
 
-Lets see what happen here : 
+Let's see what happens here : 
 
 ### 1 : The [Flex component](https://docs.lenra.io/components-api/components/flex.html)
 
-The form allow only one child. The reason is simple, it does not infer how you want to place your inputs in the form. That why we add a Flex component that describe how the children will be placed in the UI. 
+The form allows only one child. The reason is simple, it does not infer how you want to place your inputs in the form. That is why we add a Flex component that describes how the children will be placed in the UI. 
 
 By default, the flex is horizontal. We add the `crossAxisAlignment: "center"` to vertically center the children and a `spacing: 2` to add some spaces between the children. 
 
 ### 2 : The label
 
-This one simply add a label before the textfield. That’s it !
+This one simply adds a label before the textfield. That’s it !
 
 ### 3 : Textfield
 
 This is a two in one. 
 
-The [textfield component](https://docs.lenra.io/components-api/components/textfield.html) simply add a textfield with a default value to empty (`value: “”`). The `name: “description”` connect this textfield first form up in the component tree. This way, when the form will be submitted, the event will contain a `description` field that contains the value of the textfield : 
+The [textfield component](https://docs.lenra.io/components-api/components/textfield.html) simply adds a textfield with a default value to empty (`value: “”`). The `name: “description”` connects this textfield first form up in the component tree. This way, when the form will be submitted, the event will contain a `description` field that contains the value of the textfield : 
 
 ```json
 {
@@ -142,11 +142,11 @@ The [textfield component](https://docs.lenra.io/components-api/components/textfi
 <figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">The event object</figcaption>
 
 
-Then we have the [flexible component](https://docs.lenra.io/components-api/components/flexible.html). that allow the textfield to take all the remaining space in the flex above. As simple as that !
+Then we have the [flexible component](https://docs.lenra.io/components-api/components/flexible.html). that allows the textfield to take all the remaining space in the flex above. As simple as that !
 
 ### 4 : The [submit button](https://docs.lenra.io/components-api/components/button.html)
 
-This component is a simple button in which we add the `submit: true` property. This connect the form to this button. This way, when the button is pressed, the form will be automatically submitted (the `onSubmit` listener will be called).
+This component is a simple button in which we add the `submit: true` property. This connects the form to this button. This way, when the button is pressed, the form will be automatically submitted (the `onSubmit` listener will be called).
 
 ### Call the form
 
@@ -191,7 +191,7 @@ Your app should look like that.
     <img src="img/basic_todo_list.png" width="500"/>
 </p>
 
-You should be able to type some text in the textfield. But for now the “add” button do nothing. Let change that !
+You should be able to type some text in the textfield. But for now the “add” button does nothing. Let's change that !
 
 ## Create the submitTask listener
 
@@ -218,25 +218,25 @@ module.exports = async (props, event, api) => {
 
 ### 1 : Import the API service
 
-This API service already exist in your base template by default. It simply define a bunch of useful function to easily call the data API. In this listener, we will use the “createDoc” function. You can check the content of this apiService.
+This API service already exists in your base template by default. It simply defines a bunch of useful functions to easily call the data API. In this listener, we will use the “createDoc” function. You can check the content of this apiService.
 
 ### 2 : Create the function
 
-A listener function take 3 parameters : `props`, `event` and `api`. 
+A listener function takes 3 parameters : `props`, `event` and `api`. 
 
 - The props will be ignored here.
 - The event contains the data from all the form inputs (our `description`).
 - The `api` contains the url and token useful to call the Data API. Don’t bother too much with this.
 
-In this function body we can call our Data API to create out new task. 
+In this function body we can call our Data API to create our new task. 
 
 Keep in mind that the listener must execute relatively fast in order to avoid long loader. (less than a second ideally). 
 
 ### 3 : Create our task
 
-This is where the magic start. The `apiService.createDoc` function will create a new document in the `tasks` collection. 
+This is where the magic starts. The `apiService.createDoc` function will create a new document in the `tasks` collection. 
 
-Remember our database model. The `user` field should contain the current user ID to be able to filter the task that belong to the user. To do this, Lenra offer shortcut to access contextual data. In our example `@me` is a reference to the current user ID and will be replaced automatically.
+Remember our database model. The `user` field should contain the current user ID to be able to filter the task that belongs to the user. To do this, Lenra offers a shortcut to access contextual data. In our example `@me` is a reference to the current user ID and will be replaced automatically.
 
 When the document is added, the UI will be rebuilt in order to instantly display the updated interface to the user.
 
@@ -263,7 +263,7 @@ But wait… The task are still not visible yet.
 
 ## List the user tasks
 
-Now that we can add new tasks in our database, lets list them in the interface.
+Now that we can add new tasks in our database, let's list them in the interface.
 
 To do this, create a new `taskList.js` widget and **register** it to the manifest `index.js`.
 
@@ -346,7 +346,7 @@ module.exports = (data, props) => {
 
 As you can see, we use the same component that we used to call the `addTaskForm` widget. The only difference is the `coll` and `query` properties. 
 
-The `coll` property define the **collection** where we want to run the query. 
+The `coll` property defines the **collection** where we want to run the query. 
 
 Then the `query` is a [simple mongo query](https://www.mongodb.com/docs/manual/tutorial/query-documents/) with the lenra specificity : the `@me` to reference the current user. It is the same trick we used to create our task before. This query will filter the `tasks` collection to give us only the task associated with the current user. The result of this query is the `data` argument in our widget function.
 
@@ -360,7 +360,7 @@ With your new knowledge, you should be able to create the next features.
 
 ### Delete a task
 
-Add a button to delete the task next to it. When the user click this button, remove the task from the database.
+Add a button to delete the task next to it. When the user clicks this button, remove the task from the database.
 
 You will need : 
 
@@ -369,7 +369,7 @@ You will need :
 
 ### Toggle the tasks
 
-When the user click on a task, toggle the`done` boolean. Then in the `TaskCard`, depending of this boolean, cross the description of the task.
+When the user clicks on a task, toggle the`done` boolean. Then in the `TaskCard`, depending of this boolean, cross the description of the task.
 
 You will need : 
 
@@ -379,7 +379,7 @@ You will need :
 
 ## Troubleshooting
 
-### Can i have some help anywhere ?
+### Can I have some help anywhere ?
 
 If you need help, you can check our [todo app github repo](https://github.com/lenra-io/app-todo) where all the above feature are implemented.
 
@@ -387,4 +387,4 @@ You also can ask questions using the [Help wanted category of our github discuss
 
 ### I have created my listener/widget but it says that this listener/widget does not exists.
 
-Be sure to register your listener/widget in the `index.js` first ! This tell your javascript server to call your function when the listener action/widget name is called.
+Be sure to register your listener/widget in the `index.js` first ! This tells your javascript server to call your function when the listener action/widget name is called.

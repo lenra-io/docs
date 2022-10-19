@@ -39,7 +39,7 @@ cd todo
 
 ## Directory structure
 
-First of all, we can see that this project already versionned with git. This is a usually a good idea to commit your changes early on. This new project is a simple app that showcase a simple counter app.
+First of all, we can see that this project is already versioned with git. This is a usually a good idea to commit your changes early on. This new project is a simple app that showcases a simple counter app.
 
 About the different files : 
 
@@ -47,14 +47,14 @@ About the different files :
     <img src="img/file_tree.png" alt="file system" width="300"/>
 </p>
 
-- `.package.json`  Add your project dependancy in this file like any other node project
+- `.package.json`  Add your project dependency in this file like any other node project
 - `listeners/*.js` are the listeners of this project. A listener is a piece of code that will be executed when a specific action occurs. More on this later.
-- `services/*.js` are modules that take care of sending API call to Lenra. This will be helpful to create/update/delete data from the database.
-- `widgets/*.js` are the UI parts of the application. These widgets can be combined to create complexe UI.
+- `services/*.js` are modules that take care of sending API calls to Lenra. This will be helpful to create/update/delete data from the database.
+- `widgets/*.js` are the UI parts of the application. These widgets can be combined to create complex UI.
 - `resources/*.js` are the images and other resources you need to access from the UI.
 - `index.js` is the manifest where you will register your widgets and listeners, create your routes etc..
 - `server.js` is the webserver that will take care of the interactions with the lenra back-end. **Do not update this file if you don’t know what you are doing !**
-- `lenra.yml` is a file that explain to the lenra CLI how to build your app. If you create complexe app that need other steps to be build and/or started, you will need to edit this file.
+- `lenra.yml` is a file that explains to the lenra CLI how to build your app. If you create a complex app that needs other steps to be built and/or started, you will need to edit this file.
 
 ## Build and start
 
@@ -64,7 +64,7 @@ To build and start the app, you just need to run this command :
 lenra dev
 ```
 
-This command will use the `lenra.yml` file to create a docker image of your app. It also create the `.lenra` directory that will contain all the temporary files that will be needed to start your project locally. Then it will start your app with an interactive terminal.
+This command will use the `lenra.yml` file to create a docker image of your app. It also creates the `.lenra` directory that will contain all the temporary files that will be needed to start your project locally. Then it will start your app with an interactive terminal.
 
 When everything is correctly started, you should be able to open your app in your browser at [http://localhost:4000](http://localhost:4000) !
 
