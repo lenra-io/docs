@@ -88,7 +88,7 @@ async function getPages() {
 			console.error(err)
 		}));
 	} else {
-		console.error(`${api_dir} wasn't a correct directory. Make sure it exist`)
+		console.error(`${api_dir} is not a correct directory. Make sure it exists.`)
 	}
 	return all_pages;
 }
