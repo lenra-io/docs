@@ -35,7 +35,7 @@ lenra new node todo
 cd todo
 ```
 
-> Note : All the guide in this documentation will focus on the node template (using javascript). Other languages work about the same and main principles remain the same too. **Don't be afraid to follow these guide using another language !**
+> Note : All the guides in this documentation will focus on the node template (using javascript). Other languages work about the same and main principles remain the same too. **Don't be afraid to follow these guides using another language !**
 
 ## Directory structure
 
