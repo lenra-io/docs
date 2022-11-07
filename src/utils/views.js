@@ -11,7 +11,6 @@ const converter = new showdown.Converter();
 
 const viewsPath = Path.join(__dirname, '..', 'views');
 const markdownPath = Path.join(__dirname, '..', 'markdown');
-const componentsApiBasePath = '/components-api/';
 
 /**
  * Get the view file for the given path and language
@@ -57,40 +56,60 @@ async function getPages() {
 
 	let all_pages = [home, ...static_pages];
 
-	const api_dir = Path.join(__dirname, '../api/', componentsApiBasePath)
+	const api_dir = Path.join(__dirname, '../api/')
 	if ((await fs.stat(api_dir)).isDirectory()) {
-		home.subPages = home.subPages.concat(await Promise.all(fs.readdirSync(api_dir).filter(api_name => !api_name.startsWith('.')).map(async api_name => {
-			const api_path = Path.join(api_dir, api_name)
-			const api = new Page(`/${api_name}/`, api_name.charAt(0).toUpperCase() + api_name.substring(1), 'Description is not managed yet', 'definition-summary');
-			api.collapsable = true
-
-			const components_paths = await new Promise((resolve, reject) =>
-				glob(
-					Path.join(api_path, '*.html'),
-					(error, match) => error ? reject(error) : resolve(match)
-				)
-			).catch(err => {
-				console.error(err);
-			});
-			api.subPages = components_paths
-				.map(component_path => {
-					const filename = Path.basename(component_path, '.html')
-					return new Page(
-						Path.join(api.path, Path.basename(component_path)),
-						filename.charAt(0).toUpperCase() + filename.substring(1),
-						'Description is not managed yet',
-						'definition',
-						fs.readFileSync(component_path).toString())
-				});
-			all_pages = [...all_pages, api, ...api.subPages]
-			return api;
-		})).catch(err => {
-			console.error(err)
-		}));
+		home.subPages = home.subPages.concat(
+			await Promise.all(
+				fs.readdirSync(api_dir)
+					.filter(api_name => !api_name.startsWith('.'))
+					.map(api_name => parseApiDir(api_name, api_dir))
+				).catch(err => {
+					console.error(err)
+				})
+		);
 	} else {
 		console.error(`${api_dir} is not a correct directory. Make sure it exists.`)
 	}
+
+	home.subPages.forEach(value => all_pages.push(value))
+	console.log(all_pages)
+
 	return all_pages;
+}
+
+async function parseApiDir(api_name, api_dir) {
+	const api_path = Path.join(api_dir, api_name)
+	const api = new Page(`/${api_name}/`, api_name.charAt(0).toUpperCase() + api_name.substring(1), 'Description is not managed yet', 'definition-summary');
+	api.collapsable = true
+
+	const components_paths = await new Promise((resolve, reject) =>
+		glob(
+			Path.join(api_path, '*.html'),
+			(error, match) => error ? reject(error) : resolve(match)
+		)
+	).catch(err => {
+		console.error(err);
+	});
+
+	api.subPages = components_paths
+		.filter(component_path => !Path.basename(component_path).startsWith('.'))
+		.map(component_path => {
+			const file_info = fs.statSync(component_path);
+			if (file_info.isDirectory) {
+				const filename = Path.basename(component_path)
+				return parseApiDir(filename, component_path)
+			} else {
+				const filename = Path.basename(component_path, '.html')
+				return new Page(
+					Path.join(api.path, Path.basename(component_path)),
+					filename.charAt(0).toUpperCase() + filename.substring(1),
+					'Description is not managed yet',
+					'definition',
+					fs.readFileSync(component_path).toString())
+			}
+	});
+
+	return api;
 }
 
 /**
@@ -153,6 +172,5 @@ module.exports = {
 	getViewFile,
 	getPages,
 	getPageFromPath,
-	translatePages,
-	componentsApiBasePath
+	translatePages
 }
