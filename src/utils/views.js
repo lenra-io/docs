@@ -82,20 +82,13 @@ async function parseApiDir(api_name, api_dir) {
 	const api = new Page(`/${api_name}/`, api_name.charAt(0).toUpperCase() + api_name.substring(1), 'Description is not managed yet', 'definition-summary');
 	api.collapsable = true
 
-	const components_paths = await new Promise((resolve, reject) =>
-		glob(
-			Path.join(api_path, '*.html'),
-			(error, match) => error ? reject(error) : resolve(match)
-		)
-	).catch(err => {
-		console.error(err);
-	});
+	const components_paths = fs.readdirSync(api_path)
 
-	api.subPages = components_paths
+	api.subPages = await Promise.all(components_paths
 		.filter(component_path => !Path.basename(component_path).startsWith('.'))
-		.map(component_path => {
+		.map(async component_path => {
 			const file_info = fs.statSync(component_path);
-			if (file_info.isDirectory) {
+			if (file_info.isDirectory()) {
 				const filename = Path.basename(component_path)
 				return parseApiDir(filename, component_path)
 			} else {
@@ -107,7 +100,7 @@ async function parseApiDir(api_name, api_dir) {
 					'definition',
 					fs.readFileSync(component_path).toString())
 			}
-	});
+	}));
 
 	return api;
 }
