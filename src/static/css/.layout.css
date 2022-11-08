@@ -1,17 +1,16 @@
-nav {
+body > nav {
     background-color: var(--black-moon);
-    color: var(--background-color);
     font-size: normal;
     min-width: calc(var(--base) * 24);
     --logo-image: var(--logo-horizontal-image-white);
     height: 100%;
 }
 
-nav > button {
+body > nav > button {
     display: none;
 }
 
-nav > a {
+body > nav > a.presentation {
     position: relative;
     display: block;
     color: transparent;
@@ -28,7 +27,7 @@ nav > a {
     padding: var(--header-vertical-padding) auto;
 }
 
-nav > a::before {
+body > nav > a.presentation::before {
     content: " ";
     position: absolute;
     top: 50%;
@@ -42,17 +41,26 @@ nav > a::before {
     transform: translateY(-50%);
 }
 
-nav > ul {
+body > nav > a[href="/"] {
+    display: block;
+    margin-bottom: calc(var(--base) * 2);
+    text-align: center;
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+body > nav > ul {
     overflow: auto;
     height: calc(100% - var(--header-height));
     padding-bottom: calc(var(--base) * 2);
+    color: var(--background-color);
 }
 
-nav > ul li {
+body > nav > ul li {
     position: relative;
 }
 
-nav > ul li > a {
+body > nav > ul li > a {
     text-decoration: none;
     display: block;
     padding: calc(var(--base) * 0.5) calc(var(--base) * 2);
@@ -60,7 +68,7 @@ nav > ul li > a {
     margin-bottom: calc(var(--base) / 2);
 }
 
-nav > ul li > details > summary {
+body > nav > ul li > details > summary {
     --size: calc(var(--base) * 0.5 * 2 + var(--font-size) * var(--line-height));
     position: absolute;
     top: 0;
@@ -71,7 +79,7 @@ nav > ul li > details > summary {
     overflow: hidden;
 }
 
-nav > ul li > details > summary::before {
+body > nav > ul li > details > summary::before {
     --w: var(--font-size) * var(--line-height);
     --l: 2px;
     content: ' ';
@@ -91,20 +99,20 @@ nav > ul li > details > summary::before {
     transition-property: transform;
 }
 
-nav > ul li > details[open] > summary::before {
+body > nav > ul li > details[open] > summary::before {
     transform: rotate(135deg);
 }
 
-nav > ul ul > li > a {
+body > nav > ul ul > li > a {
     padding-left: calc(var(--base) * 4);
 }
 
-nav > ul ul ul > li > a {
+body > nav > ul ul ul > li > a {
     padding-left: calc(var(--base) * 6);
 }
 
-nav li a:hover,
-nav li.selected > a {
+body > nav li a:hover,
+body > nav li.selected > a {
     background-color: var(--blue);
 }
 
@@ -123,18 +131,18 @@ body > section > header > h1 {
 }
 
 @media (max-width: 800pt) {
-    nav {
+    body > nav {
         position: fixed;
         left: 0;
         transform: translateX(-100%);
         z-index: 1;
     }
 
-    nav.opened {
+    body > nav.opened {
         transform: translateX(0%);
     }
 
-    nav::before {
+    body > nav::before {
         content: " ";
         position: absolute;
         width: 0%;
@@ -147,18 +155,19 @@ body > section > header > h1 {
         transition-property: width;
     }
 
-    nav.opened::before {
+    body > nav.opened::before {
         width: calc(100vw - 100%);
     }
 
-    nav > button {
+    body > nav > button {
+        --width: calc(var(--base) * 5);
         display: block;
         position: absolute;
         top: var(--header-vertical-padding);
         right: calc(var(--header-horizontal-padding) * -1);
         transform: translateX(100%);
-        width: calc(var(--base) * 4);
-        padding-left: calc(var(--base) * 4);
+        width: var(--width);
+        padding-left: var(--width);
         padding-right: 0;
         overflow: hidden;
         white-space: nowrap;
@@ -166,13 +175,13 @@ body > section > header > h1 {
         z-index: 100;
     }
 
-    nav.opened > button {
+    body > nav.opened > button {
         right: calc(100% - 100vw + var(--header-horizontal-padding));
         transform: translateX(0%);
     }
 
-    nav > button::before,
-    nav > button::after {
+    body > nav > button::before,
+    body > nav > button::after {
         content: " ";
         position: absolute;
         width: 50%;
@@ -181,32 +190,32 @@ body > section > header > h1 {
         left: 25%;
         display: block;
         background-image: 
-        linear-gradient(180deg, white, white),
-        linear-gradient(180deg, white, white),
-            linear-gradient(180deg, white, white);
+        linear-gradient(180deg, currentcolor, currentcolor),
+        linear-gradient(180deg, currentcolor, currentcolor),
+            linear-gradient(180deg, currentcolor, currentcolor);
         background-repeat: no-repeat;
         background-position: center 0%, center 50%;
         background-size: 100% 15%;
         transition-property: background, transform;
     }
 
-    nav > button::after {
+    body > nav > button::after {
         background-image: linear-gradient(180deg, currentcolor, currentcolor);
         background-position: center 100%;
     }
 
-    nav.opened > button::before {
+    body > nav.opened > button::before {
         background-position: center 50%;
         transform: rotate(45deg);
     }
 
-    nav.opened > button::after {
+    body > nav.opened > button::after {
         background-position: center 50%;
         transform: rotate(-45deg);
     }
 
     body > section > header {
-        padding-left: calc(var(--header-horizontal-padding) + var(--base) * 4 + var(--base) * 2);
+        padding-left: calc(var(--header-horizontal-padding) + var(--base) * 5 + var(--base) * 2);
     }
 }
 

@@ -4,11 +4,11 @@ a {
 
 button, .button {
     border-radius: calc(var(--base) * 0.5);
-    --border-size: 1pt;
+    --border-size: 1px;
     border: var(--border-size) solid var(--primary-color);
     display: inline-block;
     text-align: center;
-    padding: var(--base) calc(var(--base) * 2);
+    padding: calc(var(--base) - var(--border-size)) calc(var(--base) * 4);
 }
 
 button.little, .button.little {
@@ -22,6 +22,7 @@ button.big, .button.big {
 /*-----------------------------------------*/
 
 button.primary, .button.primary {
+    --border-size: 0px;
     background-color: var(--primary-color);
     color: var(--background-color);
 }

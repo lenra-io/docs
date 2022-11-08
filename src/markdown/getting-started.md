@@ -1,5 +1,3 @@
-# Getting Started
-
 ## Prerequisites
 
 To properly run the commands through this tutorial, you will need to install these :

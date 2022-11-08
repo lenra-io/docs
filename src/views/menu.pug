@@ -1,6 +1,6 @@
-mixin manageCollapse(collapsable)
+mixin manageCollapse(collapsable, open)
     if (collapsable)
-        details(open)
+        details(open=open)
             summary Open/Close
             block
     else
@@ -10,7 +10,8 @@ mixin manageCollapse(collapsable)
 mixin createMenuItem(page)
     a(href=page.path)= page.name
     if (page.subPages.length)
-        +manageCollapse(page.collapsable)
+        - console.log("open details", currentPage.path, page.path);
+        +manageCollapse(page.collapsable, currentPage.path.startsWith(page.path))
             +createMenuItems(page.subPages)
 
 
@@ -21,6 +22,7 @@ mixin createMenuItems(pages)
                 +createMenuItem(page)
 
 nav
-    button.tertiary(onclick="this.parentNode.className = this.parentNode.className ? '' : 'opened'") Open/Close Menu
-    a(href="https://www.lenra.io/") Lenra
+    button.primary(onclick="this.parentNode.className = this.parentNode.className ? '' : 'opened'") Open/Close Menu
+    a.presentation(href="https://www.lenra.io/") Lenra
+    a(href="/") Documentation
     +createMenuItems(pages[0].subPages)

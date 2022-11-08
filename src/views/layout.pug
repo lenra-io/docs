@@ -16,8 +16,15 @@ html(lang=language)
     link(rel="icon" type="image/png" href="/favicon.png")
     link(rel="apple-touch-icon" href="/img/appicon.png")
     link(rel='stylesheet' as='style' type='text/css' href='/css/main.css' media='print' onload='this.media="all"')
+    - let cssPath = currentPage.path;
+    - console.log(cssPath);
+    - if (cssPath.endsWith('/')) cssPath += 'index.html';
+    - cssPath = cssPath.replace(/.html$/, ".css");
+    - console.log(cssPath);
+    link(rel='stylesheet' as='style' type='text/css' href='css' + cssPath media='print' onload='this.media="all"')
     noscript
       link(rel='stylesheet' as='style' type='text/css' href='/css/main.css')
+      link(rel='stylesheet' as='style' type='text/css' href='css' + cssPath)
     script(src='/js/main.js' defer)
     script(src="https://analytics.lenra.io/js/plausible.js" data-domain="!DOMAIN!" defer)
   body

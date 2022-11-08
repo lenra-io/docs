@@ -11,7 +11,7 @@
     --yellow: #F6C28B;
     --yellow-fade: #FBE7D1;
     --red: #F27A86;
-    --base: 8pt;
+    --base: 8px;
     --primary-color: #1269ED;
     --primary-color-hover: #0D4DAE;
     --black-moon: #1E232C;
@@ -25,11 +25,15 @@
     --logo-vertical-image: url("/img/logo-vertical.svg");
     --logo-image-black: var(--logo-vertical-image-black);
     --logo-image-white: var(--logo-vertical-image-white);
-    --font-size: var(--base) * 1.5;
-    --line-height: calc(2 / 1.5);/* 2 * base / font-size */
+    --font-size: var(--base) * 2;
+    --line-height: calc(5 / 4);
     --header-vertical-padding: calc(var(--base) * 2);
     --header-horizontal-padding: calc(var(--base) * 4);
-    --header-height: calc(var(--header-vertical-padding) * 2 + var(--base) * 4);/* Button height + 2 * padding */
+    --header-height: calc(var(--header-vertical-padding) * 2 + var(--base) * 2 + var(--font-size));
+}
+
+html {
+    overflow: hidden;
 }
 
 html, body {
@@ -57,19 +61,43 @@ body > section {
 
 main {
     flex: 1;
-    padding: calc(var(--base) * 3) calc(var(--base) * 4) calc(var(--base) * 5);
+    padding: calc(var(--base) * 3) 0 calc(var(--base) * 5);
     overflow: auto;
 }
 
-h1, h2, h3 {
-    font-family: 'Source Sans Pro';
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    text-align: left;
+main > * {
+    width: 90%;
+    max-width: 1200px;
+    margin-left: max(5%, calc((100% - 1200px) / 2));
 }
 
-h2, h3, p {
+main > p {
+    max-width: 800px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: calc(var(--font-size) * var(--font-size-multiplier));
+    font-weight: 700;
+}
+
+h1, h2 {
+    --font-size-multiplier: 2;
+}
+
+h3 {
+    --font-size-multiplier: calc(3 / 2);
+}
+
+h4 {
+    --font-size-multiplier: calc(4 / 3);
+}
+
+
+h2 {
+    padding-top: var(--base);
+}
+
+h2, h3, p, pre {
     padding-bottom: calc(var(--base) * 2);
 }
 
