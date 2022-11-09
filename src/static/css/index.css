@@ -21,6 +21,7 @@ main > nav > a {
 main > nav > a > h2 {
     color: var(--primary-color);
     --font-size-multiplier: calc(5 / 4);
+    padding-top: 0;
 }
 
 main > nav > a:hover {
