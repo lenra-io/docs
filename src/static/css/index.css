@@ -1,5 +1,10 @@
+main > p {
+    margin: auto;
+}
+
 main > nav {
     text-align: center;
+    padding-top: calc(var(--base) * 4);
 }
 
 main > nav > a {
