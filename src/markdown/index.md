@@ -2,7 +2,7 @@ Lenra is a <abbr title="Function as a Service">SaaS</abbr> platform that acceler
 It let you focus on the core of your app without loosing time on secondary issues.
 You can create a cross-platform app that can scale automatically to follow your users growth.
 
+- [About the Lenra framework](lenra-principles.html)
 - [Getting started](getting-started.html)
-- [The framework](framework.html)
+- [Your first app : A basic todo list](todo-list-guide.html)
 - [Components API reference](components-api/)
-- [How it works](how-it-works.html)
