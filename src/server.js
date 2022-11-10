@@ -15,9 +15,10 @@ app.get('/(*/)?(*.html)?', async (req, res) => {
     const Views = require('./utils/views');
     const common = require('./i18n/common.json');
     const lang = req.query.lang ||  languagePriority[0];
-    console.log(req.path, lang);
     const pTranslation = Translations.loadTranslation(lang);
+
     const pages = Views.translatePages(await Views.getPages(), await pTranslation);
+
     const currentPage = Views.getPageFromPath(pages, req.path);
     const file = currentPage ? Views.getViewFile(currentPage.view, lang) : null;
     if (!file) {
@@ -25,8 +26,8 @@ app.get('/(*/)?(*.html)?', async (req, res) => {
         return;
     }
     const props = {
-        ...common, 
-        componentsApiBasePath: Views.componentsApiBasePath, 
+        ...common,
+        componentsApiBasePath: Views.componentsApiBasePath,
         language: lang,
         pages,
         currentPage

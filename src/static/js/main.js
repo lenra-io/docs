@@ -1,6 +1,5 @@
 // ajouter/générer le style sans les variables si elles ne sont pas gérées
 var computedStyle = getComputedStyle(document.querySelector("a.primary"), null);
-console.log(computedStyle.backgroundColor);
 if (computedStyle.backgroundColor=="transparent") {
     console.log("Variables non gérées");
     var script = document.createElement("script");

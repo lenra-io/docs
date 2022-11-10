@@ -14,6 +14,9 @@ Simply install the latest package using the cargo-cli
 cargo install lenra_cli@version
 ```
 
+For more installation instructions, you can directly check the CLI repository : [https://github.com/lenra-io/lenra_cli](https://github.com/lenra-io/lenra_cli).
+
+
 ## Install Lenra CLI using the binary
 
 **[Download the latest binary](https://github.com/lenra-io/lenra_cli/releases)**, unpack it where you want and update your $PATH
@@ -82,9 +85,11 @@ Create an account on [dev.lenra.io](http://dev.lenra.io).
 You will be asked for a token to join our developer platform as our platform is in private beta phase.
 We will be sending you one as soon as possible.
 After successfully completing this step you will be redirected to the creation of your first project, just enter a name and the URL of the app git repository.
+
 <p align="center">
     <img src="img/new-lenra-project.png" alt="New Lenra project" width="300"/>
 </p>
-Then you will have to click `Publish my application` at the top right corner, your application will be sent to Lenra's servers and deployed to be accessible directly for the Lenra Store. 
+Then you simply click `Publish my application` at the top right corner, your application will be sent to Lenra's servers and deployed to be accessible directly for the Lenra Store. 
 Once your application is fully deployed on our servers, it will be accessible by clicking the `See my application` button. 
 You can share this application by changing its visibility to `public` in the settings and sending the link to people (which should look close to app.lenra.io/#/app/f6279d6a-3b71-4520-a7f8-0f7b28700de9).
+
