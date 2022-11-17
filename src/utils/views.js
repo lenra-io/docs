@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const Path = require('path');
 const Utils = require('./common');
-const showdown  = require('showdown');
+const showdown = require('showdown');
 const glob = require('glob');
 
 const config = require('../i18n/common.json');
@@ -11,7 +11,7 @@ const converter = new showdown.Converter();
 
 const viewsPath = Path.join(__dirname, '..', 'views');
 const markdownPath = Path.join(__dirname, '..', 'markdown');
-const componentsApiBasePath = '/components-api/';
+const api_dir = Path.join(__dirname, '../api/')
 
 /**
  * Get the view file for the given path and language
@@ -57,40 +57,59 @@ async function getPages() {
 
 	let all_pages = [home, ...static_pages];
 
-	const api_dir = Path.join(__dirname, '../api/', componentsApiBasePath)
 	if ((await fs.stat(api_dir)).isDirectory()) {
-		home.subPages = home.subPages.concat(await Promise.all(fs.readdirSync(api_dir).filter(api_name => !api_name.startsWith('.')).map(async api_name => {
-			const api_path = Path.join(api_dir, api_name)
-			const api = new Page(`/${api_name}/`, api_name.charAt(0).toUpperCase() + api_name.substring(1), 'Description is not managed yet', 'definition-summary');
-			api.collapsable = true
-
-			const components_paths = await new Promise((resolve, reject) =>
-				glob(
-					Path.join(api_path, '*.html'),
-					(error, match) => error ? reject(error) : resolve(match)
-				)
+		home.subPages = home.subPages.concat(
+			await Promise.all(
+				fs.readdirSync(api_dir)
+					.filter(api_name => !api_name.startsWith('.'))
+					.map(api_name => parseApiDir(api_name))
 			).catch(err => {
-				console.error(err);
-			});
-			api.subPages = components_paths
-				.map(component_path => {
-					const filename = Path.basename(component_path, '.html')
-					return new Page(
-						Path.join(api.path, Path.basename(component_path)),
-						filename.charAt(0).toUpperCase() + filename.substring(1),
-						'Description is not managed yet',
-						'definition',
-						fs.readFileSync(component_path).toString())
-				});
-			all_pages = [...all_pages, api, ...api.subPages]
-			return api;
-		})).catch(err => {
-			console.error(err)
-		}));
+				console.error(err)
+			})
+		);
 	} else {
 		console.error(`${api_dir} is not a correct directory. Make sure it exists.`)
 	}
+
+	home.subPages.forEach(value => all_pages.push(value))
+	console.log(all_pages)
+
 	return all_pages;
+}
+
+async function parseApiDir(api_name) {
+	const api_path = Path.join(api_dir, api_name)
+	const api = createPage(`/${api_name}/`);
+	api.collapsable = true
+
+	const components_paths = fs.readdirSync(api_path)
+
+	api.subPages = await Promise.all(components_paths
+		.filter(component => !Path.basename(component).startsWith('.'))
+		.filter(component => !component.endsWith(".json"))
+		.map(async component => {
+			const component_path = Path.join(api_path, component);
+			const component_relative_path = Path.join(api_name, component);
+			const file_info = fs.statSync(component_path);
+			if (file_info.isDirectory()) {
+				return parseApiDir(component_relative_path)
+			} else {
+				return createPage(component_relative_path, fs.readFileSync(component_path).toString());
+			}
+		}));
+
+	console.log("api.subpages", api.subPages);
+	return api;
+}
+
+function createPage(path, content) {
+	const filename = Path.basename(path, '.html')
+	return new Page(
+		path,
+		filename.charAt(0).toUpperCase() + filename.substring(1),
+		'Description is not managed yet',
+		'definition',
+		content)
 }
 
 /**
@@ -100,7 +119,7 @@ async function getPages() {
  */
 function getPageFromPath(pages, path) {
 	const p = pages.find(p => path.startsWith(p.path));
-	if (!p || p.path==path) return p;
+	if (!p || p.path == path) return p;
 	if (p.subPages.length)
 		return getPageFromPath(p.subPages, path);
 	return p;
@@ -121,7 +140,7 @@ function translatePages(pages, translations) {
 	});
 	repositionPages.forEach(p => {
 		let pos = retPages.indexOf(p);
-		if (pos!=p.position) {
+		if (pos != p.position) {
 			retPages.splice(pos, 1);
 			retPages.splice(p.position, 0, p);
 		}
@@ -153,6 +172,5 @@ module.exports = {
 	getViewFile,
 	getPages,
 	getPageFromPath,
-	translatePages,
-	componentsApiBasePath
+	translatePages
 }
