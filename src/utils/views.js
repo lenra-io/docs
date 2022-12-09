@@ -41,7 +41,7 @@ async function getPages() {
 		.filter(file => file.endsWith('.md'))
 		.map(file => {
 			const filename = Path.basename(file, '.md')
-			const page = new Page(file.substring(file.lastIndexOf('/')).replace('.md', '.html'),
+			const page = new Page('/'+Path.basename(file).replace('.md', '.html'),
 				filename.charAt(0).toUpperCase() + filename.substring(1),
 				"Description is not managed yet",
 				"layout");
@@ -89,12 +89,12 @@ async function parseApiDir(api_name) {
 		.filter(component => !component.endsWith(".json"))
 		.map(async component => {
 			const component_path = Path.join(api_path, component);
-			const component_relative_path = Path.join(api_name, component);
+			const component_web_path = `${api_name}/${component}`;
 			const file_info = fs.statSync(component_path);
 			if (file_info.isDirectory()) {
-				return parseApiDir(component_relative_path)
+				return parseApiDir(component_web_path)
 			} else {
-				return createPage(component_relative_path, fs.readFileSync(component_path).toString());
+				return createPage(component_web_path, fs.readFileSync(component_path).toString());
 			}
 		}));
 
