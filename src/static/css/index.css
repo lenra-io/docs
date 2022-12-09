@@ -18,6 +18,11 @@ main > nav > a {
     border-radius: calc(var(--base) / 2);
 }
 
+main > nav > a::after {
+    content: none;
+    display: none;
+}
+
 main > nav > a > h2 {
     color: var(--primary-color);
     --font-size-multiplier: calc(5 / 4);

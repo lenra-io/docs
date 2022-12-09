@@ -1,32 +1,14 @@
 @import ".reset.css";
+@import '.design.css';
 @import ".font.css";
 @import ".layout.css";
 @import ".components.css";
 
 :root {
     --body-height: 100vh;
-    --green: #57C0B3;
-    --blue: #1269ED;
-    --yellow-pulse: #EF902C;
-    --yellow: #F6C28B;
-    --yellow-fade: #FBE7D1;
-    --red: #F27A86;
-    --base: 8px;
-    --primary-color: #1269ED;
-    --primary-color-hover: #0D4DAE;
-    --black-moon: #1E232C;
     --grey-super-light: #F0F2F5;
     --dark-grey: #7A8598;
-    --text-color: var(--black-moon);
-    --background-color: white;
     --background-image: url("/img/fond.svg");
-    --logo-horizontal-image-black: url("/img/logo.svg");
-    --logo-horizontal-image-white: url("/img/logo-white.svg");
-    --logo-vertical-image: url("/img/logo-vertical.svg");
-    --logo-image-black: var(--logo-vertical-image-black);
-    --logo-image-white: var(--logo-vertical-image-white);
-    --font-size: var(--base) * 2;
-    --line-height: calc(5 / 4);
     --header-vertical-padding: calc(var(--base) * 2);
     --header-horizontal-padding: calc(var(--base) * 4);
     --header-height: calc(var(--header-vertical-padding) * 2 + var(--base) * 2 + var(--font-size));

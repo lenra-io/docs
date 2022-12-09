@@ -21,7 +21,7 @@ mixin createMenuItems(pages)
             li(class=(page.path==currentPage.path ? 'selected' : ''))
                 +createMenuItem(page)
 
-nav
+nav.invert-colors
     button.primary(onclick="this.parentNode.className = this.parentNode.className ? '' : 'opened'") Open/Close Menu
     a.presentation(href="https://www.lenra.io/") Lenra
     a(href="/") Documentation
