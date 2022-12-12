@@ -62,7 +62,7 @@ async function getPages() {
 			await Promise.all(
 				fs.readdirSync(api_dir)
 					.filter(api_name => !api_name.startsWith('.'))
-					.map(api_name => parseApiDir(api_name))
+					.map(api_name => parseApiDir(`/${api_name}`))
 			).catch(err => {
 				console.error(err)
 			})
@@ -72,14 +72,14 @@ async function getPages() {
 	}
 
 	home.subPages.forEach(value => all_pages.push(value))
-	console.log(all_pages)
 
 	return all_pages;
 }
 
-async function parseApiDir(api_name) {
+async function parseApiDir(api_name, base_path=api_name) {
+
 	const api_path = Path.join(api_dir, api_name)
-	const api = createPage(`/${api_name}/`);
+	const api = createPage(`${api_name}/`, undefined, 'definition-summary');
 	api.collapsable = true
 
 	const components_paths = fs.readdirSync(api_path)
@@ -92,24 +92,35 @@ async function parseApiDir(api_name) {
 			const component_web_path = `${api_name}/${component}`;
 			const file_info = fs.statSync(component_path);
 			if (file_info.isDirectory()) {
-				return parseApiDir(component_web_path)
+				return parseApiDir(component_web_path, base_path)
 			} else {
-				return createPage(component_web_path, fs.readFileSync(component_path).toString());
+				const content = fs.readFileSync(component_path)
+					.toString()
+					.replace(/(href=['"])(\/)/g, (...group) =>
+						`${group[1]}${base_path}${group[2]}`)
+				return createPage(component_web_path, content);
 			}
 		}));
 
-	console.log("api.subpages", api.subPages);
 	return api;
 }
 
-function createPage(path, content) {
+/**
+ *
+ * @param {string} path
+ * @param {string} content
+ * @param {string} type
+ * @returns
+ */
+function createPage(path, content, type='definition') {
 	const filename = Path.basename(path, '.html')
 	return new Page(
 		path,
 		filename.charAt(0).toUpperCase() + filename.substring(1),
 		'Description is not managed yet',
-		'definition',
-		content)
+		type,
+		content
+	)
 }
 
 /**

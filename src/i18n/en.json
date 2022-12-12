@@ -11,6 +11,9 @@
         "/how-it-works.html": {
             "name": "How it works",
             "description": "How Lenra works ? Is it magic ? Not really, it's open sources technologies"
+        },
+        "/components-api/": {
+            "name": "Components API"
         }
     }
 }

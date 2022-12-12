@@ -10,7 +10,6 @@ mixin manageCollapse(collapsable, open)
 mixin createMenuItem(page)
     a(href=page.path)= page.name
     if (page.subPages.length)
-        - console.log("open details", currentPage.path, page.path);
         +manageCollapse(page.collapsable, currentPage.path.startsWith(page.path))
             +createMenuItems(page.subPages)
 
