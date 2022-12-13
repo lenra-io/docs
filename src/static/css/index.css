@@ -8,6 +8,8 @@ main > nav {
 }
 
 main > nav > a {
+    --btn-text-color-data: var(--text-color-data);
+    --btn-text-color-hover-data: var(--text-color-hover-data);
     display: inline-block;
     max-width: 300px;
     vertical-align: top;

@@ -7,8 +7,8 @@ You can create a cross-platform app that can scale automatically to follow your 
         <h2>Getting started</h2>
         Set up your environment and start creating you app.
     </a>
-    <a href="framework.html">
-        <h2>The framework</h2>
+    <a href="lenra-principles.html">
+        <h2>Lenra principles</h2>
         Understand how our app frameword helps you create apps.
     </a>
     <a href="components-api/">

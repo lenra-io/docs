@@ -92,7 +92,13 @@ main li > ul {
     padding-left: calc(var(--base) * 2);
 }
 
-
+pre {
+    padding: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid;
+    border-radius: 0.5rem;
+}
 
 /*@media (prefers-color-scheme: dark) {
     :root {
