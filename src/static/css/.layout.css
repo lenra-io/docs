@@ -3,9 +3,9 @@ body>nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--black-moon);
+    background-color: rgb(var(--background-color-data));
     font-size: normal;
-    --logo-image: var(--logo-horizontal-image-white);
+    --logo-image: var(--logo-horizontal-image);
     height: 100%;
 }
 
@@ -16,6 +16,7 @@ body>nav a {
 
 body>nav>button {
     display: none;
+    min-width: 0;
 }
 
 body>nav>a.presentation {
@@ -175,8 +176,8 @@ body>section>header>h1 {
     line-height: calc(var(--base) * 4);
 }
 
-@media (max-width: 800pt) {
-    body>nav {
+@media (max-width: 60rem) {
+    body>nav.invert-colors {
         position: fixed;
         left: 0;
         transform: translateX(-100%);
@@ -187,7 +188,7 @@ body>section>header>h1 {
         transform: translateX(0%);
     }
 
-    body>nav::before {
+    body>nav.invert-colors::before {
         content: " ";
         position: absolute;
         width: 0%;
@@ -200,7 +201,7 @@ body>section>header>h1 {
         transition-property: width;
     }
 
-    body>nav.opened::before {
+    body>nav.invert-colors.opened::before {
         width: calc(100vw - 100%);
     }
 

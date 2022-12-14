@@ -11,7 +11,7 @@
     --background-image: url("/img/fond.svg");
     --header-vertical-padding: calc(var(--base) * 2);
     --header-horizontal-padding: calc(var(--base) * 4);
-    --header-height: calc(var(--header-vertical-padding) * 2 + var(--base) * 2 + var(--font-size));
+    --header-height: calc(var(--header-vertical-padding) * 2 + var(--button-height));
 }
 
 html {

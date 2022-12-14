@@ -68,11 +68,6 @@ a.btn::after {
     content: none;
 }
 
-button:focus,
-a.btn:focus {
-    --border-size: calc(var(--base) / 4);
-}
-
 button[disabled],
 button:disabled,
 a.btn[disabled],
