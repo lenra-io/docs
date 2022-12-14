@@ -7,6 +7,7 @@ body>nav {
     font-size: normal;
     --logo-image: var(--logo-horizontal-image);
     height: 100%;
+    min-width: 15rem;
 }
 
 body>nav a {
@@ -60,15 +61,22 @@ body>nav>a[href="/"] {
 
 body>nav>ul {
     flex: 1;
-    overflow: auto;
+    min-width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
     /* height: calc(100% - var(--header-height) - var(--base) * 4 - var(--font-size) - 33px); */
     padding: calc(var(--base) * 2) 0 0;
     color: var(--background-color);
 }
 
+body>nav>ul * {
+    width: fit-content;
+    min-width: 100%;
+}
+
 body>nav>ul li {
     position: relative;
-    min-width: calc(var(--base) * 24);
+    /* min-width: calc(var(--base) * 24); */
 }
 
 body>nav>ul li>a {
@@ -94,6 +102,7 @@ body>nav>ul li>details>summary {
     top: 0;
     right: 0;
     width: var(--size);
+    min-width: 0;
     height: var(--size);
     padding-left: var(--size);
     overflow: hidden;
