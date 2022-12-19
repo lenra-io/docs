@@ -2,18 +2,18 @@
 
 Lenra uses a simple but efficient realtime MVC pattern. This means that any changes to the Model will update the view in real time for every connected users. 
 
-1. First, your widgets will take care of creating your UI according to your model. 
+1. First, your views will take care of creating your UI according to your model. 
 2. Then your listener will first change document(s) in your mongo instance 
-3. That will trigger a new realtime widget re-render (back to #1 )
+3. That will trigger a new realtime view re-render (back to #1 )
 
-## The Widgets
+## The Views
 
-The widgets are simple functions with 2 arguments : the **data**, a property object (**props**). This function will return a json tree composed by native components or other widgets. If one of the two argument changes, the widget is rebuilt.
+The views are simple functions with 2 arguments : the **data**, a property object (**props**). This function will return a json tree composed by native components or other views. If one of the two argument changes, the view is rebuilt.
 
 You can find all of the existing components by [checking our documentation.](components-api/)
 
 
-For example, the counter widget (in the template app) uses the `props` to customize the printed message and the `data` to get the counter value.x
+For example, the counter view (in the template app) uses the `props` to customize the printed message and the `data` to get the counter value.x
 When the `+` button is pressed, the `increment` listener will be called.
 
 ```jsx
@@ -44,7 +44,7 @@ module.exports = (data, counter) => {
   }
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">widgets/counter.js</figcaption>
+<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">views/counter.js</figcaption>
 
 ## The listeners
 

@@ -30,29 +30,29 @@ Our document will look like that :
 
 ## Create a new task
 
-Now that we know what a task looks like, we want to create a new widget to let the user create tasks. To do that, we will create a new file in the widgets directory : `addTaskForm.js`
+Now that we know what a task looks like, we want to create a new view to let the user create tasks. To do that, we will create a new file in the views directory : `addTaskForm.js`
 
-Before anything else, we will register this widget to our application. This will link this function to the `addTaskForm` ****action. To do this, go to the `index.js` file and add a line in the `widgets` object.
+Before anything else, we will register this view to our application. This will link this function to the `addTaskForm` ****action. To do this, go to the `index.js` file and add a line in the `views` object.
 
 ```jsx
 module.exports = async () => {
   return {
-    widgets: {
-      main: require('./widgets/main'),
+    views: {
+      main: require('./views/main'),
       ...
-      addTaskForm: require('./widgets/addTaskForm'),
+      addTaskForm: require('./views/addTaskForm'),
     },
     listeners: {
       ...
     },
-    rootWidget: 'main'
+    rootview: 'main'
   }
 }
 ```
 <figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">index.js</figcaption>
 
 
-In the `addTaskForm.js` widget, we create a new function (and export it). In this function, we will first add a **[form component](https://docs.lenra.io/components-api/components/form.html).**
+In the `addTaskForm.js` view, we create a new function (and export it). In this function, we will first add a **[form component](https://docs.lenra.io/components-api/components/form.html).**
 
 ```jsx
 module.exports = (data, props) => {
@@ -65,10 +65,10 @@ module.exports = (data, props) => {
   }
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">widgets/addTaskForm.js</figcaption>
+<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">views/addTaskForm.js</figcaption>
 
 
-In this widget, we define the `onSubmit` listener. This tells the UI to submit the `submitTask` action when the form is submitted.
+In this view, we define the `onSubmit` listener. This tells the UI to submit the `submitTask` action when the form is submitted.
 
 Then we will declare the inputs in our form.
 
@@ -111,7 +111,7 @@ module.exports = (data, props) => {
   }
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">widgets/addTaskForm.js</figcaption>
+<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">views/addTaskForm.js</figcaption>
 
 
 Let's see what happens here : 
@@ -168,14 +168,14 @@ module.exports = (data, props) => {
                 }
             },
             {
-                type: "widget",
+                type: "view",
                 name: "addTaskForm",
             }
         ]
     }
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">widgets/main.js</figcaption>
+<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">views/main.js</figcaption>
 
 
 Now you can start your app in your terminal using 
@@ -265,7 +265,7 @@ But wait… The task are still not visible yet.
 
 Now that we can add new tasks in our database, let's list them in the interface.
 
-To do this, create a new `taskList.js` widget and **register** it to the manifest `index.js`.
+To do this, create a new `taskList.js` view and **register** it to the manifest `index.js`.
 
 ```jsx
 module.exports = (data, props) => {
@@ -291,7 +291,7 @@ function taskList(tasks) {
 
     return tasks.map(task => {
         return {
-            type: "widget",
+            type: "view",
             name: "taskCard",
             props: {
                 task: task
@@ -300,14 +300,14 @@ function taskList(tasks) {
     })
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">widgets/taskList.js</figcaption>
+<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">views/taskList.js</figcaption>
 
 
-Nothing too crazy here. We simply loop through the tasks list and call the `taskCard` widget with the task in the properties. If there is no task in the data, simply print a message.
+Nothing too crazy here. We simply loop through the tasks list and call the `taskCard` view with the task in the properties. If there is no task in the data, simply print a message.
 
-I’m sure you will be able to create the `taskCard` widget by yourself ! If you have some trouble, check the [example in our github project](https://github.com/lenra-io/app-todo/blob/main/widgets/taskCard.js). (Don’t forget to **register** the `taskCard` too !)
+I’m sure you will be able to create the `taskCard` view by yourself ! If you have some trouble, check the [example in our github project](https://github.com/lenra-io/app-todo/blob/main/views/taskCard.js). (Don’t forget to **register** the `taskCard` too !)
 
-Now we want to call our `taskList` with some **data** in it. To do this, go to the `main.js` widget.
+Now we want to call our `taskList` with some **data** in it. To do this, go to the `main.js` view.
 
 ```jsx
 module.exports = (data, props) => {
@@ -324,9 +324,9 @@ module.exports = (data, props) => {
                     fontSize: 22
                 }
             },
-            // Call the taskList widget with some data.
+            // Call the taskList view with some data.
             {
-                type: "widget",
+                type: "view",
                 name: "taskList",
                 coll: "tasks",
                 query: {
@@ -334,21 +334,21 @@ module.exports = (data, props) => {
                 }
             },
             {
-                type: "widget",
+                type: "view",
                 name: "addTaskForm",
             }
         ]
     }
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">widgets/main.js</figcaption>
+<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">views/main.js</figcaption>
 
 
-As you can see, we use the same component that we used to call the `addTaskForm` widget. The only difference is the `coll` and `query` properties. 
+As you can see, we use the same component that we used to call the `addTaskForm` view. The only difference is the `coll` and `query` properties. 
 
 The `coll` property defines the **collection** where we want to run the query. 
 
-Then the `query` is a [simple mongo query](https://www.mongodb.com/docs/manual/tutorial/query-documents/) with the lenra specificity : the `@me` to reference the current user. It is the same trick we used to create our task before. This query will filter the `tasks` collection to give us only the task associated with the current user. The result of this query is the `data` argument in our widget function.
+Then the `query` is a [simple mongo query](https://www.mongodb.com/docs/manual/tutorial/query-documents/) with the lenra specificity : the `@me` to reference the current user. It is the same trick we used to create our task before. This query will filter the `tasks` collection to give us only the task associated with the current user. The result of this query is the `data` argument in our view function.
 
 And we’re done ! Restart the lenra CLI (`lenra dev`). The task list should now be visible ! 
 
@@ -385,6 +385,6 @@ If you need help, you can check our [todo app github repo](https://github.com/le
 
 You also can ask questions using the [Help wanted category of our github discussion tab](https://github.com/lenra-io/Lenra/discussions/categories/help-wanted).
 
-### I have created my listener/widget but it says that this listener/widget does not exists.
+### I have created my listener/view but it says that this listener/view does not exists.
 
-Be sure to register your listener/widget in the `index.js` first ! This tells your javascript server to call your function when the listener action/widget name is called.
+Be sure to register your listener/view in the `index.js` first ! This tells your javascript server to call your function when the listener action/view name is called.

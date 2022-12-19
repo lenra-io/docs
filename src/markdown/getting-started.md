@@ -1,6 +1,4 @@
-# Getting started
-
-# Requirements
+## Prerequisites
 
 ## General requirements
 
@@ -53,9 +51,9 @@ About the different files :
 - `.package.json`  Add your project dependency in this file like any other node project
 - `listeners/*.js` are the listeners of this project. A listener is a piece of code that will be executed when a specific action occurs. More on this later.
 - `services/*.js` are modules that take care of sending API calls to Lenra. This will be helpful to create/update/delete data from the database.
-- `widgets/*.js` are the UI parts of the application. These widgets can be combined to create complex UI.
+- `views/*.js` are the UI parts of the application. These views can be combined to create complex UI.
 - `resources/*.js` are the images and other resources you need to access from the UI.
-- `index.js` is the manifest where you will register your widgets and listeners, create your routes etc..
+- `index.js` is the manifest where you will register your views and listeners, create your routes etc..
 - `server.js` is the webserver that will take care of the interactions with the lenra back-end. **Do not update this file if you don’t know what you are doing !**
 - `lenra.yml` is a file that explains to the lenra CLI how to build your app. If you create a complex app that needs other steps to be built and/or started, you will need to edit this file.
 
