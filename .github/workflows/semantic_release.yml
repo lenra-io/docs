@@ -24,6 +24,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "14"
+      - name: build node
+        run: |
+          npm i
+          npm run build
+      - name: Setup node deps
+        run: npm i conventional-changelog-conventionalcommits@4 @semantic-release/exec @semantic-release/git -D
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -42,8 +48,4 @@ jobs:
         run: |
           sudo chown $USER:$USER .github/release.sh
           sudo chmod +x .github/release.sh
-          npx -p conventional-changelog-conventionalcommits@4 \
-              -p @semantic-release/exec \
-              -p @semantic-release/git \
-              -p semantic-release@18 \
-              semantic-release
+          npx semantic-release@18
