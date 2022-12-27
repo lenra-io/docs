@@ -27,6 +27,7 @@ jobs:
       - name: build node
         run: |
           npm i
+          npm run load-api
           npm run build
       - name: Setup node deps
         run: npm i conventional-changelog-conventionalcommits@4 @semantic-release/exec @semantic-release/git -D
