@@ -32,11 +32,11 @@ To create a new lenra project you can just run the `lenra new` command.
 This command takes two parameters : The **template name** ([see list of templates](https://github.com/orgs/lenra-io/repositories?q=&type=template&language=&sort=stargazers)) and the **project name**.
 
 ```bash
-lenra new node todo
+lenra new js todo
 cd todo
 ```
 
-> Note : All the guides in this documentation will focus on the node template (using javascript). Other languages work about the same and main principles remain the same too. **Don't be afraid to follow these guides using another language !**
+> Note : All the guides in this documentation will focus on the javascript template (using javascript). Other languages work about the same and main principles remain the same too. **Don't be afraid to follow these guides using another language !**
 
 ## Directory structure
 
