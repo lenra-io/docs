@@ -79,6 +79,7 @@ async function getPages() {
 async function parseApiDir(api_name, base_path=api_name) {
 
 	const api_path = Path.join(api_dir, api_name)
+	
 	const api = createPage(`${api_name}/`, undefined, 'definition-summary');
 	api.collapsable = true
 

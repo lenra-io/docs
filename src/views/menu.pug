@@ -9,7 +9,7 @@ mixin manageCollapse(collapsable, open)
 
 mixin createMenuItem(page)
     a(href=page.path)= page.name
-    if (page.subPages.length)
+    if (page.subPages && page.subPages.length)
         +manageCollapse(page.collapsable, currentPage.path.startsWith(page.path))
             +createMenuItems(page.subPages)
 
@@ -24,7 +24,7 @@ nav.invert-colors
     button.primary(onclick="this.parentNode.classList.toggle('opened')") Open/Close Menu
     a.presentation(href="https://www.lenra.io/") Lenra
     a(href="/") Documentation
-    +createMenuItems(pages[0].subPages)
+    +createMenuItems(pages)
     nav
         a(href="mailto:conta@lenra.io") Contact us
         a(href="https://github.com/lenra-io") GitHub

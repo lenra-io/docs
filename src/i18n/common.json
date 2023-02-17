@@ -1,11 +1,11 @@
 {
-    "title": "Lenra",
-    "description": "Lenra's components API documentation",
+    "title": "Lenra Docs",
+    "description": "Lenra's documentations",
     "page": {
-        "/getting-started.html": {
+        "getting-started.html": {
             "position": 0
         },
-        "/framework.html": {
+        "framework.html": {
             "position": 1
         }
     }
