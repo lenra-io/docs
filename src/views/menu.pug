@@ -7,11 +7,16 @@ mixin manageCollapse(collapsable, open)
         block
 
 
-mixin createMenuItem(page)
-    a(href=page.path)= page.name
-    if (page.subPages && page.subPages.length)
-        +manageCollapse(page.collapsable, currentPage.path.startsWith(page.path))
-            +createMenuItems(page.subPages)
+mixin createMenuItem(menuPage)
+    - var basicPath = menuPage.path.replace(/[.]html$/, '');
+    - var pagePath = menuPage.path.replace(/index.html$/, "");
+    - var pageTranslation = page[basicPath];
+    - var pageName = pageTranslation.name || pageTranslation.title || menuPage.properties.title;
+    a(href='/'+pagePath)= pageName
+    - var subPages = pages.filter(p => p!=menuPage && pagePath.length && p.path.startsWith(pagePath) && !p.path.substring(0, pagePath.lenra).includes("/"));
+    if (subPages && subPages.length)
+        +manageCollapse(page.collapsable, currentPage.path.startsWith(pagePath))
+            +createMenuItems(subPages)
 
 
 mixin createMenuItems(pages)
@@ -20,11 +25,25 @@ mixin createMenuItems(pages)
             li(class=(page.path==currentPage.path ? 'selected' : ''))
                 +createMenuItem(page)
 
+- function childrenPages(parentPage) {
+-    console.log("filterPagesPages", parentPage);
+-    var pagePath = parentPage ? parentPage.path.replace(/index.html$/, "") : "";
+-    var children = pages.filter(p => p!=parentPage);
+-    children = children.filter(p => !parentPage || pagePath.length && p.path.startsWith(pagePath));
+-    children = children.filter(p => !p.path.substring(0, pagePath.length).includes("/"));
+-    children.sort((p1, p2) => {
+-       if (/^([^/]+\/)?index\.html$/.test(p1.path)) return -1;
+-       if (/^([^/]+\/)?index\.html$/.test(p2.path)) return 1;
+-       return p1.path.localeCompare(p2.path);
+-    });
+-    //TODO: manage position
+-    return children;
+- }
+
 nav.invert-colors
     button.primary(onclick="this.parentNode.classList.toggle('opened')") Open/Close Menu
     a.presentation(href="https://www.lenra.io/") Lenra
-    a(href="/") Documentation
-    +createMenuItems(pages)
+    +createMenuItems(childrenPages())
     nav
         a(href="mailto:conta@lenra.io") Contact us
         a(href="https://github.com/lenra-io") GitHub

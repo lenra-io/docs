@@ -1,9 +1,7 @@
 import { Page, PageManager, RobotsManager, SitemapManager } from '@lenra/lesta';
 import { getFilesRecursively } from '@lenra/lesta/lib/utils.js';
 import * as Path from 'path';
-import * as showdown from 'showdown/dist/showdown.js';
 
-const converter = new showdown.Converter();
 const languageFileRegex = /^(.+)[.]([a-z]{2})([.](md|html))$/
 
 /**
@@ -62,7 +60,8 @@ async function markdownPageLister(configuration) {
                 {
                     title,
                     description,
-                    content: converter.makeHtml(fs.readFileSync(file, 'utf8'))
+                    content: "coucou"
+                    // content: converter.makeHtml(fs.readFileSync(file, 'utf8'))
                 }
             )
         })

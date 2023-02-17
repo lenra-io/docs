@@ -21,5 +21,24 @@
         "jszip": "^3.10.1",
         "nodemon": "^2.0.12",
         "yaml": "^2.1.1"
+    },
+    "lesta": {
+        "nginx": {
+            "additionalContentSecurityPolicies": {
+                "default-src": [
+                    "unsafe-inline",
+                    "analytics.lenra.io",
+                    "https://cdnjs.cloudflare.com/ajax/libs/prism/",
+                    "https://api.producthunt.com/"
+                ]
+            },
+            "rewriteRules": [
+                {
+                    "from": "^/beta.html$",
+                    "to": "/discover.html",
+                    "type": "permanent"
+                }
+            ]
+        }
     }
 }
