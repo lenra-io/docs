@@ -1,3 +1,25 @@
+- var translatedPages = pages.map(p => {
+-     var basicPath = p.path.replace(/\.html$/, '');
+-     var href = p.path.replace(/index\.html$/, '');
+-     return {...p, basicPath, href, translation: page[basicPath] || {}};
+- })
+
+- function childrenPages(parentPage) {
+-    if (parentPage && !parentPage.basicPath.endsWith("/index")) return [];
+-    var pagePath = parentPage ? parentPage.basicPath.replace(/index$/, "") : "";
+-    var children = translatedPages.filter(p => p!=parentPage);
+-    children = children.filter(p => !parentPage || pagePath.length && p.path.startsWith(pagePath));
+-    children = children.filter(p => !p.basicPath.replace(/\/index$/, "").substring(pagePath.length).includes("/"));
+-    children.sort((p1, p2) => p1.href.localeCompare(p2.href));
+-    // manage position
+-    var positionnables = children.filter(p => "position" in p.translation).sort((p1, p2) => p1.translation.position - p2.translation.position);
+-    children = children.filter(p => !positionnables.includes(p));
+-    positionnables.forEach(p => {
+-       children.splice(p.translation.position, 0, p);
+-    });
+-    return children;
+- }
+
 mixin manageCollapse(collapsable, open)
     if (collapsable)
         details(open=open)
@@ -7,11 +29,13 @@ mixin manageCollapse(collapsable, open)
         block
 
 
-mixin createMenuItem(page)
-    a(href=page.path)= page.name
-    if (page.subPages.length)
-        +manageCollapse(page.collapsable, currentPage.path.startsWith(page.path))
-            +createMenuItems(page.subPages)
+mixin createMenuItem(menuPage)
+    - var pageName = menuPage.translation.name || menuPage.properties.name || menuPage.translation.title || menuPage.properties.title;
+    a(href='/'+menuPage.href)= pageName
+    - var subPages = childrenPages(menuPage);
+    if (subPages.length)
+        +manageCollapse(page.collapsable, currentPage.path.startsWith(menuPage.href))
+            +createMenuItems(subPages)
 
 
 mixin createMenuItems(pages)
@@ -23,8 +47,7 @@ mixin createMenuItems(pages)
 nav.invert-colors
     button.primary(onclick="this.parentNode.classList.toggle('opened')") Open/Close Menu
     a.presentation(href="https://www.lenra.io/") Lenra
-    a(href="/") Documentation
-    +createMenuItems(pages[0].subPages)
+    +createMenuItems(childrenPages())
     nav
         a(href="mailto:conta@lenra.io") Contact us
         a(href="https://github.com/lenra-io") GitHub

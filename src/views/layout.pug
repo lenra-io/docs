@@ -1,11 +1,14 @@
 doctype html
 html(lang=language)
   head
-    title= 'Lenra - '+currentPage.name
+    - var currentPageName = currentPage.title || currentPage.name
+    - var pageTitle = currentPageName ? `${title} - ${currentPageName}` : title
+    - pageTitle = currentPage.titleTag ? currentPage.titleTag : pageTitle
+    title= pageTitle
     meta(charset='utf-8')
     meta(name='viewport' content='width=device-width, initial-scale=1')
     meta(name="description" content=currentPage.description)
-    meta(property="og:title" content='Lenra - '+currentPage.name)
+    meta(property="og:title" content='Lenra - '+pageTitle)
     meta(property="og:type" content="website")
     meta(property="og:url" content="!BASE_URL!"+currentPage.path)
     meta(property="og:image" content="!IMAGE_URL!")
@@ -19,10 +22,13 @@ html(lang=language)
     - let cssPath = currentPage.path;
     - if (cssPath.endsWith('/')) cssPath += 'index.html';
     - cssPath = cssPath.replace(/.html$/, ".css");
-    link(rel='stylesheet' as='style' type='text/css' href='css' + cssPath media='print' onload='this.media="all"')
+    - cssExists = fileExists('src/static/css/' + cssPath);
+    if (cssExists)
+      link(rel='stylesheet' as='style' type='text/css' href='/css/' + cssPath media='print' onload='this.media="all"')
     noscript
       link(rel='stylesheet' as='style' type='text/css' href='/css/main.css')
-      link(rel='stylesheet' as='style' type='text/css' href='css' + cssPath)
+      if (cssExists)
+        link(rel='stylesheet' as='style' type='text/css' href='/css/' + cssPath)
     script(src='/js/main.js' defer)
     script(src="https://analytics.lenra.io/js/plausible.js" data-domain="!DOMAIN!" defer)
   body

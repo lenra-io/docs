@@ -1,15 +1,13 @@
-const { exec } = require('child_process');
-const Path = require('path');
-const fs = require('fs-extra');
-const yaml = require('yaml');
-const https = require('https'); // or 'http' for http:// URLs
-const jszip = require('jszip');
-const { default: js } = require('minify/lib/js');
+import * as Path from 'path';
+import * as fs from 'fs';
+import * as yaml from 'yaml';
+import * as https from 'https'; // or 'http' for http:// URLs
+import JSZip from 'jszip';
 
-const srcPath = Path.join(__dirname, '..', 'src');
+const srcPath = 'src';
 const apiPath = Path.join(srcPath, 'api');
 
-const components_yaml = yaml.parse(fs.readFileSync(Path.join(__dirname, 'doc-deps.yml')).toString())
+const components_yaml = yaml.parse(fs.readFileSync('doc-deps.yml').toString())
 
 for (const component of components_yaml.components) {
     const component_path = Path.join(apiPath, component.name)
@@ -36,9 +34,9 @@ for (const component of components_yaml.components) {
 
                 console.log(`Unzip ${Path.basename(file_path)} ...`)
                 const file_content = fs.readFileSync(file_path)
-                const jszip_instance = new jszip()
+                const jszip_instance = new JSZip()
                 const result = await jszip_instance.loadAsync(file_content)
-                for(key of Object.keys(result.files)) {
+                for(let key of Object.keys(result.files)) {
                     const item = result.files[key];
                     if (item.dir) {
                         fs.mkdirSync(Path.join(component_path, item.name))
