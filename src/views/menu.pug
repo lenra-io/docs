@@ -1,3 +1,25 @@
+- var translatedPages = pages.map(p => {
+-     var basicPath = p.path.replace(/\.html$/, '');
+-     var href = p.path.replace(/index\.html$/, '');
+-     return {...p, basicPath, href, translation: page[basicPath] || {}};
+- })
+
+- function childrenPages(parentPage) {
+-    if (parentPage && !parentPage.basicPath.endsWith("/index")) return [];
+-    var pagePath = parentPage ? parentPage.basicPath.replace(/index$/, "") : "";
+-    var children = translatedPages.filter(p => p!=parentPage);
+-    children = children.filter(p => !parentPage || pagePath.length && p.path.startsWith(pagePath));
+-    children = children.filter(p => !p.basicPath.replace(/\/index$/, "").substring(pagePath.length).includes("/"));
+-    children.sort((p1, p2) => p1.href.localeCompare(p2.href));
+-    // manage position
+-    var positionnables = children.filter(p => "position" in p.translation).sort((p1, p2) => p1.translation.position - p2.translation.position);
+-    children = children.filter(p => !positionnables.includes(p));
+-    positionnables.forEach(p => {
+-       children.splice(p.translation.position, 0, p);
+-    });
+-    return children;
+- }
+
 mixin manageCollapse(collapsable, open)
     if (collapsable)
         details(open=open)
@@ -8,14 +30,11 @@ mixin manageCollapse(collapsable, open)
 
 
 mixin createMenuItem(menuPage)
-    - var basicPath = menuPage.path.replace(/[.]html$/, '');
-    - var pagePath = menuPage.path.replace(/index.html$/, "");
-    - var pageTranslation = page[basicPath];
-    - var pageName = pageTranslation.name || pageTranslation.title || menuPage.properties.title;
-    a(href='/'+pagePath)= pageName
-    - var subPages = pages.filter(p => p!=menuPage && pagePath.length && p.path.startsWith(pagePath) && !p.path.substring(0, pagePath.lenra).includes("/"));
-    if (subPages && subPages.length)
-        +manageCollapse(page.collapsable, currentPage.path.startsWith(pagePath))
+    - var pageName = menuPage.translation.name || menuPage.properties.name || menuPage.translation.title || menuPage.properties.title;
+    a(href='/'+menuPage.href)= pageName
+    - var subPages = childrenPages(menuPage);
+    if (subPages.length)
+        +manageCollapse(page.collapsable, currentPage.path.startsWith(menuPage.href))
             +createMenuItems(subPages)
 
 
@@ -24,21 +43,6 @@ mixin createMenuItems(pages)
         each page in pages
             li(class=(page.path==currentPage.path ? 'selected' : ''))
                 +createMenuItem(page)
-
-- function childrenPages(parentPage) {
--    console.log("filterPagesPages", parentPage);
--    var pagePath = parentPage ? parentPage.path.replace(/index.html$/, "") : "";
--    var children = pages.filter(p => p!=parentPage);
--    children = children.filter(p => !parentPage || pagePath.length && p.path.startsWith(pagePath));
--    children = children.filter(p => !p.path.substring(0, pagePath.length).includes("/"));
--    children.sort((p1, p2) => {
--       if (/^([^/]+\/)?index\.html$/.test(p1.path)) return -1;
--       if (/^([^/]+\/)?index\.html$/.test(p2.path)) return 1;
--       return p1.path.localeCompare(p2.path);
--    });
--    //TODO: manage position
--    return children;
-- }
 
 nav.invert-colors
     button.primary(onclick="this.parentNode.classList.toggle('opened')") Open/Close Menu

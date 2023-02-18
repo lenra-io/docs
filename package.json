@@ -23,19 +23,31 @@
         "yaml": "^2.1.1"
     },
     "lesta": {
+        "languages": [
+            "en"
+        ],
         "nginx": {
             "additionalContentSecurityPolicies": {
                 "default-src": [
                     "unsafe-inline",
                     "analytics.lenra.io",
-                    "https://cdnjs.cloudflare.com/ajax/libs/prism/",
-                    "https://api.producthunt.com/"
+                    "https://cdnjs.cloudflare.com/ajax/libs/prism/"
                 ]
             },
             "rewriteRules": [
                 {
-                    "from": "^/beta.html$",
-                    "to": "/discover.html",
+                    "from": "^/root.schema.html$",
+                    "to": "/components-api/",
+                    "type": "permanent"
+                },
+                {
+                    "from": "^/(components|defs)/(.*).schema.html$",
+                    "to": "/components-api/$1/$2.html",
+                    "type": "permanent"
+                },
+                {
+                    "from": "^/(components|defs)/$",
+                    "to": "/components-api/$1/",
                     "type": "permanent"
                 }
             ]
