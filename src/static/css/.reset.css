@@ -1,19 +1,32 @@
-*, 
-*::before, 
+*,
+*::before,
 *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     color: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    text-decoration: none;
     list-style: none;
-    transition-duration: 0;
+    transition-duration: 300ms;
+    transition-property: none;
 }
 
-body.ready *,
-body.ready *::before,
-body.ready *::after {
-    transition-duration: 300ms;
+details>summary {
+    background-image: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+details>summary::-webkit-details-marker {
+    display: none;
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+input,
+textarea,
+button {
+    font: inherit;
 }

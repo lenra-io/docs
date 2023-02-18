@@ -6,13 +6,13 @@ button {
     --btn-text-opacity: 1;
     color: rgba(var(--btn-text-color-data), var(--btn-text-opacity));
     text-decoration: none;
-    transition-property: color, background;
 }
 
 a {
     --btn-text-color-data: var(--primary-color-data);
     --btn-text-color-hover-data: var(--primary-color-hover-data);
-    padding-bottom: calc(var(--base) / 2);
+    transition-property: color;
+    padding-bottom: 0.25rem;
 }
 
 a::after {
@@ -22,7 +22,7 @@ a::after {
     color: inherit;
     width: 100%;
     left: 0;
-    bottom: calc(var(--base) / 2);
+    bottom: 0.25rem;
     opacity: 0;
     transition-property: opacity, bottom, color;
 }
@@ -51,21 +51,29 @@ a.btn {
     --btn-text-color-hover-data: var(--text-color-data);
     --btn-background-color-data: var(--text-color-data);
     --btn-background-color-opacity: 0.1;
+    --vertical-padding-multiplier: var(--vertical-padding-medium-multiplier);
+    --horizontal-padding-multiplier: var(--horizontal-padding-medium-multiplier);
     --border-size: 0rem;
-    min-width: calc(var(--base) * 20);
+    min-width: 6rem;
     background-color: rgba(var(--btn-background-color-data), var(--btn-background-color-opacity));
-    display: inline-block;
+    display: block;
+    margin-top: 1rem;
     font-weight: 600;
     text-align: center;
     text-decoration: none;
-    padding: calc(var(--padding-medium) - var(--border-size)) calc(var(--base) * 5 - var(--border-size));
+    padding: calc(0.5rem * var(--vertical-padding-multiplier) - var(--border-size)) calc(0.5rem * var(--horizontal-padding-multiplier) - var(--border-size));
     border: var(--border-size) solid;
-    border-radius: calc(var(--base) / 2);
+    border-radius: 0.25rem;
     transition-property: color, background;
 }
 
 a.btn::after {
     content: none;
+}
+
+button:focus,
+a.btn:focus {
+    --border-size: 0.125rem;
 }
 
 button[disabled],
@@ -79,6 +87,18 @@ button:hover,
 a.btn:hover {
     --btn-background-color-opacity: 0.2;
     text-decoration: none;
+}
+
+button.small,
+a.btn.small {
+    --vertical-padding-multiplier: var(--vertical-padding-small-multiplier);
+    --horizontal-padding-multiplier: var(--horizontal-padding-small-multiplier);
+}
+
+button.big,
+a.btn.big {
+    --vertical-padding-multiplier: var(--vertical-padding-big-multiplier);
+    --horizontal-padding-multiplier: var(--horizontal-padding-big-multiplier);
 }
 
 button.primary,
@@ -111,6 +131,7 @@ a.btn.link {
     --btn-text-color-data: var(--primary-color-data);
     --btn-text-color-hover-data: var(--primary-color-hover-data);
     --btn-background-color-opacity: 0;
+    display: inline-block;
     padding-left: 0;
     padding-right: 0;
     min-width: 0;
@@ -126,14 +147,7 @@ a.btn.link::after {
 }
 
 a.btn.link:hover::after {
-    bottom: calc((100% - var(--font-size)) / 2 - var(--base) / 2);
-}
-
-button+button,
-button+a.btn,
-a.btn+button,
-a.btn+a.btn {
-    margin-left: calc(var(--base) * 2);
+    bottom: calc((100% - var(--font-size)) / 2 - 0.25rem);
 }
 
 a.btn.link.lenra-icon-arrow-right {
@@ -144,23 +158,25 @@ a.btn.link.lenra-icon-arrow-right {
 
 a.btn.link.lenra-icon-arrow-right::before {
     color: inherit;
-    margin-left: var(--base);
+    margin-left: 0.5rem;
     font-size: 120%;
 }
 
 nav.social {
-    --vertical-spacing: var(--base);
-    --horizontal-spacing: calc(var(--base) * 2);
-    margin: calc(var(--vertical-spacing) * -1) calc(var(--horizontal-spacing) / -2) 0;
+    --size: var(--button-height);
+    --font-size-multiplier: calc(2 / 3);
+    display: flex;
+    row-gap: 0.5rem;
+    column-gap: 1rem;
+    flex-wrap: wrap;
 }
 
 nav.social>a {
-    --size: var(--button-height);
     position: relative;
-    display: inline-block;
     width: var(--size);
     height: var(--size);
-    font-size: calc(var(--size) * 0.6);
+    padding-bottom: 0;
+    font-size: calc(var(--size) * var(--font-size-multiplier));
     overflow: hidden;
     text-indent: -100vw;
     text-align: left;
@@ -168,7 +184,6 @@ nav.social>a {
     background-color: rgb(var(--background-color-data));
     --btn-text-color-data: var(--text-color-data);
     --btn-text-color-hover-data: var(--background-color-data);
-    margin: var(--vertical-spacing) calc(var(--horizontal-spacing) / 2) 0;
     transition-property: color, background;
 }
 
@@ -189,34 +204,23 @@ nav.social>a::before {
     color: inherit;
 }
 
-
-@media (max-width: 50rem) {
-
+@media (min-width: 28.75rem) {
     button,
-    a.btn {
-        padding-left: calc(var(--base) * 4 - var(--border-size));
-        padding-right: calc(var(--base) * 4 - var(--border-size));
-    }
-}
-
-@media (max-width: 28.75rem) {
-
-    button,
-    a.btn {
-        display: block;
-        margin-top: calc(var(--base) * 2);
+    a.btn:not(.link) {
+        display: inline-block;
+        margin-top: initial;
     }
 
     button+button,
-    button+a.btn,
+    button+a.btn:not(.link),
     a.btn+button,
-    a.btn+a.btn {
-        margin-left: 0;
+    a.btn+a.btn:not(.link) {
+        margin-left: 1rem;
     }
 
-    a.btn.link {
-        display: inline-block;
-        margin-left: auto;
-        margin-right: auto;
+    button+a.btn.link,
+    a.btn+a.btn.link {
+        display: block;
+        width: fit-content;
     }
 }

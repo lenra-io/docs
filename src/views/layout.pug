@@ -32,13 +32,15 @@ html(lang=language)
     script(src='/js/main.js' defer)
     script(src="https://analytics.lenra.io/js/plausible.js" data-domain="!DOMAIN!" defer)
   body
+    header
+      block header
+        a(href="/") Lenra Docs
+        form
+           input#search(type="search", name="search")
+           button.lenra-icon-search(type="submit") Search
+        a.btn.primary(href="https://dev.lenra.io/#/register") Register on Lenra
     include menu.pug
-    section
-      header
-        block header
-          h1= currentPage.name
-          a.btn.primary(href="https://dev.lenra.io/#/register") Register on Lenra
-      main
-        block content
-          if(currentPage.content)
-            | !{currentPage.content}
+    main
+      block content
+        if(currentPage.content)
+          | !{currentPage.content}

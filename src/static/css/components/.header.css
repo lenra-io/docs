@@ -1,0 +1,52 @@
+body>header>a[href="/"] {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: var(--logo-height);
+    aspect-ratio: 2400 / 512;
+    padding-bottom: 0;
+    text-align: left;
+    text-indent: -100vw;
+    overflow: hidden;
+    transition-property: none;
+}
+
+body>header>a[href="/"]::before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: auto;
+    aspect-ratio: 1856 / 512;
+    background-image: var(--logo-image);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: var(--logo-position);
+}
+
+body>header>a[href="/"]::after {
+    content: "Docs";
+    display: inline-block;
+    top: 50%;
+    right: 0;
+    left: auto;
+    bottom: auto;
+    width: auto;
+    padding: 0 0.25rem;
+    color: rgb(var(--background-color-data));
+    background-color: rgb(var(--text-color-data));
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-indent: 0;
+    letter-spacing: 0.05rem;
+    border: none;
+    border-radius: 0.125rem;
+    opacity: 1;
+    transform: translateY(-50%);
+}
+
+body>header>a[href="/"]:hover::after {
+    bottom: auto;
+}
