@@ -37,11 +37,14 @@ html(lang=language)
         button(onclick="this.parentNode.parentNode.classList.toggle('menu-opened')") Open/Close Menu
         a(href="/") Lenra Docs
         form
-           input#search(type="search" name="search" placeholder="Search a guide, a feature, a component ...")
-           button.lenra-icon-code(type="submit") Search
+           input#search(type="search" name="search" placeholder="Search a guide, a feature, a component...")
+           button.lenra-icon-search(type="submit") Search
         a.btn.primary(href="https://dev.lenra.io/#/register") Register on Lenra
-    include menu.pug
+    include .menu.pug
     main
       block content
+        h1= (currentPage.title || currentPage.name)
+        if(currentPage.sourceFile)
+          a.btn.link.lenra-icon-github(href=currentPage.sourceFile target="_blank" rel="noopener") Contribute
         if(currentPage.content)
           | !{currentPage.content}

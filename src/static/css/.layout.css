@@ -130,6 +130,7 @@ body>header>form {
 body>header>form>input {
     position: absolute;
     width: 100%;
+    max-width: 28rem;
     height: 100%;
     padding: 0.5rem 0.75rem;
     top: 0;
@@ -142,7 +143,7 @@ body>header>form>input {
 }
 
 body>header>form:focus-within>input {
-    width: 17rem;
+    width: calc(100vw - 3rem);
     padding-right: calc(100% + 0.5rem);
     opacity: 1;
     z-index: 0;
@@ -195,7 +196,6 @@ body>nav>ul * {
 
 body>nav>ul li {
     position: relative;
-    /* min-width: calc(var(--base) * 24); */
 }
 
 body>nav>ul li>a {

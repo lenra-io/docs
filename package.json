@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@lenra/lesta": "github:lenra-io/lesta",
+        "front-matter": "^4.0.2",
         "showdown": "^2.1.0"
     },
     "devDependencies": {
