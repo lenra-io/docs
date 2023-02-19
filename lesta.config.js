@@ -6,7 +6,7 @@ import Showdown from 'showdown';
 import fm from 'front-matter';
 
 const languageFileRegex = /^(.+)[.]([a-z]{2})([.](md|html))$/
-const attributesMatchingRegex = /(^|\s+)(#\S+|\.\S+|([a-zA-Z0-9_-]+)(=("(\\"|[^"])*"|'(\\'|[^'])*'|\S*))?)(\s+|$)/g;
+const attributesMatchingRegex = /#\S+|\.\S+|([a-zA-Z0-9_-]+)(=("(\\"|[^"])*"|'(\\'|[^'])*'|\S*))?/g;
 const converter = new Showdown.Converter();
 
 const customClassExt = {
@@ -18,7 +18,7 @@ const customClassExt = {
             // In element with P
             .replace(/<([^/][^>]+)><p>\{:([^}]+)\}<\/p>/g, (_, g1, g2) => addAttributes(g1, g2))
             // Before element
-            .replace(/<p>\{:([^}]+)\}<\/p>[\n]?<([^/][^>]+)>/g, (_, g1, g2) => addAttributes(g2, g1))
+            .replace(/<p>\{:([^}]+)\}<\/p>\s*<([^/][^>]+)>/g, (_, g1, g2) => addAttributes(g2, g1))
             // Element in P
             .replace(/<p>\s*\{:([^}]+)\}\s*<([^/][^>]+)>(((?!<\/p>).)*)\s*<\/p>/g, (_, g1, g2, g3) => addAttributes(g2, g1, g3))
 
@@ -43,7 +43,6 @@ converter.addExtension(customClassExt);
 function addAttributes(tag, attributes, rest) {
     tag = tag.trim();
     attributes = attributes.trim();
-    console.log("tag", tag, "attributes", attributes);
     const attrs = {};
     const pos = tag.indexOf(" ");
     if (pos != -1) {
@@ -51,27 +50,26 @@ function addAttributes(tag, attributes, rest) {
         tag = tag.substring(0, pos);
     }
 
-    [...attributes.matchAll(attributesMatchingRegex)]
-        .forEach(([_all, _before, content, key, _, value]) => {
-            if (key) {
-                attrs[key] = (value || "").replace(/^("(.*)"|'(.*)')$/, (_, nq, dq, sq) => dq || sq || nq);
-            }
-            else {
-                content.split(".")
-                    .filter(c => c)
-                    .forEach(c => {
-                        if (c.startsWith("#")) {
-                            attrs.id = c.substring(1);
-                            return;
-                        }
-                        console.log("add class", c);
-                        if (!("class" in attrs)) attrs.class = c;
-                        else attrs.class += " " + c;
-                    });
-            }
-        });
-
-    return `<${tag} ${Object.entries(attrs).map(([key, value]) => `${key}="${value}"`).join(" ")}>${rest}`;
+    const matches = attributes.matchAll(attributesMatchingRegex);
+    for (const match of matches) {
+        const [content, key, _, value] = match;
+        if (key) {
+            attrs[key] = (value || "").replace(/^("(.*)"|'(.*)')$/, (_, nq, dq, sq) => dq || sq || nq);
+        }
+        else {
+            content.split(".")
+                .filter(c => c)
+                .forEach(c => {
+                    if (c.startsWith("#")) {
+                        attrs.id = c.substring(1);
+                        return;
+                    }
+                    if (!("class" in attrs)) attrs.class = c;
+                    else attrs.class += " " + c;
+                });
+        }
+    }
+    return `<${tag} ${Object.entries(attrs).map(([key, value]) => `${key}="${value}"`).join(" ")}>${rest || ''}`;
 }
 
 /**
@@ -88,16 +86,9 @@ export function getManagers() {
  * @returns {Promise<Page[]>}
  */
 async function pageLister(configuration) {
-    // const pugPages = await pugPageLister(configuration);
     const markdownPages = await markdownPageLister(configuration);
     const apiPages = await apiPageLister(configuration);
     const pages = [
-        // ...pugPages.map(p => {
-        //     p.properties = {
-        //         sourceFile: `https://github.com/lenra-io/docs/blob/beta/${configuration.viewsDir}/${p.view}`
-        //     }
-        //     return p;
-        // }),
         ...markdownPages,
         ...apiPages
     ].map(page => {
@@ -105,7 +96,6 @@ async function pageLister(configuration) {
         const href = page.path.replace(/index\.html$/, '');
         page.properties.basicPath = basicPath;
         page.properties.href = href;
-        console.log(page.properties.href);
         if (!page.properties.name) {
             let name = page.properties.href
                 .split("/")
@@ -114,7 +104,6 @@ async function pageLister(configuration) {
             name = name.replace(/\.html$/, "")
                 .replace(/-/g, " ")
                 .replace(/^[a-z]/, (letter) => letter.toUpperCase());
-            console.log(page.properties.href, name);
             page.properties.name = name;
         }
         return page;
@@ -156,7 +145,7 @@ async function markdownPageLister(configuration) {
                 {
                     ...fmResult.attributes,
                     sourceFile: `https://github.com/lenra-io/docs/blob/beta/${sourceFile}`,
-                    content: converter.makeHtml(fmResult.body)
+                    content: converter.makeHtml(fmResult.body.replace(/\{\{([^}]+)\}\}/, (_all, att) => fmResult.attributes[att] || _all))
                 }
             )
         })
