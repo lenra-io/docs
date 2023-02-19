@@ -59,7 +59,7 @@
     --horizontal-padding-small-multiplier: 2;
     --horizontal-padding-medium-multiplier: 3;
     --horizontal-padding-big-multiplier: 3;
-    --button-height: calc(var(--line-height) + var(--vertical-padding-small-multiplier) * 0.5rem * 2);
+    --button-height: calc(var(--line-height) + var(--vertical-padding-medium-multiplier) * 0.5rem * 2);
     --top-padding: 6;
     --bottom-padding: 5;
     --section-padding-top: 6;
@@ -70,12 +70,12 @@
     --logo-vertical-image-white: url("/img/logo/vertical-white.svg");
     --logo-horizontal-image: var(--logo-horizontal-image-black);
     --logo-vertical-image: var(--logo-vertical-image-black);
-    --logo-image: var(--logo-vertical-image);
+    --logo-image: var(--logo-horizontal-image);
     --logo-position: 50%;
     --logo-horizontal-ratio: 3.646153846153846;
-    --logo-horizontal-height: var(--button-height);
+    --logo-horizontal-height: 2rem;
     --logo-vertical-height: 5rem;
-    --logo-height: var(--logo-vertical-height);
+    --logo-height: var(--logo-horizontal-height);
     --lenra-bar-gradient: var(--green), var(--green) 25%, var(--yellow) 25%, var(--yellow) 50%, var(--red) 50%, var(--red) 75%, var(--blue) 75%, var(--blue);
     --lenra-bar-width: 0.25rem;
     
@@ -98,6 +98,10 @@ body {
 *::before,
 *::after {
     color: rgba(var(--text-color-data), var(--text-opacity));
+}
+
+pre {
+    overflow: auto;
 }
 
 code *,
@@ -148,9 +152,6 @@ h5 {
 
 p {
     --text-opacity: 0.85;
-    max-width: 37.5rem;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 p+* {
@@ -205,13 +206,13 @@ header>figure>img {
     background-image: radial-gradient(closest-side, rgba(255, 255, 255, 0.5), transparent 100%);
 }
 
-body>main,
+/* body>main,
 body>header,
 body>footer {
     margin: auto;
     width: 90%;
     max-width: 82.5rem;
-}
+} */
 
 /* @media (prefers-color-scheme: dark) {
     :root {
@@ -232,26 +233,3 @@ body>footer {
         --logo-image: var(--logo-horizontal-image);
     }
 } */
-
-@media (min-width: 31.25rem) {
-    :root {
-        --logo-height: var(--logo-horizontal-height);
-        --logo-image: var(--logo-horizontal-image);
-        --logo-position: left;
-        --title-font-size-multiplier: 2.5;
-    }
-
-    .invert-colors {
-        --logo-image: var(--logo-horizontal-image);
-    }
-}
-
-@media (min-width: 50rem) {
-    :root {
-        --section-padding-top: 12;
-        --section-padding-bottom: 12;
-        --horizontal-padding-small-multiplier: 3;
-        --horizontal-padding-medium-multiplier: 5;
-        --horizontal-padding-big-multiplier: 5;
-    }
-}

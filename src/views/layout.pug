@@ -34,10 +34,11 @@ html(lang=language)
   body
     header
       block header
+        button(onclick="this.parentNode.parentNode.classList.toggle('menu-opened')") Open/Close Menu
         a(href="/") Lenra Docs
         form
-           input#search(type="search", name="search")
-           button.lenra-icon-search(type="submit") Search
+           input#search(type="search" name="search" placeholder="Search a guide, a feature, a component ...")
+           button.lenra-icon-code(type="submit") Search
         a.btn.primary(href="https://dev.lenra.io/#/register") Register on Lenra
     include menu.pug
     main

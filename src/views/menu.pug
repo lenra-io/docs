@@ -31,10 +31,11 @@ mixin manageCollapse(collapsable, open)
 
 mixin createMenuItem(menuPage)
     - var pageName = menuPage.translation.name || menuPage.properties.name || menuPage.translation.title || menuPage.properties.title;
-    a(href='/'+menuPage.href)= pageName
+    - var className = menuPage.translation.icon ? "lenra-icon-" + menuPage.translation.icon : "";
+    a(class=className href='/'+menuPage.href)= pageName
     - var subPages = childrenPages(menuPage);
     if (subPages.length)
-        +manageCollapse(page.collapsable, currentPage.path.startsWith(menuPage.href))
+        +manageCollapse(/*page.collapsable*/ true, currentPage.path.startsWith(menuPage.href))
             +createMenuItems(subPages)
 
 
@@ -45,9 +46,4 @@ mixin createMenuItems(pages)
                 +createMenuItem(page)
 
 nav.invert-colors
-    button.primary(onclick="this.parentNode.classList.toggle('opened')") Open/Close Menu
-    a.presentation(href="https://www.lenra.io/") Lenra
     +createMenuItems(childrenPages())
-    nav
-        a(href="mailto:conta@lenra.io") Contact us
-        a(href="https://github.com/lenra-io") GitHub

@@ -94,7 +94,7 @@ async function apiPageLister(configuration) {
         });
     return matchFiles.filter(({ match }) => !match)
         .map(({ file }) => {
-            const path = file;
+            const path = `references/${file}`;
             const content = fs.readFileSync(Path.join(apisDirPath, file), 'utf8');
             const json = JSON.parse(fs.readFileSync(Path.join(apisDirPath, `${file}.json`), 'utf8'));
             return new Page(

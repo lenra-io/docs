@@ -20,11 +20,6 @@ details>summary::-webkit-details-marker {
     display: none;
 }
 
-html,
-body {
-    overflow-x: hidden;
-}
-
 input,
 textarea,
 button {

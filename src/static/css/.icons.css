@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Lenra-icons';
   src:
-    url('../fonts/Lenra-icons.ttf?bgj6za') format('truetype'),
-    url('../fonts/Lenra-icons.woff?bgj6za') format('woff'),
-    url('../fonts/Lenra-icons.svg?bgj6za#Lenra-icons') format('svg');
+    url('../fonts/Lenra-icons.ttf?u7tcxe') format('truetype'),
+    url('../fonts/Lenra-icons.woff?u7tcxe') format('woff'),
+    url('../fonts/Lenra-icons.svg?u7tcxe#Lenra-icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -62,6 +62,21 @@
 }
 .lenra-icon-minus:before {
   content: "\e90c";
+}
+.lenra-icon-search:before {
+  content: "\e940";
+}
+.lenra-icon-folder:before {
+  content: "\e912";
+}
+.lenra-icon-book-open:before {
+  content: "\e911";
+}
+.lenra-icon-external-link:before {
+  content: "\e93b";
+}
+.lenra-icon-link:before {
+  content: "\e941";
 }
 .lenra-icon-frown:before {
   content: "\e909";
@@ -150,12 +165,6 @@
 .lenra-icon-grid:before {
   content: "\e924";
 }
-.lenra-icon-book-open:before {
-  content: "\e911";
-}
-.lenra-icon-folder:before {
-  content: "\e912";
-}
 .lenra-icon-list:before {
   content: "\e913";
 }
@@ -170,9 +179,6 @@
 }
 .lenra-icon-shield:before {
   content: "\e93a";
-}
-.lenra-icon-star:before {
-  content: "\e93b";
 }
 .lenra-icon-tiktok:before {
   content: "\e934";
