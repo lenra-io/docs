@@ -145,7 +145,7 @@ async function markdownPageLister(configuration) {
                 {
                     ...fmResult.attributes,
                     sourceFile: `https://github.com/lenra-io/docs/blob/beta/${sourceFile}`,
-                    content: converter.makeHtml(fmResult.body.replace(/\{\{([^}]+)\}\}/, (_all, att) => fmResult.attributes[att] || _all))
+                    content: converter.makeHtml(fmResult.body.replace(/\{\{([^}]+)\}\}/, (_all, att) => att.split(".").reduce((o, key) => o[key], fmResult.attributes) || _all))
                 }
             )
         })
