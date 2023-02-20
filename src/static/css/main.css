@@ -5,4 +5,27 @@
 @import '.components.css';
 @import '.font.css';
 
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+h1>a.btn.link {
+    font-size: 1rem;
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+}
+h1+p {
+    text-align: center;
+}
 
+h2::before {
+    content: " ";
+    display: block;
+    margin: 3rem 0;
+    border-top: 0.0625rem solid rgba(var(--text-color-data), 0.3);
+}
+
+h1+h2:before {
+    display: none;
+}

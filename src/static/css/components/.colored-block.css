@@ -1,0 +1,34 @@
+/*********** .colored-block ************/
+.colored-block {
+    --primary-color-data: var(--green-pulse-data);
+    --background-color-data: var(--green-data);
+    --background-opacity: 0.08;
+    text-align: left;
+    padding: 1.5rem;
+    background-color: rgba(var(--background-color-data), var(--background-opacity));
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 30rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.colored-block[class^="lenra-icon-"]::before,
+.colored-block[class*=" lenra-icon-"]::before {
+    --size: 3rem;
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    font-size: 1.5rem;
+    line-height: var(--size);
+    text-align: center;
+    color: rgb(var(--primary-color-data));
+    border: 0.0625rem solid rgb(var(--background-color-data));
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.colored-block>h3 {
+    font-size: 1.25rem;
+    padding-bottom: 0.25rem;
+}

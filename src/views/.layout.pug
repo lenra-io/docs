@@ -43,9 +43,10 @@ html(lang=language)
     include .menu.pug
     main
       block content
+        include .ariane.pug
         h1= (currentPage.title || currentPage.name)
-        if(currentPage.sourceFile)
-          a.btn.link.lenra-icon-github(href=currentPage.sourceFile target="_blank" rel="noopener") Contribute
+          if(currentPage.sourceFile)
+            a.btn.link.lenra-icon-github(href=currentPage.sourceFile target="_blank" rel="noopener") Contribute
         if(currentPage.content)
           | !{currentPage.content}
       nav.pages
