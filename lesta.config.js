@@ -106,8 +106,10 @@ async function pageLister(configuration) {
         }
         return page;
     });
-
-    return sortAndMap(pages);
+    setPagesParent(pages);
+    sortPages(pages);
+    setPagesChildrenAndNav(pages);
+    return pages;
 }
 
 /**
@@ -191,19 +193,44 @@ async function apiPageLister(configuration) {
 }
 
 /**
- * Set the children pages for each dir page and sort the page list
+ * Set pages parent page href
  * @param {Page[]} pages 
  */
-function sortAndMap(pages) {
-    // Set parent
+function setPagesParent(pages) {
     pages.forEach(p => {
         let pos = p.href.replace(/\/$/, "").lastIndexOf("/");
         if (pos > 0) {
             p.properties.parent = p.href.substring(0, pos + 1);
         }
     });
+}
 
-    // Sort pages
+/**
+ * Set pages children page href, and next and previous pages href
+ * @param {Page[]} pages 
+ */
+function setPagesChildrenAndNav(pages) {
+    for (let i = 0; i < pages.length; i++) {
+        const p = pages[i];
+        // Filter dir pages
+        if (p.href.endsWith("/")) {
+            // Set the children pages
+            p.properties.children = pages
+                .filter(child => child.properties.parent == p.href)
+                .map(p => p.href);
+        }
+        const previous = pages[i - 1];
+        if (previous) p.properties.previous = previous.href;
+        const next = pages[i + 1];
+        if (next) p.properties.next = next.href;
+    }
+}
+
+/**
+ * Set the children pages for each dir page and sort the page list
+ * @param {Page[]} pages 
+ */
+function sortPages(pages) {
     pages.sort((p1, p2) => p1.href.localeCompare(p2.href));
     const positionnables = pages.filter(p => "position" in p.properties)
         .sort((p1, p2) => {
@@ -227,20 +254,4 @@ function sortAndMap(pages) {
             pages.splice(targetPos, 0, page);
         }
     });
-    for (let i = 0; i < pages.length; i++) {
-        const p = pages[i];
-        // Filter dir pages
-        if (p.href.endsWith("/")) {
-            // Set the children pages
-            p.properties.children = pages
-                .filter(child => child.properties.parent == p.href)
-                .map(p => p.href);
-        }
-        const previous = pages[i - 1];
-        if (previous) p.properties.previous = previous.href;
-        const next = pages[i + 1];
-        if (next) p.properties.next = next.href;
-    }
-
-    return pages;
 }
