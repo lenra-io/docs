@@ -107,7 +107,7 @@ async function pageLister(configuration) {
         return page;
     });
 
-    return setChildrenAndSort(pages);
+    return sortAndMap(pages);
 }
 
 /**
@@ -194,7 +194,7 @@ async function apiPageLister(configuration) {
  * Set the children pages for each dir page and sort the page list
  * @param {Page[]} pages 
  */
-function setChildrenAndSort(pages) {
+function sortAndMap(pages) {
     // Set parent
     pages.forEach(p => {
         let pos = p.href.replace(/\/$/, "").lastIndexOf("/");
@@ -227,15 +227,20 @@ function setChildrenAndSort(pages) {
             pages.splice(targetPos, 0, page);
         }
     });
-    pages
+    for (let i = 0; i < pages.length; i++) {
+        const p = pages[i];
         // Filter dir pages
-        .filter(p => p.href.endsWith("/"))
-        .forEach(p => {
+        if (p.href.endsWith("/")) {
             // Set the children pages
             p.properties.children = pages
                 .filter(child => child.properties.parent == p.href)
                 .map(p => p.href);
-        });
+        }
+        const previous = pages[i - 1];
+        if (previous) p.properties.previous = previous.href;
+        const next = pages[i + 1];
+        if (next) p.properties.next = next.href;
+    }
 
     return pages;
 }

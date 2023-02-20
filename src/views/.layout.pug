@@ -48,3 +48,10 @@ html(lang=language)
           a.btn.link.lenra-icon-github(href=currentPage.sourceFile target="_blank" rel="noopener") Contribute
         if(currentPage.content)
           | !{currentPage.content}
+      nav.pages
+        if("previous" in currentPage)
+          - var prevPage = pageMap[currentPage.previous];
+          a.btn.link.lenra-icon-arrow-left(href="/"+prevPage.href)= (prevPage.name || prevPage.title)
+        if("next" in currentPage)
+          - var nextPage = pageMap[currentPage.next];
+          a.btn.link.lenra-icon-arrow-right(href="/"+nextPage.href)= (nextPage.name || nextPage.title)
