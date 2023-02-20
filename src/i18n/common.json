@@ -1,35 +1,3 @@
 {
-    "title": "Lenra Docs",
-    "description": "Lenra's documentations",
-    "page": {
-        "index": {
-            "name": "Home",
-            "title": "Welcome to Lenra's documentation",
-            "description": "Create a cross-platform app that can scale automatically to follow your users growth.",
-            "icon": "home"
-        },
-        "getting-started/index": {
-            "description": "Start creating Lenra applications",
-            "icon": "play-circle"
-        },
-        "getting-started/principles": {
-            "description": "Understand how our app development framework works"
-        },
-        "todo-list-app": {
-            "description": "How to create a first app ? Look at this guide to create a todo list app"
-        },
-        "guides/index": {
-            "description": "",
-            "icon": "code"
-        },
-        "features": {
-            "description": "",
-            "icon": "sliders",
-            "position": 3
-        },
-        "references/index": {
-            "description": "",
-            "icon": "book-open"
-        }
-    }
+    "title": "Lenra Docs"
 }

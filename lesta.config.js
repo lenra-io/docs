@@ -93,11 +93,9 @@ async function pageLister(configuration) {
         ...apiPages
     ].map(page => {
         const basicPath = page.path.replace(/\.html$/, '');
-        const href = page.path.replace(/index\.html$/, '');
         page.properties.basicPath = basicPath;
-        page.properties.href = href;
         if (!page.properties.name) {
-            let name = page.properties.href
+            let name = page.href
                 .split("/")
                 .filter(part => part)
                 .at(-1) || "";
@@ -108,7 +106,8 @@ async function pageLister(configuration) {
         }
         return page;
     });
-    return pages;
+
+    return setChildrenAndSort(pages);
 }
 
 /**
@@ -189,4 +188,54 @@ async function apiPageLister(configuration) {
                 }
             )
         })
+}
+
+/**
+ * Set the children pages for each dir page and sort the page list
+ * @param {Page[]} pages 
+ */
+function setChildrenAndSort(pages) {
+    // Set parent
+    pages.forEach(p => {
+        let pos = p.href.replace(/\/$/, "").lastIndexOf("/");
+        if (pos > 0) {
+            p.properties.parent = p.href.substring(0, pos + 1);
+        }
+    });
+
+    // Sort pages
+    pages.sort((p1, p2) => p1.href.localeCompare(p2.href));
+    const positionnables = pages.filter(p => "position" in p.properties)
+        .sort((p1, p2) => {
+            if (p1.properties.parent == p2.properties.parent)
+                return p1.translation.position - p2.translation.position
+            return p1.href.localeCompare(p2.href);
+        });
+    positionnables.forEach(page => {
+        const children = pages.filter(p => p.properties.parent == page.properties.parent);
+        const firstChildPos = pages.indexOf(children[0]);
+        const currentPos = pages.indexOf(page);
+        let targetPos = firstChildPos + Math.max(
+            Math.min(page.properties.position, children.length - 1),
+            0
+        );
+        if (currentPos != targetPos) {
+            pages.splice(currentPos, 1);
+            if (currentPos < targetPos) {
+                ++targetPos;
+            }
+            pages.splice(targetPos, 0, page);
+        }
+    });
+    pages
+        // Filter dir pages
+        .filter(p => p.href.endsWith("/"))
+        .forEach(p => {
+            // Set the children pages
+            p.properties.children = pages
+                .filter(child => child.properties.parent == p.href)
+                .map(p => p.href);
+        });
+
+    return pages;
 }

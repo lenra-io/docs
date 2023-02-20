@@ -1,4 +1,6 @@
-# App example : basic Todo List
+---
+description: How to create a first app ? Look at this guide to create a todo list app.
+---
 
 Now that you know the basics of a lenra app, we can create our first app : a basic TODO List.
 

@@ -1,0 +1,18 @@
+html {
+    /* --header-height: calc(0.75rem * 2 + var(--button-height)); */
+    --header-height: calc(0.75rem * 2 + 2rem);
+    /* min-height: 100%; */
+    padding-top: var(--header-height);
+}
+
+body {
+    position: relative;
+    /* min-height: 100%; */
+}
+
+body>main {
+    width: 90%;
+    max-width: 44rem;
+    margin: auto;
+    padding: 3rem 0;
+}

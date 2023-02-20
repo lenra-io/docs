@@ -1,3 +1,8 @@
+---
+description: Start creating Lenra applications.
+icon: play-circle
+---
+
 ## Prerequisites
 
 ## General requirements

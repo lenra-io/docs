@@ -1,4 +1,6 @@
-# How does Lenra work ?
+---
+description: Understand how our app development framework works.
+---
 
 Lenra uses a simple but efficient realtime MVC pattern. This means that any changes to the Model will update the view in real time for every connected users. 
 
