@@ -11,7 +11,7 @@
         "load-api": "node .scripts/load-api.js"
     },
     "dependencies": {
-        "@lenra/lesta": "file:../lesta",
+        "@lenra/lesta": "github:lenra-io/lesta",
         "front-matter": "^4.0.2",
         "showdown": "^2.1.0"
     },
