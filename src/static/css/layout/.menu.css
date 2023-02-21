@@ -1,20 +1,7 @@
 body>nav.invert-colors {
-    position: fixed;
-    height: auto;
-    min-width: 15rem;
-    top: var(--header-height);
-    bottom: 0;
     padding: 2rem 0;
     background-color: rgb(var(--background-color-data));
-    transform: translateX(-100%);
-    transition-property: transform;
     overflow: auto;
-    z-index: 10;
-}
-
-body.menu-opened>nav.invert-colors,
-body>nav.invert-colors:focus-within {
-    transform: translateX(0%);
 }
 
 body>nav.invert-colors::before {

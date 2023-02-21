@@ -1,12 +1,14 @@
 if(currentPage.href)
-    - console.log("ariane", currentPage.href);
     - var parts = currentPage.href.split("/");
     - var href = "";
     nav.ariane
         a(href="/") Documentation
-    each part in parts
-        if(part)
-            - href += part;
-            - if (href!=currentPage.href) href += "/";
-            - var page = pageMap[href];
-            a(href="/"+href)= (page.name || page.title)
+        each part in parts
+            if(part)
+                - href += part;
+                if(href!=currentPage.href)
+                    - href += "/";
+                    - var page = pageMap[href];
+                    a(href="/"+href)= (page.properties.name || page.properties.title)
+                else
+                    span= (currentPage.name || currentPage.title)

@@ -17,6 +17,22 @@ body>header {
     z-index: 1000;
 }
 
+body>nav.invert-colors {
+    position: fixed;
+    height: auto;
+    min-width: 15rem;
+    top: var(--header-height);
+    bottom: 0;
+    transform: translateX(-100%);
+    transition-property: transform;
+    z-index: 10;
+}
+
+body.menu-opened>nav.invert-colors,
+body>nav.invert-colors:focus-within {
+    transform: translateX(0%);
+}
+
 body>main {
     width: 90%;
     max-width: 44rem;
