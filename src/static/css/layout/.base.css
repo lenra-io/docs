@@ -1,13 +1,10 @@
 html {
-    /* --header-height: calc(0.75rem * 2 + var(--button-height)); */
     --header-height: calc(0.75rem * 2 + 2rem);
-    /* min-height: 100%; */
     padding-top: var(--header-height);
 }
 
 body {
     position: relative;
-    /* min-height: 100%; */
 }
 
 body>header {
@@ -17,7 +14,7 @@ body>header {
     z-index: 1000;
 }
 
-body>nav.invert-colors {
+body>menu.invert-colors {
     position: fixed;
     height: auto;
     min-width: 15rem;
@@ -28,14 +25,46 @@ body>nav.invert-colors {
     z-index: 10;
 }
 
-body.menu-opened>nav.invert-colors,
-body>nav.invert-colors:focus-within {
+body.menu-opened>menu.invert-colors,
+body>menu.invert-colors:focus-within {
     transform: translateX(0%);
 }
 
-body>main {
+body>section>* {
     width: 90%;
     max-width: 44rem;
     margin: auto;
+}
+
+body>section>main {
     padding: 3rem 0;
+}
+
+@media (min-width: 50rem) {
+    html {
+        width: 100%;
+        height: 100%;
+        padding-top: 0;
+    }
+
+    body {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        width: 100%;
+        height: 100%;
+    }
+
+    body>header {
+        position: initial;
+        grid-column: 1/-1;
+    }
+
+    body>menu.invert-colors {
+        position: initial;
+        transform: translateX(0%);
+    }
+
+    body>section {
+        overflow: auto;
+    }
 }

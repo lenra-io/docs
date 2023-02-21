@@ -235,7 +235,7 @@ function sortPages(pages) {
     const positionnables = pages.filter(p => "position" in p.properties)
         .sort((p1, p2) => {
             if (p1.properties.parent == p2.properties.parent)
-                return p1.translation.position - p2.translation.position
+                return p1.properties.position - p2.properties.position
             return p1.href.localeCompare(p2.href);
         });
     positionnables.forEach(page => {

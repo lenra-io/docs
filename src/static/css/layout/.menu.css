@@ -1,23 +1,23 @@
-body>nav.invert-colors {
+body>menu.invert-colors {
     padding: 2rem 0;
     background-color: rgb(var(--background-color-data));
     overflow: auto;
 }
 
-body>nav.invert-colors::before {
+body>menu.invert-colors::before {
     display: none;
 }
 
-body>nav>ul * {
+body>menu * {
     width: fit-content;
     min-width: 100%;
 }
 
-body>nav>ul li {
+body>menu li {
     position: relative;
 }
 
-body>nav>ul li>a {
+body>menu li>a {
     --btn-text-color-hover-data: var(--white-data);
     --btn-background-color-data: var(--primary-color-data);
     --btn-background-color-opacity: 0;
@@ -30,14 +30,14 @@ body>nav>ul li>a {
     background-color: rgba(var(--btn-background-color-data), var(--btn-background-color-opacity));
 }
 
-body>nav>ul li>a::before {
+body>menu li>a::before {
     display: inline-block;
     vertical-align: middle;
     margin-right: 0.5rem;
     font-size: calc(1rem * 9 / 8);
 }
 
-body>nav>ul li>details>summary {
+body>menu li>details>summary {
     --size: calc(0.5rem + var(--line-height));
     position: absolute;
     top: 0;
@@ -49,7 +49,7 @@ body>nav>ul li>details>summary {
     overflow: hidden;
 }
 
-body>nav>ul li>details>summary::before {
+body>menu li>details>summary::before {
     --w: var(--line-height);
     --l: 2px;
     content: ' ';
@@ -69,11 +69,11 @@ body>nav>ul li>details>summary::before {
     transition-property: transform;
 }
 
-body>nav>ul li>details[open]>summary::before {
+body>menu li>details[open]>summary::before {
     transform: rotate(135deg);
 }
 
-body>nav>ul li>a {
+body>menu li>a {
     --btn-text-color-data: var(--white-data);
     --btn-text-color-hover-data: var(--white-data);
     --btn-background-color-data: var(--primary-color-data);
@@ -86,24 +86,24 @@ body>nav>ul li>a {
     background-color: rgba(var(--btn-background-color-data), var(--btn-background-color-opacity));
 }
 
-body>nav>ul a::after {
+body>menu a::after {
     content: none;
     display: none;
 }
 
-body>nav>ul ul>li>a {
+body>menu ul>li>a {
     padding-left: 2.5rem;
 }
 
-body>nav>ul ul ul>li>a {
+body>menu ul ul>li>a {
     padding-left: 3.5rem;
 }
 
-body>nav>ul ul ul ul>li>a {
+body>menu ul ul ul>li>a {
     padding-left: 4.5rem;
 }
 
-body>nav li a:hover,
-body>nav li.selected>a {
+body>menu li a:hover,
+body>menu li.selected>a {
     --btn-background-color-opacity: 1;
 }

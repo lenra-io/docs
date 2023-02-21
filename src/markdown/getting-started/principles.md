@@ -1,5 +1,6 @@
 ---
 description: Understand how our app development framework works.
+position: 0
 ---
 
 ## How does Lenra work ?

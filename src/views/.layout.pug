@@ -32,23 +32,17 @@ html(lang=language)
     script(src='/js/main.js' defer)
     script(src="https://analytics.lenra.io/js/plausible.js" data-domain="!DOMAIN!" defer)
   body
-    header
-      block header
-        button(onclick="this.parentNode.parentNode.classList.toggle('menu-opened')") Open/Close Menu
-        a(href="/") Lenra Docs
-        form
-           input#search(type="search" name="search" placeholder="Search a guide, a feature, a component...")
-           button.lenra-icon-search(type="submit") Search
-        a.btn.primary(href="https://dev.lenra.io/#/register") Register on Lenra
+    include .header.pug
     include .menu.pug
-    main
-      block content
-        include .ariane.pug
-        h1= (currentPage.title || currentPage.name)
-          if(currentPage.sourceFile)
-            a.btn.link.lenra-icon-github(href=currentPage.sourceFile target="_blank" rel="noopener") Contribute
-        if(currentPage.content)
-          | !{currentPage.content}
+    section
+      main
+        block content
+          include .ariane.pug
+          h1= (currentPage.title || currentPage.name)
+            if(currentPage.sourceFile)
+              a.btn.link.lenra-icon-github(href=currentPage.sourceFile target="_blank" rel="noopener") Contribute
+          if(currentPage.content)
+            | !{currentPage.content}
       nav.pages
         if("previous" in currentPage)
           - var prevPage = pageMap[currentPage.previous];
@@ -56,3 +50,4 @@ html(lang=language)
         if("next" in currentPage)
           - var nextPage = pageMap[currentPage.next];
           a.btn.link.lenra-icon-arrow-right(href="/"+nextPage.href)= (nextPage.properties.name || nextPage.properties.title)
+      include .footer.pug

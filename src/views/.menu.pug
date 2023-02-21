@@ -15,14 +15,14 @@ mixin createMenuItem(menuPage)
     if (subPages.length)
         details(open=currentPage.path.startsWith(menuPage.href))
             summary Open/Close
-            +createMenuItems(subPages)
+            ul
+                +createMenuItems(subPages)
 
 
 mixin createMenuItems(pages)
-    ul
-        each page in pages
-            li(class=(page.path==currentPage.path ? 'selected' : ''))
-                +createMenuItem(page)
+    each page in pages
+        li(class=(page.path==currentPage.path ? 'selected' : ''))
+            +createMenuItem(page)
 
-nav.invert-colors
+menu.invert-colors
     +createMenuItems(childrenPages())
