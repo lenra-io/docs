@@ -110,6 +110,7 @@ body>header>form {
     position: relative;
     width: 2rem;
     height: 2rem;
+    visibility: hidden;
 }
 
 body>header>form>input {
@@ -148,4 +149,46 @@ body>header>form>button::before {
 
 body>header>a.btn.primary {
     display: none;
+}
+
+@media (min-width: 50rem) {
+    body>header {
+        gap: 1.5rem;
+    }
+
+    body>header>* {
+        flex-shrink: 0;
+    }
+
+    body>header>button {
+        display: none;
+    }
+
+    body>header>form {
+        width: auto;
+        height: auto;
+        flex-shrink: 1;
+        flex-basis: 28rem;
+    }
+
+    body>header>form>input,
+    body>header>form:focus-within>input {
+        position: initial;
+        width: 100%;
+        height: auto;
+        padding-right: 2.5rem;
+        opacity: 1;
+        transition-property: width, padding, opacity;
+    }
+    
+    body>header>form>button {
+        position: absolute;
+        top: 50%;
+        right: 0.5rem;
+        transform: translateY(-50%);
+    }
+
+    body>header>a.btn.primary {
+        display: inline-block;
+    }
 }

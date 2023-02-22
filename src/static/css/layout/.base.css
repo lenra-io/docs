@@ -30,14 +30,11 @@ body>menu.invert-colors:focus-within {
     transform: translateX(0%);
 }
 
-body>section>* {
+body>section>main {
+    padding: 3rem 0;
     width: 90%;
     max-width: 44rem;
     margin: auto;
-}
-
-body>section>main {
-    padding: 3rem 0;
 }
 
 @media (min-width: 50rem) {

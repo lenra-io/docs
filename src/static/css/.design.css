@@ -57,9 +57,9 @@
     --vertical-padding-small-multiplier: 1;
     --vertical-padding-medium-multiplier: 1.5;
     --vertical-padding-big-multiplier: 2;
-    --horizontal-padding-small-multiplier: 2;
-    --horizontal-padding-medium-multiplier: 3;
-    --horizontal-padding-big-multiplier: 3;
+    --horizontal-padding-small-multiplier: 3;
+    --horizontal-padding-medium-multiplier: 5;
+    --horizontal-padding-big-multiplier: 5;
     --button-height: calc(var(--line-height) + var(--vertical-padding-medium-multiplier) * 0.5rem * 2);
     --top-padding: 6;
     --bottom-padding: 5;

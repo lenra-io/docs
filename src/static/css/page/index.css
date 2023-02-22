@@ -1,15 +1,19 @@
-main>ul {
+/* main>ul {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-}
+} */
 
 main>ul>li {
     display: flex;
     flex-direction: column;
 }
 
-main>ul>li:nth-of-type(2) {
+main>ul>li>p {
+    flex: 1;
+}
+
+/* main>ul>li:nth-of-type(2) {
     --primary-color-data: var(--blue-pulse-data);
     --background-color-data: var(--blue-data);
 }
@@ -22,7 +26,7 @@ main>ul>li:nth-of-type(3) {
 main>ul>li:nth-of-type(4) {
     --primary-color-data: var(--red-pulse-data);
     --background-color-data: var(--red-data);
-}
+} */
 
 main>ul>li>a.btn.link {
     --btn-text-color-data: var(--text-color-data);
