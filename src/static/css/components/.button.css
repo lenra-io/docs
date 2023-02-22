@@ -28,7 +28,7 @@ a::after {
 }
 
 a:hover {
-    color: rgba(var(--btn-text-color-hover-data), var(--btn-text-opacity));
+    color: rgba(var(--btn-text-color-hover-data, var(--btn-text-color-data)), var(--btn-text-hover-opacity, var(--btn-text-opacity)));
 }
 
 a:hover::after {

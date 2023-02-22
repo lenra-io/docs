@@ -172,6 +172,10 @@ body>section>footer>footer>nav.social {
     justify-content: center;
 }
 
+body>section>footer>footer>nav.social>a {
+    background-color: transparent;
+}
+
 @media (min-width: 35rem) {
     body>section>nav.pages {
         display: grid;
