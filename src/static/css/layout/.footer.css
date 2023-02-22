@@ -1,3 +1,69 @@
+body>section>nav.pages {
+    display: flex;
+    flex-direction: column;
+    column-gap: 2rem;
+    row-gap: 1.5rem;
+    width: 90%;
+    max-width: 44rem;
+    margin: auto;
+    padding-bottom: 4rem;
+}
+
+body>section>nav.pages>a.btn {
+    --btn-background-color-opacity: 0;
+    --border-size: 0.0625rem;
+    display: grid;
+    grid-template-areas:
+        "arrow type"
+        "arrow name";
+    grid-template-columns: auto 1fr;
+    grid-area: prev;
+    justify-self: start;
+    justify-items: end;
+    margin-top: 0;
+    padding: 1rem;
+    border-color: rgba(var(--btn-text-color-data), 0.3);
+    font-weight: 400;
+    transition-property: color, background, border-color;
+}
+
+body>section>nav.pages>a.btn:hover {
+    border-color: rgba(var(--btn-text-color-data), 0.6);
+}
+
+body>section>nav.pages>a.btn::before {
+    grid-area: arrow;
+    font-size: 1.5rem;
+    align-self: center;
+}
+
+body>section>nav.pages>a.btn::after {
+    grid-area: type;
+    content: "Prev";
+    position: initial;
+    width: auto;
+    border: none;
+    color: rgba(var(--btn-text-color-data), 0.85);
+    font-size: calc(1rem * 7 / 8);
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 1;
+}
+
+body>section>nav.pages>a.lenra-icon-arrow-right {
+    grid-template-areas:
+        "type arrow"
+        "name arrow";
+    grid-template-columns: 1fr auto;
+    grid-area: next;
+    justify-self: end;
+    justify-items: start;
+}
+
+body>section>nav.pages>a.lenra-icon-arrow-right::after {
+    content: "Next";
+}
+
 body>section>footer {
     --border: 0.0625rem solid rgba(var(--text-color-data), 0.15);
     width: 100%;
@@ -5,7 +71,7 @@ body>section>footer {
     border-top: var(--border);
 }
 
-body>section>footer>nav.pages {
+body>section>footer>nav {
     display: flex;
     width: 80%;
     max-width: 44rem;
@@ -18,31 +84,31 @@ body>section>footer>nav.pages {
     padding-bottom: 3rem;
 }
 
-body>section>footer>nav.pages>section {
+body>section>footer>nav>section {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     align-items: start;
 }
 
-body>section>footer>nav.pages>section:last-of-type {
+body>section>footer>nav>section:last-of-type {
     flex-basis: 100%;
     align-items: center;
 }
 
-body>section>footer>nav.pages>section>h3 {
+body>section>footer>nav>section>h3 {
     font-size: calc(1rem * 7 / 8);
     font-weight: 600;
     text-transform: uppercase;
 }
 
-body>section>footer>nav.pages>section>a:not(.btn) {
+body>section>footer>nav>section>a:not(.btn) {
     --btn-text-color-data: var(--text-color-data);
     --btn-text-color-hover-data: var(--text-color-data);
     --btn-text-opacity: 0.9;
 }
 
-body>section>footer>nav.pages>section>a.btn {
+body>section>footer>nav>section>a.btn {
     display: inline-block;
     margin-top: 0.5rem;
 }
@@ -106,14 +172,26 @@ body>section>footer>footer>nav.social {
     justify-content: center;
 }
 
+@media (min-width: 35rem) {
+    body>section>nav.pages {
+        display: grid;
+        grid-template-areas: "prev next";
+        grid-template-columns: 1fr 1fr;
+    }
+
+    body>section>nav.pages>a {
+        width: 100%;
+    }
+}
+
 @media (min-width: 50rem) {
-    body>section>footer>nav.pages {
+    body>section>footer>nav {
         width: 90%;
     }
 }
 
 @media (min-width: 61.5rem) {
-    body>section>footer>nav.pages>section:last-of-type {
+    body>section>footer>nav>section:last-of-type {
         flex-basis: auto;
         align-items: start;
     }

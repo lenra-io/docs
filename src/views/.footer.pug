@@ -4,7 +4,7 @@ mixin listPages(hrefs)
         - if (!page) console.log("page not found", href);
         a(href="/"+href)= (page.properties.name || page.properties.title)
 footer
-    nav.pages
+    nav
         section
             h3 Basics
             +listPages(["", "getting-started/principles.html", "getting-started/install.html", "getting-started/create-project.html", "getting-started/deploy-app.html"])
