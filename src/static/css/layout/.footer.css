@@ -89,6 +89,8 @@ body>section>footer>nav>section {
     flex-direction: column;
     gap: 0.5rem;
     align-items: start;
+    flex-shrink: 0;
+    flex-grow: 1;
 }
 
 body>section>footer>nav>section:last-of-type {
@@ -106,6 +108,31 @@ body>section>footer>nav>section>a:not(.btn) {
     --btn-text-color-data: var(--text-color-data);
     --btn-text-color-hover-data: var(--text-color-data);
     --btn-text-opacity: 0.9;
+}
+
+body>section>footer>nav>section>a[target="_blank"] {
+    display: flex;
+    align-items: center;
+}
+
+body>section>footer>nav>section>a[target="_blank"]::before {
+    content: "\e93b";
+    order: 2;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'Lenra-icons' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body>section>footer>nav>section>a.btn {
@@ -194,10 +221,11 @@ body>section>footer>footer>nav.social>a {
     }
 }
 
-@media (min-width: 61.5rem) {
+@media (min-width: 63rem) {
     body>section>footer>nav>section:last-of-type {
         flex-basis: auto;
         align-items: start;
+        flex-grow: 0;
     }
 }
 

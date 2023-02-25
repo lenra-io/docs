@@ -8,20 +8,21 @@ icon: play-circle
 Lenra is an open source framework to create your app using any language, and deploy it without any Ops scale, built on ethical values.
 Our framework is based on four parts: data, views, listeners, and users.
 
-{:#framework}
-- {:.colored-block.lenra-icon-database}
+
+{:#framework.colored-blocks}
+- {:.red.lenra-icon-database}
 
     ### Data
     Without data, there is no app. That's why our framework starts with data. We believe that data should be simple and easy to understand.
-- {:.colored-block.lenra-icon-grid}
+- {:.green.lenra-icon-grid}
 
     ### Views
     The views are what the user sees and interacts with. It should be clear and concise. It should be easy to use and navigate.
-- {:.colored-block.lenra-icon-users}
+- {:.blue.lenra-icon-users}
 
     ### Users
     They are the ones who will use our apps and benefit from them. We believe that all apps should be designed with the user in mind.
-- {:.colored-block.lenra-icon-bell}
+- {:.yellow.lenra-icon-bell}
 
     ### Listeners
     Listeners are what make an app interactive. They listen for user input and then respond accordingly.
@@ -31,21 +32,22 @@ Our framework is based on four parts: data, views, listeners, and users.
 
 ## Start to **create**
 
-- {:.colored-block}
+{:.colored-blocks}
+- {:.yellow}
     
     ### Install
     Discover the prerequisites, download what you need.
 
     {:.btn.link.lenra-icon-arrow-right}
     [Let’s go](/getting-started/install.html)
-- {:.colored-block}
+- {:.red}
     
     ### Create
     Get to know the cli and the directory structure.
 
     {:.btn.link.lenra-icon-arrow-right}
     [Let’s go](/getting-started/create.html)
-- {:.colored-block}
+- {:.green}
     
     ### Deploy
     Deploy your application and show your customers what you are capable of.

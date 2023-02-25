@@ -98,21 +98,6 @@ body {
     color: rgba(var(--text-color-data), var(--text-opacity));
 }
 
-pre {
-    overflow: auto;
-}
-
-code *,
-code *::before,
-code *::after {
-    color: inherit;
-}
-
-code .command-line-prompt {
-    border-right: 0;
-    margin-right: 0;
-}
-
 h1,
 h2,
 h3,

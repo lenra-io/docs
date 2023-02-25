@@ -22,8 +22,8 @@ It let you focus on the core of your app without loosing time on secondary issue
 So you've decided to create an app.
 That's great! But before you can start coding and designing, you need to set up the back end. 
 
-{:.colored-blocks}
-- {:.green.lenra-icon-play-circle}
+{:.colored-blocks.grid}
+- {:.big.green.lenra-icon-play-circle}
     
     ### Getting started
     Learn how to install Lenra, create a new project and deploy it.
@@ -31,7 +31,7 @@ That's great! But before you can start coding and designing, you need to set up 
     {:.btn.link.lenra-icon-arrow-right}
     [Know more](/getting-started/)
 
-- {:.blue.lenra-icon-code}
+- {:.big.blue.lenra-icon-code}
     
     ### Guides
     Learn how to use Lenra with basic app examples.
@@ -39,14 +39,14 @@ That's great! But before you can start coding and designing, you need to set up 
     {:.btn.link.lenra-icon-arrow-right}
     [Know more](/guides/)
 
-- {:.yellow.lenra-icon-sliders}
+- {:.small.yellow.lenra-icon-sliders}
     
     ### Features
 
     {:.btn.link.lenra-icon-arrow-right}
     [Know more](/features.html)
 
-- {:.red.lenra-icon-book-open}
+- {:.small.red.lenra-icon-book-open}
     
     ### References
 

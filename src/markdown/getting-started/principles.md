@@ -7,9 +7,10 @@ position: 0
 
 Lenra uses a simple but efficient realtime MVC pattern. This means that any changes to the Model will update the view in real time for every connected users.
 
+{:.list}
 - First, your views will take care of creating your UI according to your model.
 - Then your listener will first change document(s) in your mongo instance.
-- That will trigger a new realtime view re-render (back to #1 ).
+- That will trigger a new realtime view re-render (back to #1).
 
 ## Views
 
@@ -95,29 +96,13 @@ In order to build that platform we had to create a custom application system bas
 
 If you want to know more about our tech stack, you can visit their website by clicking on the links below:
 
-- 
-  {:target="_blank" rel="noopener"}
-  [Flutter](https://flutter.dev/)
-
-- 
-  {:target="_blank" rel="noopener"}
-  [Phoenix](https://phoenixframework.org/)
-
-- 
-  {:target="_blank" rel="noopener"}
-  [PostgreSQL](https://www.postgresql.org/)
-
-- 
-  {:target="_blank" rel="noopener"}
-  [Mongodb](https://mongodb.com/)
-
-- 
-  {:target="_blank" rel="noopener"}
-  [OpenFaaS](https://www.openfaas.com/)
-
-- 
-  {:target="_blank" rel="noopener"}
-  [Kubernetes](https://kubernetes.io/)
+{:.list}
+- {:target="_blank" rel="noopener"}[Flutter](https://flutter.dev/)
+- {:target="_blank" rel="noopener"}[Phoenix](https://phoenixframework.org/)
+- {:target="_blank" rel="noopener"}[PostgreSQL](https://www.postgresql.org/)
+- {:target="_blank" rel="noopener"}[Mongodb](https://mongodb.com/)
+- {:target="_blank" rel="noopener"}[OpenFaaS](https://www.openfaas.com/)
+- {:target="_blank" rel="noopener"}[Kubernetes](https://kubernetes.io/)
 
 
 If you've already used Flutter or Mongo, you will probably see a lot of the same principles while building your app with Lenra. You can use this knowledge !

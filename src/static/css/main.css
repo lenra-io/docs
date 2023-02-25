@@ -14,6 +14,14 @@ h1>a.btn.link {
     display: block;
     width: fit-content;
     margin: 0 auto;
+    margin-top: 0.5rem;
+}
+h1>a.btn.link::before {
+    display: inline-block;
+    font-size: 1.25rem;
+    margin-right: 0.5rem;
+    color: inherit;
+    vertical-align: middle;
 }
 h1+p {
     text-align: center;
