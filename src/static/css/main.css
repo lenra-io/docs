@@ -9,6 +9,7 @@ h1 {
     text-align: center;
     margin-bottom: 2rem;
 }
+
 h1>a.btn.link {
     font-size: 1rem;
     display: block;
@@ -16,6 +17,7 @@ h1>a.btn.link {
     margin: 0 auto;
     margin-top: 0.5rem;
 }
+
 h1>a.btn.link::before {
     display: inline-block;
     font-size: 1.25rem;
@@ -23,8 +25,13 @@ h1>a.btn.link::before {
     color: inherit;
     vertical-align: middle;
 }
+
 h1+p {
     text-align: center;
+}
+
+h1+p+:not(h2) {
+    margin-top: 2rem;
 }
 
 h2::before {
@@ -36,4 +43,19 @@ h2::before {
 
 h1+h2:before {
     display: none;
+}
+
+
+@media (min-width: 35rem) {
+    h1 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    h1>a.btn.link {
+        display: inline-block;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin: 0;
+    }
 }
