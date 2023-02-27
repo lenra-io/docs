@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Lenra-icons';
   src:
-    url('../fonts/Lenra-icons.ttf?u7tcxe') format('truetype'),
-    url('../fonts/Lenra-icons.woff?u7tcxe') format('woff'),
-    url('../fonts/Lenra-icons.svg?u7tcxe#Lenra-icons') format('svg');
+    url('../fonts/Lenra-icons.ttf?i46ox5') format('truetype'),
+    url('../fonts/Lenra-icons.woff?i46ox5') format('woff'),
+    url('../fonts/Lenra-icons.svg?i46ox5#Lenra-icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -45,6 +45,9 @@
 .lenra-icon-database:before {
   content: "\e93c";
 }
+.lenra-icon-info:before {
+  content: "\e943";
+}
 .lenra-icon-tilde:before {
   content: "\e903";
 }
@@ -63,6 +66,9 @@
 .lenra-icon-minus:before {
   content: "\e90c";
 }
+.lenra-icon-alert-circle:before {
+  content: "\e944";
+}
 .lenra-icon-search:before {
   content: "\e940";
 }
@@ -71,6 +77,9 @@
 }
 .lenra-icon-book-open:before {
   content: "\e911";
+}
+.lenra-icon-download:before {
+  content: "\e942";
 }
 .lenra-icon-external-link:before {
   content: "\e93b";

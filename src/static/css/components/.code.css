@@ -1,4 +1,4 @@
-p>code {
+:not(pre)>code {
     padding: 0.125rem 0.5rem;
     background-color: rgba(var(--blue-data), var(--disabled-opacity));
     border-radius: 0.125rem;

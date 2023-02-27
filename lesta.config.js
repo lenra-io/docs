@@ -33,14 +33,7 @@ const customClassExt = {
     }
 };
 
-// const removeEmptyPExt = {
-//     type: 'output',
-//     filter: function (text) {
-//         return text.replace(/<p\s*>\s*<\/p>/g, "");
-//     }
-// };
 converter.addExtension(customClassExt);
-// converter.addExtension(removeEmptyPExt);
 
 /**
  * 
@@ -100,7 +93,6 @@ async function pageLister(configuration) {
         const sourceFile = Path.join(viewsDirPath, page.getView());
         page.properties.sourceFile = `https://github.com/lenra-io/docs/blob/beta/${sourceFile}`;
     });
-    console.log(pugPages);
     const markdownPages = await markdownPageLister(configuration);
     const apiPages = await apiPageLister(configuration);
     const pages = [

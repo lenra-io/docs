@@ -1,0 +1,39 @@
+#templates {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+#templates a {
+    --size: 7.5rem;
+    position: relative;
+    display: flex;
+    width: var(--size);
+    height: var(--size);
+    justify-content: center;
+    align-items: center;
+    border: 0.0625rem solid rgba(var(--text-color-data), 0.15);
+    border-radius: 0.5rem;
+}
+
+#templates .soon a::before {
+    content: "Soon";
+    position: absolute;
+    top: 0.5rem;
+    right: -1rem;
+    display: inline-block;
+    padding: calc(0.5rem / 4) calc(0.5rem * 1.5);
+    margin-left: calc(0.5rem * 2);
+    text-transform: uppercase;
+    font-size: calc(6 / 9 * 1rem);
+    font-weight: 400;
+    background-color: rgb(var(--secondary-color-data));
+    color: rgb(var(--white-data));
+    border-radius: calc(0.5rem / 4);
+}
+
+#templates a>img {
+    max-height: calc(var(--size) * 5 / 12);
+    max-width: calc(var(--size) * 3 / 4);
+}
