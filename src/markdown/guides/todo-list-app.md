@@ -19,6 +19,7 @@ A task item will contain 4 properties :
 
 Our document will look like that : 
 
+{:data-document="A simple Mongo document"}
 ```json
 {
 	"_id": "ObjectId(634d692fcbd9f6704818309c)"
@@ -27,8 +28,6 @@ Our document will look like that :
 	"user": "a ref to the user"
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">A simple Mongo document</figcaption>
-
 
 ## Create a new task
 
@@ -36,7 +35,8 @@ Now that we know what a task looks like, we want to create a new view to let the
 
 Before anything else, we will register this view to our application. This will link this function to the `addTaskForm` ****action. To do this, go to the `index.js` file and add a line in the `views` object.
 
-```jsx
+{:data-document="index.js"}
+```javascript
 module.exports = async () => {
   return {
     views: {
@@ -51,12 +51,11 @@ module.exports = async () => {
   }
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">index.js</figcaption>
-
 
 In the `addTaskForm.js` view, we create a new function (and export it). In this function, we will first add a **[form component](https://docs.lenra.io/components-api/components/form.html).**
 
-```jsx
+{:data-document="views/addTaskForm.js"}
+```javascript
 module.exports = (data, props) => {
   return {
     type: "form",
@@ -67,14 +66,13 @@ module.exports = (data, props) => {
   }
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">views/addTaskForm.js</figcaption>
-
 
 In this view, we define the `onSubmit` listener. This tells the UI to submit the `submitTask` action when the form is submitted.
 
 Then we will declare the inputs in our form.
 
-```jsx
+{:data-document="views/addTaskForm.js"}
+```javascript
 module.exports = (data, props) => {
   return {
     type: "form",
@@ -113,8 +111,6 @@ module.exports = (data, props) => {
   }
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">views/addTaskForm.js</figcaption>
-
 
 Let's see what happens here : 
 
@@ -134,6 +130,7 @@ This is a two in one.
 
 The [textfield component](https://docs.lenra.io/components-api/components/textfield.html) simply adds a textfield with a default value to empty (`value: “”`). The `name: “description”` connects this textfield first form up in the component tree. This way, when the form will be submitted, the event will contain a `description` field that contains the value of the textfield : 
 
+{:data-document="The event object"}
 ```json
 {
 	"value": {
@@ -141,8 +138,6 @@ The [textfield component](https://docs.lenra.io/components-api/components/textfi
 	}
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">The event object</figcaption>
-
 
 Then we have the [flexible component](https://docs.lenra.io/components-api/components/flexible.html). that allows the textfield to take all the remaining space in the flex above. As simple as that !
 
@@ -154,7 +149,8 @@ This component is a simple button in which we add the `submit: true` property. T
 
 Now that our form is ready, we just have to call it in our `main.js` component.
 
-```jsx
+{:data-document="views/main.js"}
+```javascript
 module.exports = (data, props) => {
     return {
         type: "flex",
@@ -177,7 +173,6 @@ module.exports = (data, props) => {
     }
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">views/main.js</figcaption>
 
 
 Now you can start your app in your terminal using 
@@ -201,7 +196,8 @@ We will now create the listener that will react to the “add” button pressed.
 
 Remember the `action: "submitTask"` property in the form `onSubmit` listener ? That’s the name of our listener. So create a `submitTask.js` file in the **listeners** directory and add this code to it : 
 
-```jsx
+{:data-document="listeners/submitTask.js"}
+```javascript
 // 1 - import the api service
 const apiService = require("./api")
 
@@ -215,7 +211,6 @@ module.exports = async (props, event, api) => {
     });
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">listeners/submitTask.js</figcaption>
 
 
 ### 1 : Import the API service
@@ -244,7 +239,8 @@ When the document is added, the UI will be rebuilt in order to instantly display
 
 Remember to register this listener to the `index.js` manifest.
 
-```jsx
+{:data-document="index.js"}
+```javascript
 module.exports = async () => {
   return {
     ...
@@ -256,8 +252,6 @@ module.exports = async () => {
   }
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">index.js</figcaption>
-
 
 You can restart the app, run `lenra dev` again and you should be able to create a new task now !
 
@@ -269,7 +263,8 @@ Now that we can add new tasks in our database, let's list them in the interface.
 
 To do this, create a new `taskList.js` view and **register** it to the manifest `index.js`.
 
-```jsx
+{:data-document="views/taskList.js"}
+```javascript
 module.exports = (data, props) => {
 		
     return {
@@ -302,8 +297,6 @@ function taskList(tasks) {
     })
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">views/taskList.js</figcaption>
-
 
 Nothing too crazy here. We simply loop through the tasks list and call the `taskCard` view with the task in the properties. If there is no task in the data, simply print a message.
 
@@ -311,7 +304,8 @@ I’m sure you will be able to create the `taskCard` view by yourself ! If you h
 
 Now we want to call our `taskList` with some **data** in it. To do this, go to the `main.js` view.
 
-```jsx
+{:data-document="views/main.js"}
+```javascript
 module.exports = (data, props) => {
     return {
         type: "flex",
@@ -343,8 +337,6 @@ module.exports = (data, props) => {
     }
 }
 ```
-<figcaption align="left" style="margin-top: -13px; margin-bottom: 13px; color: gray; font-size: 0.9em;">views/main.js</figcaption>
-
 
 As you can see, we use the same component that we used to call the `addTaskForm` view. The only difference is the `coll` and `query` properties. 
 

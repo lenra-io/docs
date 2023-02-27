@@ -32,7 +32,15 @@ const customClassExt = {
         return replaced;
     }
 };
+
+// const removeEmptyPExt = {
+//     type: 'output',
+//     filter: function (text) {
+//         return text.replace(/<p\s*>\s*<\/p>/g, "");
+//     }
+// };
 converter.addExtension(customClassExt);
+// converter.addExtension(removeEmptyPExt);
 
 /**
  * 
@@ -86,12 +94,21 @@ export function getManagers() {
  * @returns {Promise<Page[]>}
  */
 async function pageLister(configuration) {
+    const viewsDirPath = Path.join(process.cwd(), configuration.viewsDir);
+    const pugPages = await pugPageLister(configuration);
+    pugPages.forEach(page => {
+        const sourceFile = Path.join(viewsDirPath, page.getView());
+        page.properties.sourceFile = `https://github.com/lenra-io/docs/blob/beta/${sourceFile}`;
+    });
+    console.log(pugPages);
     const markdownPages = await markdownPageLister(configuration);
     const apiPages = await apiPageLister(configuration);
     const pages = [
+        ...pugPages,
         ...markdownPages,
         ...apiPages
-    ].map(page => {
+    ];
+    pages.forEach(page => {
         const basicPath = page.path.replace(/\.html$/, '');
         page.properties.basicPath = basicPath;
         if (!page.properties.name) {
@@ -104,7 +121,6 @@ async function pageLister(configuration) {
                 .replace(/^[a-z]/, (letter) => letter.toUpperCase());
             page.properties.name = name;
         }
-        return page;
     });
     setPagesParent(pages);
     sortPages(pages);

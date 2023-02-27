@@ -206,7 +206,8 @@ nav.social>a::before {
 
 @media (min-width: 28.75rem) {
     button,
-    a.btn:not(.link) {
+    a.btn:not(.link),
+    a.btn.link:first-child {
         display: inline-block;
         margin-top: initial;
     }
@@ -216,6 +217,11 @@ nav.social>a::before {
     a.btn+button,
     a.btn+a.btn:not(.link) {
         margin-left: 1rem;
+    }
+
+    p+button,
+    p+a.btn:not(.link) {
+        margin-top: 1rem;
     }
 
     button+a.btn.link,
