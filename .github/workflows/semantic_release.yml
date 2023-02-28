@@ -31,11 +31,11 @@ jobs:
           npm run build
       - name: Setup node deps
         run: npm i conventional-changelog-conventionalcommits@4 @semantic-release/exec @semantic-release/git -D
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v1
+      # - name: Set up QEMU
+      #   uses: docker/setup-qemu-action@v1
+      # - name: Set up Docker Buildx
+      #   id: buildx
+      #   uses: docker/setup-buildx-action@v1
       # - name: Cache
       #   uses: actions/cache@v3
       #   with:
