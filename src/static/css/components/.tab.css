@@ -7,7 +7,7 @@
     display: flex;
     overflow: auto;
     justify-content: start;
-    padding-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .tab>nav>input[type="radio"] {
@@ -61,6 +61,10 @@
 }
 
 @media (min-width: 50rem) {
+    .tab>nav {
+        justify-content: center;
+    }
+
     .tab>nav>label {
         padding: 0.5rem 2rem;
     }

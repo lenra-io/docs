@@ -20,13 +20,13 @@ append content
                 - const name = page.properties.name || page.properties.title;
                 - let imgPath = `/img/components/${page.path.replace(/^.*\/([^/]+).html$/, "$1")}.svg`;
                 - imgExists = fileExists('src/static' + imgPath);
-                li
-                    a(href="/"+child class=(page.properties.categories || []))
+                li(class=(page.properties.categories || []))
+                    a(href="/"+child)
                         figure 
                             if (imgExists)
                                 img(src=imgPath alt=`Schema of the component ${name}`)
                             else
-                                img(src="/img/logo.svg" alt="")
+                                img(src="/img/logo/black.svg" alt="")
                         = name
 
     script(src='/js/filter.js' defer)

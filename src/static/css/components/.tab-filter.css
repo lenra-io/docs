@@ -10,16 +10,6 @@
     display: none;
 }
 
-/* .tab.filter>ul>li {
-    position: relative;
-    align-items: flex-end;
-    width: 18rem;
-    height: 22.5rem;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    overflow: hidden;
-} */
-
 .tab.filter>nav.all+ul>li {
     display: flex;
 }

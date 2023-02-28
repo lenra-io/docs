@@ -1,0 +1,47 @@
+.tab.filter>ul>li a {
+    --btn-text-color-data: var(--text-color-data);
+    --btn-text-color-hover-data: var(--text-color-data);
+    --btn-text-opacity: var(--greyscale-80-opacity);
+    text-transform: uppercase;
+    font-size: calc(1rem * 7 / 8);
+    font-weight: 600;
+    text-align: center;
+}
+
+.tab.filter>ul>li a::after {
+    display: none;
+}
+
+.tab.filter>ul>li figure {
+    --size: 9.875rem;
+    position: relative;
+    display: flex;
+    width: var(--size);
+    height: var(--size);
+    justify-content: center;
+    align-items: center;
+    border: 0.0625rem solid rgba(var(--text-color-data), 0.15);
+    border-radius: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.tab.filter>ul>li.soon figure::before {
+    content: "Soon";
+    position: absolute;
+    top: 0.5rem;
+    right: -1rem;
+    display: inline-block;
+    padding: calc(0.5rem / 4) calc(0.5rem * 1.5);
+    margin-left: calc(0.5rem * 2);
+    text-transform: uppercase;
+    font-size: calc(6 / 9 * 1rem);
+    font-weight: 400;
+    background-color: rgb(var(--secondary-color-data));
+    color: rgb(var(--white-data));
+    border-radius: calc(0.5rem / 4);
+}
+
+.tab.filter>ul>li figure>img {
+    max-height: calc(var(--size) * 3 / 4);
+    max-width: calc(var(--size) * 3 / 4);
+}
