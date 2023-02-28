@@ -6,9 +6,9 @@ A webhook is a way for an external service to notify your application of an even
 
 In Lenra, you can create a webhook by calling the POST `/app/webhooks` endpoint with the `action` and `props` parameters. The `action` parameter is a string that corresponds to the name of the listener on the Lenra application.
 
-The `props` parameter is the data that you want to send to the webhook when creating it. For example, you can use `{props: {userId: 1}}` to link the webhook to the user with ID 1.
+The `props` parameter is the data that you want to assign to the webhook when creating it, this will be passed to the corresponding listener as `props`. For example, if you want the webhook to be linked to a user, you might want to add the user id in the props `{props: {userId: 1}}`.
 
-Once you create a webhook, you can trigger it by calling the POST `/webhooks/:webhook_uuid` endpoint with the webhook UUID. The webhook can be triggered with some data, which are received in the event variable on the application. For example, you can use `{exampleData: "someData"}` to trigger the webhook with data.
+Once you create a webhook, you can trigger it by calling the POST `/webhooks/:webhook_uuid` endpoint with the webhook UUID. The webhook can be triggered with some data, which are received in the event variable on the corresponding listener of the application.
 
 ## Creating a Webhook
 
@@ -30,7 +30,13 @@ POST /app/webhooks
 
 ```json
 {
-  "uuid": "c14990db-96a1-44c6-b13a-8ab12db96f61"
+  "uuid": "c14990db-96a1-44c6-b13a-8ab12db96f61",
+  "action": "exampleListener",
+  "props": {
+    "userId": 1
+  },
+  "environment_id": 1,
+  "user_id": null
 }
 ```
 
