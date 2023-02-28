@@ -1,19 +1,24 @@
-Lenra Data system is based on Mongo, we provide API to manage these data.
-You can access these data througt the API or in Application using the View component
+Lenra Data system is based on Mongo.
+We provide API to manage these data and you can access them in to adapt your app interface by using the [View component](/references/components-api/components/view.html).
 
 ## API
 
-to call our API in Listeners you can used api object passed in third parameter, that provide you the server url and your token.
+In order to manage the data in your app, you can call our REST API.
+To handle the basic call to our API in Listeners you can used api object passed in third parameter, that provide you the server url and your token.
 
-Get a specific document
-```js
-- GET `${api.url}/app/colls/${coll}/docs/${id}`
-```
+### CRUD
+
 Create a document, give the content in body
 
 ```js
 - POST `${api.url}/app/colls/${coll}/docs`
 ```
+
+Read a specific document
+```js
+- GET `${api.url}/app/colls/${coll}/docs/${id}`
+```
+
 Update a document, give the change in body
 ```js
 - PUT `${api.url}/app/colls/${coll}/docs/${doc._id}`
@@ -23,6 +28,8 @@ Delete a document
 ```js
 - DELETE `${api.url}/app/colls/${coll}/docs/${doc._id}`
 ```
+
+### Advanced Mongo functions
 
 Run find request, give find params in body like:
   - query: the query
