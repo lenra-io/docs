@@ -31,29 +31,18 @@ Delete a document
 
 ### Advanced Mongo functions
 
+
+#### find
+
+The [MongoDB find function](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/) can find many documents in a collection filtered by the query filter.
+
 Run find request, give find params in body like:
-  - query: the query
-  - projection: the projection map more details [here](#apiProjection) 
+  - query: the query filter
+  - projection: the projection map more details [here](#apiProjection)
+
 ```js
 - POST `${api.url}/app/colls/${coll}/docs/find` 
 ```
-
-## Find
-
-We have two ways to query data on Lenra:
-
-- [View](#ViewFind)
-- [API](#APIFind)
-
-### View find
-<a name="ViewFind"></a>
-
-All operator available:
-
-- [Projection](#viewProjection)  
-
-#### Projection
-<a name="viewProjection"></a>
 
 The projection allows you to filter the keys in the return object, by giving a projection map, all keys set to *true* will be returned, the default values are *false*, example:
 
@@ -81,33 +70,8 @@ You can get only the name of user with using this projection
 }
 ```
 
-### API find
-<a name="APIFind"></a>
+## View
 
-All operator available:
-- [Projection](#apiProjection)  
+Lenra also permit the use of Mongo find to adapt the view result to the requested data.
+This behaviour also updates interface automatically when a data corresponding to the view query changes.
 
-
-#### Projection
-<a name="apiProjection"></a>
-
-In the same way that in the view you can giving a projection map into the find request body, example:
-
-We have in the collection *users*
-
-```json
-{
-    "_id": "123456",
-    "name": "John",
-    "age": 20
-}
-```
-
-We can send this body to have only user name in return
-
-```json
-{
-    "query": {},
-    "projection": {"name": true}
-}
-```
