@@ -53,7 +53,3 @@ POST /webhooks/c14990db-96a1-44c6-b13a-8ab12db96f61
 ```
 
 3. The webhook will be triggered, and the data will be received in the `event` variable on the application.
-
-## Conclusion
-
-Webhooks are a powerful feature of Lenra that allow you to keep your application in sync with external services. By following the steps outlined in this documentation, you can easily create and trigger webhooks in your Lenra application.
