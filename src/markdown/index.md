@@ -44,7 +44,7 @@ That's great! But before you can start coding and designing, you need to set up 
     ### Features
 
     {:.btn.link.lenra-icon-arrow-right}
-    [Know more](/features.html)
+    [Know more](/features/)
 
 - {:.small.red.lenra-icon-book-open}
     
