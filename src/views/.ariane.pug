@@ -1,0 +1,15 @@
+if(currentPage.href)
+    - let parts = currentPage.href.split("/");
+    - let href = "";
+    - let normalizedHref = currentPage.href.replace(/\/$/, "");
+    nav.ariane
+        a(href="/") Documentation
+        each part in parts
+            if(part)
+                - href += part;
+                if(href!=normalizedHref)
+                    - href += "/";
+                    - let page = pageMap[href];
+                    a(href="/"+href)= (page.properties.name || page.properties.title)
+                else
+                    span= (currentPage.name || currentPage.title)

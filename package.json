@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@lenra/lesta": "github:lenra-io/lesta",
+        "front-matter": "^4.0.2",
         "showdown": "^2.1.0"
     },
     "devDependencies": {
@@ -37,19 +38,39 @@
             "rewriteRules": [
                 {
                     "from": "^/root.schema.html$",
-                    "to": "/components-api/",
+                    "to": "/references/components-api/",
                     "type": "permanent"
                 },
                 {
                     "from": "^/(components|defs)/(.*).schema.html$",
-                    "to": "/components-api/$1/$2.html",
+                    "to": "/references/components-api/$1/$2.html",
                     "type": "permanent"
                 },
                 {
                     "from": "^/(components|defs)/$",
-                    "to": "/components-api/$1/",
+                    "to": "/references/components-api/$1/",
                     "type": "permanent"
-                }
+                },
+                {
+                    "from": "^/components-api/(.*)$",
+                    "to": "/references/components-api/$1",
+                    "type": "permanent"
+                },
+                {
+                    "from": "^/getting-started.html$",
+                    "to": "/getting-started/",
+                    "type": "permanent"
+                },
+                {
+                    "from": "^/lenra-principles.html$",
+                    "to": "/getting-started/principles.html",
+                    "type": "permanent"
+                },
+                {
+                    "from": "^/todo-list-guide.html$",
+                    "to": "/guides/todo-list-app.html",
+                    "type": "permanent"
+                } 
             ]
         }
     }

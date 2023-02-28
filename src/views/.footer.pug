@@ -1,0 +1,28 @@
+mixin listPages(hrefs)
+    each href in hrefs
+        - let page = pageMap[href];
+        - if (!page) console.log("page not found", href);
+        a(href="/"+href)= (page.properties.name || page.properties.title)
+footer
+    nav
+        section
+            h3 Basics
+            +listPages(["", "getting-started/principles.html", "getting-started/install.html", "getting-started/create-project.html", "getting-started/deploy-app.html"])
+        section
+            h3 Visit
+            +listPages(["guides/", "features/", "references/"])
+        section
+            h3 Discover
+            a(href="https://www.lenra.io" target="_blank" rel="noopener") Official website
+            a(href="https://github.com/lenra-io" target="_blank" rel="noopener") Github
+            a(href="https://twitch.lenra.io" target="_blank" rel="noopener") Twitch
+        section
+            h3 Start now
+            a.btn.primary(href="https://dev.lenra.io/#/register") Register for free
+    footer
+        a(href="https://www.lenra.io")
+            | Go back to
+            |
+            span.logo Lenra
+        h2 Contact us
+        include .social-dev.pug

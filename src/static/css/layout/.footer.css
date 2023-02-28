@@ -1,0 +1,255 @@
+body>section>nav.pages {
+    display: flex;
+    flex-direction: column;
+    column-gap: 2rem;
+    row-gap: 1.5rem;
+    width: 90%;
+    max-width: 44rem;
+    margin: auto;
+    padding-bottom: 4rem;
+}
+
+body>section>nav.pages>a.btn {
+    --btn-background-color-opacity: 0;
+    --border-size: 0.0625rem;
+    display: grid;
+    grid-template-areas:
+        "arrow type"
+        "arrow name";
+    grid-template-columns: auto 1fr;
+    grid-area: prev;
+    justify-self: start;
+    justify-items: end;
+    margin-top: 0;
+    padding: 1rem;
+    border-color: rgba(var(--btn-text-color-data), 0.3);
+    font-weight: 400;
+    transition-property: color, background, border-color;
+}
+
+body>section>nav.pages>a.btn+a.btn:not(.link) {
+    margin-left: 0;
+}
+
+body>section>nav.pages>a.btn:hover {
+    border-color: rgba(var(--btn-text-color-data), 0.6);
+}
+
+body>section>nav.pages>a.btn::before {
+    grid-area: arrow;
+    font-size: 1.5rem;
+    align-self: center;
+}
+
+body>section>nav.pages>a.btn::after {
+    grid-area: type;
+    content: "Prev";
+    position: initial;
+    width: auto;
+    border: none;
+    color: rgba(var(--btn-text-color-data), 0.85);
+    font-size: calc(1rem * 7 / 8);
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 1;
+}
+
+body>section>nav.pages>a.lenra-icon-arrow-right {
+    grid-template-areas:
+        "type arrow"
+        "name arrow";
+    grid-template-columns: 1fr auto;
+    grid-area: next;
+    justify-self: end;
+    justify-items: start;
+}
+
+body>section>nav.pages>a.lenra-icon-arrow-right::after {
+    content: "Next";
+}
+
+body>section>footer {
+    --border: 0.0625rem solid rgba(var(--text-color-data), 0.15);
+    width: 100%;
+    text-align: center;
+    border-top: var(--border);
+}
+
+body>section>footer>nav {
+    display: flex;
+    width: 80%;
+    max-width: 44rem;
+    margin: auto;
+    flex-wrap: wrap;
+    column-gap: 4rem;
+    row-gap: 1.5rem;
+    justify-content: start;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+body>section>footer>nav>section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: start;
+    flex-shrink: 0;
+    flex-grow: 1;
+}
+
+body>section>footer>nav>section:last-of-type {
+    flex-basis: 100%;
+    align-items: center;
+}
+
+body>section>footer>nav>section>h3 {
+    font-size: calc(1rem * 7 / 8);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+body>section>footer>nav>section>a:not(.btn) {
+    --btn-text-color-data: var(--text-color-data);
+    --btn-text-color-hover-data: var(--text-color-data);
+    --btn-text-opacity: 0.9;
+}
+
+body>section>footer>nav>section>a[target="_blank"] {
+    display: flex;
+    align-items: center;
+}
+
+body>section>footer>nav>section>a[target="_blank"]::before {
+    /* lenra-icon-external-link */
+    content: "\e93b";
+    order: 2;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'Lenra-icons' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body>section>footer>nav>section>a.btn {
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+body>section>footer>footer {
+    border-top: var(--border);
+    background-color: rgba(var(--text-color-data), 0.05);
+    padding: 0.75rem 2rem;
+}
+
+body>section>footer>footer>a {
+    --btn-text-color-data: var(--text-color-data);
+    --btn-text-color-hover-data: var(--text-color-data);
+    display: inline-block;
+    padding-bottom: 0;
+    height: var(--logo-height);
+}
+
+body>section>footer>footer>a::after {
+    display: none;
+}
+
+body>section>footer>footer>a>span {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    height: 100%;
+    aspect-ratio: 1856 / 512;
+    margin-left: 0.5rem;
+    text-align: left;
+    text-indent: -100vw;
+}
+
+body>section>footer>footer>a>span::before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    aspect-ratio: 1856 / 512;
+    background-image: var(--logo-image);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: var(--logo-position);
+}
+
+body>section>footer>footer>h2 {
+    padding-top: 1.5rem;
+    padding-bottom: 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(var(--text-color-data), 0.9);
+}
+
+body>section>footer>footer>h2::before {
+    display: none;
+}
+
+body>section>footer>footer>nav.social {
+    --size: 2rem;
+    justify-content: center;
+}
+
+body>section>footer>footer>nav.social>a {
+    background-color: transparent;
+}
+
+@media (min-width: 35rem) {
+    body>section>nav.pages {
+        display: grid;
+        grid-template-areas: "prev next";
+        grid-template-columns: 1fr 1fr;
+    }
+
+    body>section>nav.pages>a {
+        width: 100%;
+    }
+}
+
+@media (min-width: 50rem) {
+    body>section>footer>nav {
+        width: 90%;
+    }
+}
+
+@media (min-width: 63rem) {
+    body>section>footer>nav>section:last-of-type {
+        flex-basis: auto;
+        align-items: start;
+        flex-grow: 0;
+    }
+}
+
+@media (min-width: 65rem) {
+    body>section>footer>footer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0.75rem 3rem;
+    }
+
+    body>section>footer>footer>* {
+        flex-shrink: 0;
+    }
+
+    body>section>footer>footer>h2 {
+        flex: 1;
+        text-align: right;
+        padding: 0;
+    }
+}

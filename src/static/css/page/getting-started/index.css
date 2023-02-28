@@ -1,0 +1,97 @@
+ul#framework {
+    margin: 1.5rem 0;
+}
+
+ul#framework>li {
+    padding: 1rem;
+}
+
+ul#framework>li:nth-of-type(1) {
+    grid-area: data;
+}
+
+ul#framework>li:nth-of-type(2) {
+    grid-area: views;
+}
+
+ul#framework>li:nth-of-type(3) {
+    grid-area: users;
+}
+
+ul#framework>li:nth-of-type(4) {
+    grid-area: listeners;
+}
+
+@media (min-width: 38rem) {
+    ul#framework {
+        position: relative;
+        width: fit-content;
+        display: grid;
+        grid-template-areas:
+            "data listeners"
+            "views users";
+        grid-gap: 5rem;
+        justify-content: center;
+    }
+
+    ul#framework>li {
+        max-width: 21.5rem;
+        align-self: stretch;
+    }
+
+    ul#framework>li::after {
+        --spacing: 4rem;
+        --big-size: 5rem;
+        --small-size: 3rem;
+        position: absolute;
+        color: rgb(var(--primary-color-data));
+        font-size: calc(1rem * 9 / 8);
+        font-weight: 700;
+        text-align: center;
+        background-repeat: no-repeat;
+    }
+
+    ul#framework>li:nth-of-type(1)::after {
+        content: "Draw UI";
+        background-image: url(/img/arrows/red-arrow.svg);
+        left: 50%;
+        bottom: var(--spacing);
+        transform: translateX(-50%);
+        min-width: var(--big-size);
+        padding-bottom: var(--small-size);
+        background-position: 50% 100%;
+    }
+
+    ul#framework>li:nth-of-type(2)::after {
+        content: "Trigger";
+        background-image: url(/img/arrows/green-arrow.svg);
+        top: 50%;
+        right: var(--spacing);
+        transform: translateY(-50%);
+        line-height: var(--big-size);
+        padding-right: var(--small-size);
+        background-position: 100% 50%;
+    }
+
+    ul#framework>li:nth-of-type(3)::after {
+        content: "Modify";
+        background-image: url(/img/arrows/blue-arrow.svg);
+        left: 50%;
+        top: var(--spacing);
+        transform: translateX(-50%);
+        min-width: var(--big-size);
+        padding-top: var(--small-size);
+        background-position: 50% 0%;
+    }
+
+    ul#framework>li:nth-of-type(4)::after {
+        content: "Update";
+        background-image: url(/img/arrows/yellow-arrow.svg);
+        top: 50%;
+        left: var(--spacing);
+        transform: translateY(-50%);
+        line-height: var(--big-size);
+        padding-left: var(--small-size);
+        background-position: 0% 50%;
+    }
+}
