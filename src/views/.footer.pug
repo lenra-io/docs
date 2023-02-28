@@ -1,6 +1,6 @@
 mixin listPages(hrefs)
     each href in hrefs
-        - var page = pageMap[href];
+        - let page = pageMap[href];
         - if (!page) console.log("page not found", href);
         a(href="/"+href)= (page.properties.name || page.properties.title)
 footer

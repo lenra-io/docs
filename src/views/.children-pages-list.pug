@@ -1,6 +1,5 @@
 ul.list
-    - console.log("children", currentPage.children);
     each child in currentPage.children
-        - var page = pageMap[child];
+        - let page = pageMap[child];
         li
             a(href="/"+child)= (page.properties.name || page.properties.title)

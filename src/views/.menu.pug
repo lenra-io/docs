@@ -1,6 +1,6 @@
 - function childrenPages(parentPage) {
 -    if (parentPage) {
--       var children = parentPage.properties.children || [];
+-       let children = parentPage.properties.children || [];
 -       return children.map(href => pageMap[href]);
 -    }
 -    return pages.filter(p => !p.href.replace(/\/$/, "").includes("/"));
@@ -8,10 +8,10 @@
 
 
 mixin createMenuItem(menuPage)
-    - var pageName = menuPage.properties.name || menuPage.properties.title;
-    - var className = menuPage.properties.icon ? "lenra-icon-" + menuPage.properties.icon : "";
+    - let pageName = menuPage.properties.name || menuPage.properties.title;
+    - let className = menuPage.properties.icon ? "lenra-icon-" + menuPage.properties.icon : "";
     a(class=className href='/'+menuPage.href)= pageName
-    - var subPages = childrenPages(menuPage);
+    - let subPages = childrenPages(menuPage);
     if (subPages.length)
         details(open=currentPage.path.startsWith(menuPage.href))
             summary Open/Close

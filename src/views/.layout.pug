@@ -1,8 +1,8 @@
 doctype html
 html(lang=language)
   head
-    - var currentPageName = currentPage.title || currentPage.name
-    - var pageTitle = currentPageName ? `${title} - ${currentPageName}` : title
+    - let currentPageName = currentPage.title || currentPage.name
+    - let pageTitle = currentPageName ? `${title} - ${currentPageName}` : title
     - pageTitle = currentPage.titleTag ? currentPage.titleTag : pageTitle
     title= pageTitle
     meta(charset='utf-8')
@@ -45,9 +45,9 @@ html(lang=language)
             | !{currentPage.content}
       nav.pages
         if("previous" in currentPage)
-          - var prevPage = pageMap[currentPage.previous];
+          - let prevPage = pageMap[currentPage.previous];
           a.btn.lenra-icon-arrow-left(href="/"+prevPage.href)= (prevPage.properties.name || prevPage.properties.title)
         if("next" in currentPage)
-          - var nextPage = pageMap[currentPage.next];
+          - let nextPage = pageMap[currentPage.next];
           a.btn.lenra-icon-arrow-right(href="/"+nextPage.href)= (nextPage.properties.name || nextPage.properties.title)
       include .footer.pug

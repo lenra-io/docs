@@ -95,11 +95,9 @@ async function pageLister(configuration) {
     });
     const markdownPages = await markdownPageLister(configuration);
     const apiPages = await apiPageLister(configuration);
-    const pages = [
-        ...pugPages,
-        ...markdownPages,
-        ...apiPages
-    ];
+    const pages = pugPages.slice();
+    addPages(pages, markdownPages);
+    addPages(pages, apiPages);
     pages.forEach(page => {
         const basicPath = page.path.replace(/\.html$/, '');
         page.properties.basicPath = basicPath;
@@ -118,6 +116,16 @@ async function pageLister(configuration) {
     sortPages(pages);
     setPagesChildrenAndNav(pages);
     return pages;
+}
+
+/**
+ * Add pages if they don't already exist
+ * @param {Page[]} pages The global page list
+ * @param {Page[]} newPages The new pages to add
+ */
+function addPages(pages, newPages) {
+    const hrefs = pages.map(p => p.href);
+    pages.push(...newPages.filter(p => !hrefs.includes(p.href)));
 }
 
 /**

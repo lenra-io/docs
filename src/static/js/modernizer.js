@@ -3,11 +3,11 @@
 // gérer les ajouts des préfixes CSS --webkit...
 
 function replaceStyleSheet(styleSheet) {
-    var req = new XMLHttpRequest();
+    let req = new XMLHttpRequest();
     req.onload = function(e) {
-        var css = req.responseText;
+        let css = req.responseText;
         css = replaceCSS(css);
-        var style = document.createElement("style");
+        let style = document.createElement("style");
         style.innerHTML = css;
         styleSheet.ownerNode.parentNode.insertBefore(style, styleSheet.ownerNode);
         styleSheet.ownerNode.parentNode.removeChild(styleSheet.ownerNode);
@@ -16,18 +16,18 @@ function replaceStyleSheet(styleSheet) {
     req.send();
 }
 
-var propertyReplacements = {};
-for (var ssIt = 0; ssIt < document.styleSheets.length; ssIt++) {
+let propertyReplacements = {};
+for (let ssIt = 0; ssIt < document.styleSheets.length; ssIt++) {
     replaceStyleSheet(document.styleSheets[ssIt]);
 }
 
 function replaceCSS(css) {
     css = css.replace(/[/][*]((?![*][/]).)+[*][/]/g, "");
-    var ruleRegex = /([^{};]+)\{([^{}]+)\}/g;
-    var rules = [];
+    let ruleRegex = /([^{};]+)\{([^{}]+)\}/g;
+    let rules = [];
     while (css.match(ruleRegex)) {
         css = css.replace(ruleRegex, function(full, selector, content) {
-            var id = rules.length;
+            let id = rules.length;
             rules.push({ selector: selector, content: content});
             return "@rule-"+id+";";
         });
@@ -37,18 +37,18 @@ function replaceCSS(css) {
 }
 
 function replaceRules(css, rules, variables) {
-    var replacerRegex = /@rule-(\d+);/g;
+    let replacerRegex = /@rule-(\d+);/g;
     return css.replace(replacerRegex, function(full, id) {
-        var rule = rules[parseInt(id)];
+        let rule = rules[parseInt(id)];
         if (rule.selector.match(/@font-face/g))
             return rule.selector+"{"+rule.content+"}";
-        var content = replaceProperties(rule.content, variables);
+        let content = replaceProperties(rule.content, variables);
         if (content.match(/^\s*$/g)) {
             return "";
         }
         if (content.match(replacerRegex)) {
-            var subvars = {};
-            for (var key in variables) {
+            let subvars = {};
+            for (let key in variables) {
                 subvars[key] = variables[key];
             }
             content = replaceRules(content, rules, subvars);
@@ -58,16 +58,16 @@ function replaceRules(css, rules, variables) {
 }
 
 function replaceProperties(css, vars) {
-    var prefixes = ["", "-webkit-", "-moz-", "-o-", "-ms-"];
-    var regex = /([a-zA-Z0-9-]+)\s*:\s*([^;]+)\s*(;|$)/g;
+    let prefixes = ["", "-webkit-", "-moz-", "-o-", "-ms-"];
+    let regex = /([a-zA-Z0-9-]+)\s*:\s*([^;]+)\s*(;|$)/g;
     return css.replace(regex, function(full, prop, value) {
         if (prop.match("^--[a-zA-Z0-9-]+")) {
             vars[prop] = value;
             return "";
         }
         if (!(prop in propertyReplacements)) {
-            for (var i = 0; i < prefixes.length; i++) {
-                var prefix = prefixes[i];
+            for (let i = 0; i < prefixes.length; i++) {
+                let prefix = prefixes[i];
                 if (prefix+prop in document.body.style) {
                     propertyReplacements[prop] = prefix+prop;
                     break;
