@@ -65,7 +65,7 @@ fi
 #   --cache-from type=local,src=~/cache/${DOCKER_IMAGE}-buildcache \
 #   --cache-to type=local,dest=~/cache/${DOCKER_IMAGE}-buildcache,mode=max \
 #   .
-docker build \
+docker buildx build \
   --output type=image,push=true \
   --platform "linux/amd64" \
   ${tag} \
