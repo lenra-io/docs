@@ -1,12 +1,13 @@
 if(currentPage.href)
     - var parts = currentPage.href.split("/");
     - var href = "";
+    - var normalizedHref = currentPage.href.replace(/\/$/, "");
     nav.ariane
         a(href="/") Documentation
         each part in parts
             if(part)
                 - href += part;
-                if(href!=currentPage.href)
+                if(href!=normalizedHref)
                     - href += "/";
                     - var page = pageMap[href];
                     a(href="/"+href)= (page.properties.name || page.properties.title)

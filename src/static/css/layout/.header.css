@@ -151,6 +151,47 @@ body>header>a.btn.primary {
     display: none;
 }
 
+/* Ariane */
+
+nav.ariane {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+}
+
+nav.ariane>*:not(:first-child) {
+    white-space: nowrap;
+}
+
+nav.ariane>*:not(:first-child)::before {
+    /* lenra-icon-chevron-right */
+    content: "\e92c";
+
+    font-family: 'Lenra-icons' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --text-opacity: 0.8;
+    font-size: calc(3 / 2 * 1rem);
+
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.5rem;
+}
+
+nav.ariane>*:not(:first-child)::after {
+    width: auto;
+    right: 0;
+    left: calc(1.5rem + 2 * 0.5rem);
+}
+
 @media (min-width: 50rem) {
     body>header {
         gap: 1.5rem;
@@ -180,7 +221,7 @@ body>header>a.btn.primary {
         opacity: 1;
         transition-property: width, padding, opacity;
     }
-    
+
     body>header>form>button {
         position: absolute;
         top: 50%;
@@ -190,5 +231,10 @@ body>header>a.btn.primary {
 
     body>header>a.btn.primary {
         display: inline-block;
+    }
+
+    nav.ariane {
+        justify-content: start;
+        padding-bottom: 1rem;
     }
 }

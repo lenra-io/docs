@@ -10,12 +10,12 @@ h1 {
     margin-bottom: 2rem;
 }
 
-h1>a.btn.link {
-    font-size: 1rem;
+h1>a.btn.link:first-child {
     display: block;
     width: fit-content;
     margin: 0 auto;
     margin-top: 0.5rem;
+    font-size: 1rem;
 }
 
 h1>a.btn.link::before {
@@ -34,15 +34,18 @@ h1+p+:not(h2) {
     margin-top: 2rem;
 }
 
-h2::before {
+main>:not(h1)+h2::before,
+main>:not(h2)+h3::before {
+    --spliter-opacity: 0.3;
     content: " ";
     display: block;
     margin: 3rem 0;
-    border-top: 0.0625rem solid rgba(var(--text-color-data), 0.3);
+    border-top: 0.0625rem solid rgba(var(--text-color-data), var(--spliter-opacity));
 }
 
-h1+h2:before {
-    display: none;
+main>:not(h2)+h3::before {
+    --spliter-opacity: 0.15;
+    margin: 2rem 0;
 }
 
 
@@ -52,7 +55,7 @@ h1+h2:before {
         justify-content: space-between;
     }
 
-    h1>a.btn.link {
+    h1>a.btn.link:first-child {
         display: inline-block;
         flex-grow: 0;
         flex-shrink: 0;

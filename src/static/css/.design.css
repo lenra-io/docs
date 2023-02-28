@@ -12,6 +12,10 @@
     --red-data: 242, 122, 134;
     --red-pulse-data: 233, 34, 54;
     --red: rgb(var(--red-data));
+    --greyscale-0-opacity: 0.01;
+    --greyscale-40-opacity: 0.15;
+    --greyscale-80-opacity: 0.75;
+    --greyscale-90-opacity: 0.85;
     --primary-color-data: 18, 105, 237;
     --primary-color-hover-data: 13, 77, 174;
     --primary-color-opacity: 1;
@@ -128,7 +132,7 @@ h4 {
 }
 
 p {
-    --text-opacity: 0.85;
+    --text-opacity: var(--greyscale-90-opacity);
 }
 
 p+* {

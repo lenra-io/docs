@@ -27,6 +27,10 @@ body>section>nav.pages>a.btn {
     transition-property: color, background, border-color;
 }
 
+body>section>nav.pages>a.btn+a.btn:not(.link) {
+    margin-left: 0;
+}
+
 body>section>nav.pages>a.btn:hover {
     border-color: rgba(var(--btn-text-color-data), 0.6);
 }
@@ -116,6 +120,7 @@ body>section>footer>nav>section>a[target="_blank"] {
 }
 
 body>section>footer>nav>section>a[target="_blank"]::before {
+    /* lenra-icon-external-link */
     content: "\e93b";
     order: 2;
     font-size: 1rem;
