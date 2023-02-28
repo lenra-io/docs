@@ -75,3 +75,6 @@ You can get only the name of user with using this projection
 Lenra also permit the use of Mongo find to adapt the view result to the requested data.
 This behaviour also updates interface automatically when a data corresponding to the view query changes.
 
+<!-- TODO: examples -->
+<!-- TODO: operators limitation -->
+<!-- TODO: managed operators -->
