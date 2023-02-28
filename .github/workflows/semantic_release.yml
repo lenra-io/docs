@@ -41,7 +41,7 @@ jobs:
         with:
           path: |
             ~/cache
-          key: ${{ runner.os }}-${{ hashFiles('./Dockerfile') }}
+          key: ${{ runner.os }}-${{ hashFiles('./Dockerfile') }}-${{ env.CACHE_KEY }}
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PERSONNAL_TOKEN }}
