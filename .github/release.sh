@@ -52,16 +52,23 @@ if [[ "$exit_code" != "0" ]]; then
   exit $exit_code
 fi
 
-mkdir -p "~/cache/${DOCKER_IMAGE}-buildcache"
+# mkdir -p "~/cache/${DOCKER_IMAGE}-buildcache"
 
 # build the docker image
 ## Platform argument for arm image : --platform "linux/amd64,linux/arm64,linux/arm" \
+# docker buildx build \
+#   --output type=image,push=true \
+#   --platform "linux/amd64" \
+#   ${tag} \
+#   --build-arg CI=true \
+#   --build-arg GH_PERSONNAL_TOKEN="${GITHUB_TOKEN}" \
+#   --cache-from type=local,src=~/cache/${DOCKER_IMAGE}-buildcache \
+#   --cache-to type=local,dest=~/cache/${DOCKER_IMAGE}-buildcache,mode=max \
+#   .
 docker buildx build \
   --output type=image,push=true \
   --platform "linux/amd64" \
   ${tag} \
   --build-arg CI=true \
   --build-arg GH_PERSONNAL_TOKEN="${GITHUB_TOKEN}" \
-  --cache-from type=local,src=~/cache/${DOCKER_IMAGE}-buildcache \
-  --cache-to type=local,dest=~/cache/${DOCKER_IMAGE}-buildcache,mode=max \
   .
