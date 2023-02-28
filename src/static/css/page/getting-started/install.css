@@ -1,0 +1,73 @@
+main>details {
+    --text-opacity: 0.5;
+    border: 0.0625rem solid;
+    max-width: 25rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: auto;
+    margin-top: 1rem;
+}
+
+main>details>summary {
+    position: relative;
+    --btn-text-opacity: 0.8;
+}
+
+main>details>summary[class^="lenra-icon-"]::before {
+    --size: 2.5rem;
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    line-height: calc(var(--size) * 15 / 16);
+    font-size: 1.2rem;
+    color: rgb(var(--text-color-data));
+    text-align: center;
+    vertical-align: sub;
+    margin-right: 0.75rem;
+    border: 0.0625rem solid rgba(var(--text-color-data), var(--text-opacity));
+    border-radius: 0.75rem;
+    background-color: rgba(var(--text-color-data), 0.1);
+}
+
+main>details>summary.lenra-icon-linux::before {
+    font-size: calc(3 / 2 * 1rem);
+}
+
+main>details>summary::after {
+    /* lenra-icon-chevron-right */
+    content: "\e92c";
+
+    font-family: 'Lenra-icons' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --text-opacity: 0.8;
+    font-size: calc(3 / 2 * 1rem);
+
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: center;
+
+    transition-property: transform;
+}
+
+main>details[open]>summary::after {
+    transform: translateY(-50%) rotate(90deg);
+}
+
+main>details>ul {
+    padding-top: 0.5rem;
+    padding-left: 2rem;
+}
+
+main>details+p {
+    margin-top: 2rem;
+}

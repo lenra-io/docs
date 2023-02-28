@@ -1,0 +1,5 @@
+ul.list
+    each child in currentPage.children
+        - let page = pageMap[child];
+        li
+            a(href="/"+child)= (page.properties.name || page.properties.title)

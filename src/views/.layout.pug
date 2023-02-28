@@ -1,8 +1,8 @@
 doctype html
 html(lang=language)
   head
-    - var currentPageName = currentPage.title || currentPage.name
-    - var pageTitle = currentPageName ? `${title} - ${currentPageName}` : title
+    - let currentPageName = currentPage.title || currentPage.name
+    - let pageTitle = currentPageName ? `${title} - ${currentPageName}` : title
     - pageTitle = currentPage.titleTag ? currentPage.titleTag : pageTitle
     title= pageTitle
     meta(charset='utf-8')
@@ -19,7 +19,7 @@ html(lang=language)
     link(rel="icon" type="image/png" href="/favicon.png")
     link(rel="apple-touch-icon" href="/img/appicon.png")
     link(rel='stylesheet' as='style' type='text/css' href='/css/main.css' media='print' onload='this.media="all"')
-    - let cssPath = currentPage.path;
+    - let cssPath = `page/${currentPage.path}`;
     - if (cssPath.endsWith('/')) cssPath += 'index.html';
     - cssPath = cssPath.replace(/.html$/, ".css");
     - cssExists = fileExists('src/static/css/' + cssPath);
@@ -32,13 +32,22 @@ html(lang=language)
     script(src='/js/main.js' defer)
     script(src="https://analytics.lenra.io/js/plausible.js" data-domain="!DOMAIN!" defer)
   body
-    include menu.pug
+    include .header.pug
+    include .menu.pug
     section
-      header
-        block header
-          h1= currentPage.name
-          a.btn.primary(href="https://dev.lenra.io/#/register") Register on Lenra
       main
         block content
+          include .ariane.pug
+          h1= (currentPage.title || currentPage.name)
+            if(currentPage.sourceFile)
+              a.btn.link.lenra-icon-github(href=currentPage.sourceFile target="_blank" rel="noopener") Contribute
           if(currentPage.content)
             | !{currentPage.content}
+      nav.pages
+        if("previous" in currentPage)
+          - let prevPage = pageMap[currentPage.previous];
+          a.btn.lenra-icon-arrow-left(href="/"+prevPage.href)= (prevPage.properties.name || prevPage.properties.title)
+        if("next" in currentPage)
+          - let nextPage = pageMap[currentPage.next];
+          a.btn.lenra-icon-arrow-right(href="/"+nextPage.href)= (nextPage.properties.name || nextPage.properties.title)
+      include .footer.pug

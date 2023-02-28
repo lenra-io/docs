@@ -1,2 +1,5 @@
-@import "components/.button.css";
-@import "components/.tab.css";
+@import 'components/.button.css';
+@import 'components/.list.css';
+@import 'components/.code.css';
+@import 'components/.colored-block.css';
+@import 'components/.properties-table.css';

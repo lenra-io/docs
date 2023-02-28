@@ -1,0 +1,28 @@
+- function childrenPages(parentPage) {
+-    if (parentPage) {
+-       let children = parentPage.properties.children || [];
+-       return children.map(href => pageMap[href]);
+-    }
+-    return pages.filter(p => !p.href.replace(/\/$/, "").includes("/"));
+- }
+
+
+mixin createMenuItem(menuPage)
+    - let pageName = menuPage.properties.name || menuPage.properties.title;
+    - let className = menuPage.properties.icon ? "lenra-icon-" + menuPage.properties.icon : "";
+    a(class=className href='/'+menuPage.href)= pageName
+    - let subPages = childrenPages(menuPage);
+    if (subPages.length)
+        details(open=currentPage.path.startsWith(menuPage.href))
+            summary Open/Close
+            ul
+                +createMenuItems(subPages)
+
+
+mixin createMenuItems(pages)
+    each page in pages
+        li(class=(page.path==currentPage.path ? 'selected' : ''))
+            +createMenuItem(page)
+
+menu.invert-colors
+    +createMenuItems(childrenPages())
