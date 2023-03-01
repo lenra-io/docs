@@ -32,7 +32,7 @@ main>table th:last-of-type {
 }
 
 main>table tr:not(.required)>td:first-of-type::after {
-    content: " (optionnal)";
+    content: " (optional)";
     font-size: 0.75rem;
     font-style: italic;
     color:rgba(var(--text-color-data), calc(var(--text-opacity) * var(--greyscale-80-opacity)))
