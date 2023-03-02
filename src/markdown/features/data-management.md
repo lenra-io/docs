@@ -1,14 +1,14 @@
 Lenra Data system is based on Mongo.
-We provide API to manage these data and you can access them in to adapt your app interface by using the [View component](/references/components-api/components/view.html).
+Using our API, you can access and manage this data and utilize the [View component](/references/components-api/components/view.html) to adapt your application interface.
 
 ## API
 
-In order to manage the data in your app, you can call our REST API.
-To handle the basic call to our API in Listeners you can used api object passed in third parameter, that provide you the server url and your token.
+To manage the data in your application, you can utilize our REST API.
+To make a basic API call within Listeners, you can use the "api" object that is passed as the third parameter. This object provides you with the server URL and your authentication token.
 
 ### CRUD
 
-Create a document, give the content in body
+Create a document, give the content in the body
 
 ```js
 - POST `${api.url}/app/colls/${coll}/docs`
@@ -19,7 +19,7 @@ Read a specific document
 - GET `${api.url}/app/colls/${coll}/docs/${id}`
 ```
 
-Update a document, give the change in body
+Update a document, give the changes in the body
 ```js
 - PUT `${api.url}/app/colls/${coll}/docs/${doc._id}`
 ```
@@ -46,7 +46,7 @@ Run find request, give find params in body like:
 
 The projection allows you to filter the keys in the return object, by giving a projection map, all keys set to *true* will be returned, the default values are *false*, example:
 
-We have in the collection *users*
+We have in the *users* collection 
 
 ```json
 {
@@ -58,12 +58,11 @@ We have in the collection *users*
 
 ## View
 
-Lenra also permit the use of Mongo find to adapt the view result to the requested data.
-This behaviour also updates interface automatically when a data corresponding to the view query changes.
-
+Lenra also allows the use of Mongo find to customize the view's results according to the requested data.
+Additionally, this behavior automatically updates the interface when a data point corresponding to the view query is changed.
 ### Examples
 
-The next example will call the `filteredUsers` view with ths users called `Thomas` as input data:
+The next example will call the `filteredUsers` view with the user called `Thomas` as input data:
 
 ```json
 {
@@ -78,7 +77,7 @@ The next example will call the `filteredUsers` view with ths users called `Thoma
 }
 ```
 
-You can get only the name of the users by using this projection:
+You can get only the names of the users by using this projection:
 
 ```json
 {
