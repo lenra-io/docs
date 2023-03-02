@@ -107,7 +107,7 @@ We will implement the rest of them soon, but if you want to help you can look at
 |==========|=============|
 | [{:target="_blank" rel="noopener"}$eq](https://www.mongodb.com/docs/manual/reference/operator/query/eq/)     | Matches values that are equal to a specified value. |
 | [{:target="_blank" rel="noopener"}$ne](https://www.mongodb.com/docs/manual/reference/operator/query/ne/)     | Matches all values that are not equal to a specified value. |
-| [{:target="_blank" rel="noopener"}$gt](https://www.mongodb.com/docs/manual/reference/operator/query/gt/)     | | [{:target="_blank" rel="noopener"}$ne](https://www.mongodb.com/docs/manual/reference/operator/query/ne/)     | Matches all values that are not equal to a specified value. |
+| [{:target="_blank" rel="noopener"}$gt](https://www.mongodb.com/docs/manual/reference/operator/query/gt/)     | Matches all values that are not equal to a specified value. |
  |
 | [{:target="_blank" rel="noopener"}$gte](https://www.mongodb.com/docs/manual/reference/operator/query/gte/)   | Matches values that are greater than or equal to a specified value. |
 | [{:target="_blank" rel="noopener"}$lt](https://www.mongodb.com/docs/manual/reference/operator/query/lt/)     | Matches values that are less than a specified value. |
