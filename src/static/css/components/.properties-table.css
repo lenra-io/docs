@@ -1,48 +1,15 @@
-main>table {
-    --text-opacity: var(--greyscale-90-opacity);
-    text-align: left;
-    border-spacing: 0;
-    width: 100%;
-}
-
-main>table tr>td {
-    border-bottom: 0.0625rem solid rgba(var(--text-color-data), var(--greyscale-40-opacity));
-}
-
-main>table tr:nth-of-type(2n+1) {
-    background-color: rgba(var(--text-color-data), var(--greyscale-0-opacity));
-}
-
-main>table th,
-main>table td {
-    padding: 0.5rem;
-}
-
-main>table th {
-    color: rgb(var(--background-color-data));
-    background-color: rgb(var(--text-color-data));
-}
-
-main>table th:first-of-type {
-    border-top-left-radius: 0.25rem;
-}
-
-main>table th:last-of-type {
-    border-top-right-radius: 0.25rem;
-}
-
-main>table tr:not(.required)>td:first-of-type::after {
-    content: " (optional)";
+main>table.properties tr:not(.required)>td:first-of-type::after {
+    content: " (optionnal)";
     font-size: 0.75rem;
     font-style: italic;
     color:rgba(var(--text-color-data), calc(var(--text-opacity) * var(--greyscale-80-opacity)))
 }
 
-main>table tr.deprecated {
+main>table.properties tr.deprecated {
     --text-opacity: 0.4;
 }
 
-main>table tr.deprecated>td:first-of-type::before {
+main>table.properties tr.deprecated>td:first-of-type::before {
     --text-opacity: 1;
     content: "depreciated";
     display: inline-block;
@@ -55,30 +22,30 @@ main>table tr.deprecated>td:first-of-type::before {
     margin-right: 0.5rem;
 }
 
-main>table ul.values {
+main>table.properties ul.values {
     display: inline-block;
 }
 
-main>table ul.values::before {
+main>table.properties ul.values::before {
     content: "(";
 }
 
-main>table ul.values::after {
+main>table.properties ul.values::after {
     content: ")";
 }
 
-main>table ul.values>li {
+main>table.properties ul.values>li {
     display: inline-block;
 }
 
-main>table ul.values>li.default {
+main>table.properties ul.values>li.default {
     text-decoration: underline;
 }
 
-main>table ul.values>li:not(:first-of-type) {
+main>table.properties ul.values>li:not(:first-of-type) {
     margin-left: 0.25rem;
 }
 
-main>table ul.values>li:not(:last-of-type)::after {
+main>table.properties ul.values>li:not(:last-of-type)::after {
     content: ",";
 }
