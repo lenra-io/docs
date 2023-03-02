@@ -6,24 +6,27 @@ extends ../../../.layout.pug
 
 append content
     - let categories = [... new Set(currentPage.children.map(href => pageMap[href]).flatMap(page => page.properties.categories || []))];
-    - console.log("categories", categories);
     section.tab.filter
-        input#all(type="radio" name="tab" checked)
-        label(for="all") All components
-        each category in categories
-            - let name = category.replace(/^[a-z]/, (letter) => letter.toUpperCase());
-            input(id=category type="radio" name="tab")
-            label(for=category)= name
+        nav.all
+            input#all(type="radio" name="tab" checked)
+            label(for="all") All components
+            each category in categories
+                - let name = category.replace(/^[a-z]/, (letter) => letter.toUpperCase());
+                input(id=category type="radio" name="tab")
+                label(for=category)= name
         ul
             each child in currentPage.children
                 - let page = pageMap[child];
                 - const name = page.properties.name || page.properties.title;
-                - let imgPath = `/img/components/${currentPage.path.replace(/^.*\/([^/]).html$/, "$1")}.svg`;
-                - imgExists = fileExists('src/static/css/' + cssPath);
-                li
-                    a(href="/"+child class=(page.properties.categories || []))
-                        if (imgExists)
-                            img(src=imgPath alt=`Schema of the component ${name}`)
-                        else
-                            img(src="/img/logo.svg" alt="")
+                - let imgPath = `/img/components/${page.path.replace(/^.*\/([^/]+).html$/, "$1")}.svg`;
+                - imgExists = fileExists('src/static' + imgPath);
+                li(class=(page.properties.categories || []))
+                    a(href="/"+child)
+                        figure 
+                            if (imgExists)
+                                img(src=imgPath alt=`Schema of the component ${name}`)
+                            else
+                                img(src="/img/logo/black.svg" alt="")
                         = name
+
+    script(src='/js/filter.js' defer)
