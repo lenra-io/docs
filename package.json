@@ -70,7 +70,7 @@
                     "from": "^/todo-list-guide.html$",
                     "to": "/guides/todo-list-app.html",
                     "type": "permanent"
-                } 
+                }
             ]
         }
     }

@@ -48,6 +48,10 @@ main>:not(h2)+h3::before {
     margin: 2rem 0;
 }
 
+main>:not(h3)+h4 {
+    margin-top: 1.5rem;
+}
+
 
 @media (min-width: 35rem) {
     h1 {
