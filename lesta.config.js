@@ -7,7 +7,7 @@ import fm from 'front-matter';
 
 const languageFileRegex = /^(.+)[.]([a-z]{2})([.](md|html))$/
 const attributesMatchingRegex = /#\S+|\.\S+|([a-zA-Z0-9_-]+)(=("(\\"|[^"])*"|'(\\'|[^'])*'|\S*))?/g;
-const converter = new Showdown.Converter();
+const converter = new Showdown.Converter({tables: true});
 
 const customClassExt = {
     type: 'output',
@@ -95,7 +95,7 @@ async function pageLister(configuration) {
     });
     const markdownPages = await markdownPageLister(configuration);
     const apiPages = await apiPageLister(configuration);
-    const pages = pugPages.slice();
+    let pages = pugPages.slice();
     addPages(pages, markdownPages);
     addPages(pages, apiPages);
     pages.forEach(page => {
@@ -113,7 +113,7 @@ async function pageLister(configuration) {
         }
     });
     setPagesParent(pages);
-    sortPages(pages);
+    pages = sortPages(pages);
     setPagesChildrenAndNav(pages);
     return pages;
 }
@@ -243,31 +243,39 @@ function setPagesChildrenAndNav(pages) {
 }
 
 /**
- * Set the children pages for each dir page and sort the page list
+ * Sort the page list
  * @param {Page[]} pages 
  */
 function sortPages(pages) {
+    // Sort the pages without parent in a resulting array
+    const ret = sortPageLevel(pages.filter(page => !page.properties.parent));
+    // for each page in the resulting array, add the sorted sub pages
+    let i = 0;
+    while (i < ret.length) {
+        const page = ret[i];
+        ret.splice(++i, 0, ...sortPageLevel(pages.filter(p => p.properties.parent == page.href)));
+    }
+    return ret;
+}
+
+/**
+ * Sort the page list of a specific level
+ * @param {Page[]} pages 
+ */
+function sortPageLevel(pages) {
     pages.sort((p1, p2) => p1.href.localeCompare(p2.href));
     const positionnables = pages.filter(p => "position" in p.properties)
-        .sort((p1, p2) => {
-            if (p1.properties.parent == p2.properties.parent)
-                return p1.properties.position - p2.properties.position
-            return p1.href.localeCompare(p2.href);
-        });
+        .sort((p1, p2) => p1.properties.position - p2.properties.position);
     positionnables.forEach(page => {
-        const children = pages.filter(p => p.properties.parent == page.properties.parent);
-        const firstChildPos = pages.indexOf(children[0]);
         const currentPos = pages.indexOf(page);
-        let targetPos = firstChildPos + Math.max(
-            Math.min(page.properties.position, children.length - 1),
+        let targetPos = Math.max(
+            Math.min(page.properties.position, pages.length - 1),
             0
         );
         if (currentPos != targetPos) {
             pages.splice(currentPos, 1);
-            if (currentPos < targetPos) {
-                ++targetPos;
-            }
             pages.splice(targetPos, 0, page);
         }
     });
+    return pages;
 }
