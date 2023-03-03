@@ -1,7 +1,7 @@
 ---
 title: Welcome to Lenra's documentation
 name: Home
-description: Create a cross-platform app that can scale automatically to follow your users growth.
+description: Create a cross-platform app that scales automatically to follow your users growth.
 icon: home
 ---
 
@@ -60,4 +60,4 @@ And the best part of it all? Our framework is based on strong values ​​by co
 If you want to know more, you can get in touch with us !
 
 {: .btn.link}
-[Contact us](https://www.lenra.io/contact.html)
+[Contact us](mailto:conta@lenra.io)
