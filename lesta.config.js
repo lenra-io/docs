@@ -90,7 +90,7 @@ async function pageLister(configuration) {
     const viewsDirPath = Path.join(process.cwd(), configuration.viewsDir);
     const pugPages = await pugPageLister(configuration);
     pugPages.forEach(page => {
-        const sourceFile = Path.join(viewsDirPath, page.getView());
+        const sourceFile = Path.join(configuration.viewsDir, page.getView());
         page.properties.sourceFile = `https://github.com/lenra-io/docs/blob/beta/${sourceFile}`;
     });
     const markdownPages = await markdownPageLister(configuration);

@@ -185,7 +185,7 @@ Then open your browser at [http://localhost:4000](http://localhost:4000/)
 
 Your app should look like that.
 <p align="center">
-    <img src="img/basic_todo_list.png" width="500"/>
+    <img src="/img/basic_todo_list.png" width="500"/>
 </p>
 
 You should be able to type some text in the textfield. But for now the “add” button does nothing. Let's change that !
