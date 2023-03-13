@@ -46,11 +46,11 @@ Our framework is based on four parts: data, views, listeners, and users.
     Get to know the cli and the directory structure.
 
     {:.btn.link.lenra-icon-arrow-right}
-    [Let’s go](/getting-started/create.html)
+    [Let’s go](/getting-started/create-project.html)
 - {:.green}
     
     ### Deploy
     Deploy your application and show your customers what you are capable of.
 
     {:.btn.link.lenra-icon-arrow-right}
-    [Let’s go](/getting-started/deploy.html)
+    [Let’s go](/getting-started/deploy-app.html)

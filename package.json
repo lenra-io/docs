@@ -42,6 +42,21 @@
                     "type": "permanent"
                 },
                 {
+                    "from": "^/getting-started/create.html$",
+                    "to": "/getting-started/create-project.html",
+                    "type": "permanent"
+                },
+                {
+                    "from": "^/getting-started/deploy.html$",
+                    "to": "/getting-started/deploy-app.html",
+                    "type": "permanent"
+                },
+                {
+                    "from": "^/components-api/components/widget.html$",
+                    "to": "/references/components-api/components/view.html",
+                    "type": "permanent"
+                },
+                {
                     "from": "^/(components|defs)/(.*).schema.html$",
                     "to": "/references/components-api/$1/$2.html",
                     "type": "permanent"
