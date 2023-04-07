@@ -14,13 +14,13 @@ for (const component of components_yaml.components) {
     const component_version_file = Path.join(component_path, '.version')
 
     if (!fs.existsSync(component_version_file) || fs.readFileSync(component_version_file).toString() != component.version) {
-        if(fs.existsSync(component_path))
-            fs.rmSync(component_path, { recursive: true})
+        if (fs.existsSync(component_path))
+            fs.rmSync(component_path, { recursive: true })
 
         fs.mkdirSync(component_path, { recursive: true })
 
-        const fileName = `${component.filePrefix}-${component.version}.zip`
-        const file_path = Path.join(component_path, fileName)
+        const fileName = component.containsVersion ? `${component.filePrefix}-${component.version}.zip` : `${component.filePrefix}.zip`;
+        const file_path = Path.join(component_path, fileName);
         const downloaded_stream = fs.createWriteStream(file_path);
 
         const url = `${component.url}/releases/download/${component.version}/${fileName}`
@@ -37,7 +37,7 @@ for (const component of components_yaml.components) {
                 const file_content = fs.readFileSync(file_path)
                 const jszip_instance = new JSZip()
                 const result = await jszip_instance.loadAsync(file_content)
-                for(let key of Object.keys(result.files)) {
+                for (let key of Object.keys(result.files)) {
                     const item = result.files[key];
                     if (item.dir) {
                         fs.mkdirSync(Path.join(component_path, item.name))
