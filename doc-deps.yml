@@ -3,3 +3,7 @@ components:
   url: https://github.com/lenra-io/components-api
   version: v1.0.0-beta.81
   filePrefix: lenra-api-docs
+- name: CLI
+  url: https://github.com/lenra-io/lenra_cli
+  version: v1.0.0-beta.26
+  filePrefix: lenra-cli-docs
