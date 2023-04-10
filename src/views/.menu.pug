@@ -7,22 +7,22 @@
 - }
 
 
-mixin createMenuItem(menuPage)
+mixin createMenuItem(menuPage, level)
     - let pageName = menuPage.properties.name || menuPage.properties.title;
     - let className = menuPage.properties.icon ? "lenra-icon-" + menuPage.properties.icon : "";
     a(class=className href='/'+menuPage.href)= pageName
     - let subPages = childrenPages(menuPage);
-    if (subPages.length)
+    if (subPages.length && level<3)
         details(open=currentPage.path.startsWith(menuPage.href))
             summary Open/Close
             ul
-                +createMenuItems(subPages)
+                +createMenuItems(subPages, level + 1)
 
 
-mixin createMenuItems(pages)
+mixin createMenuItems(pages, level)
     each page in pages
         li(class=(page.path==currentPage.path ? 'selected' : ''))
-            +createMenuItem(page)
+            +createMenuItem(page, level)
 
 menu.invert-colors
-    +createMenuItems(childrenPages())
+    +createMenuItems(childrenPages(), 1)

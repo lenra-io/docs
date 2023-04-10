@@ -11,7 +11,7 @@ First of all, you have to install [git](https://git-scm.com/book/en/v2/Getting-S
 Simply install the latest package using the cargo-cli.
 
 ```bash
-cargo install lenra_cli@version
+cargo install lenra_cli@~1.0.0-beta.0
 ```
 
 For more installation instructions, you can directly check the CLI repository.
