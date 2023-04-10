@@ -2,7 +2,7 @@
 description: How to create a first app ? Look at this guide to create a todo list app.
 ---
 
-Now that you know the basics of a lenra app, we can create our first app : a basic TODO List.
+Now that you know the basics of a Lenra app, we can create our first app : a basic TODO List.
 
 > Note : To follow this guide, you must have basic knowledge about javascript, Mongo query language and API call (using axios).
 
@@ -342,9 +342,9 @@ As you can see, we use the same component that we used to call the `addTaskForm`
 
 The `coll` property defines the **collection** where we want to run the query. 
 
-Then the `query` is a [simple mongo query](https://www.mongodb.com/docs/manual/tutorial/query-documents/) with the lenra specificity : the `@me` to reference the current user. It is the same trick we used to create our task before. This query will filter the `tasks` collection to give us only the task associated with the current user. The result of this query is the `data` argument in our view function.
+Then the `query` is a [simple mongo query](https://www.mongodb.com/docs/manual/tutorial/query-documents/) with the Lenra specificity : the `@me` to reference the current user. It is the same trick we used to create our task before. This query will filter the `tasks` collection to give us only the task associated with the current user. The result of this query is the `data` argument in our view function.
 
-And we’re done ! Restart the lenra CLI (`lenra dev`). The task list should now be visible ! 
+And we’re done ! Restart the Lenra CLI (`lenra dev`). The task list should now be visible ! 
 
 ## Add some features
 
