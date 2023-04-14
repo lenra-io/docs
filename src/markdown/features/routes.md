@@ -39,6 +39,21 @@ module.exports = async () => {
 }
 ```
 
+# Navigating to a route
+
+You can navigate to any route that is defined in the `lenraRoutes` property in the `lenra.yml` file. To do that, you have to call the specific listener action `@lenra:navTo`. Here is an example of a button using this listener.
+
+```json
+{
+    type: "button",
+    text: "@lenra",
+    onPressed: {
+        action: "@lenra:navTo",
+        props: { path: "/newPage" }
+    }
+}
+```
+
 # Websocket Routes Channels
 
 The client communicates with the server via a WebSocket to get the list of routes and the corresponding UI for each route. The server listens on two channels:
