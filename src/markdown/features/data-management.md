@@ -29,6 +29,25 @@ Delete a document
 - DELETE `${api.url}/app/colls/${coll}/docs/${doc._id}`
 ```
 
+Update many document, give filter and update in body
+```js
+- PUT `${api.url}/app/colls/${coll}/docs/update}`
+```
+
+&nbsp;&nbsp; `filter` select all document to update (like find query)  
+&nbsp;&nbsp; `update` The modifications to apply:  
+&nbsp;&nbsp;&nbsp;&nbsp;  - [$addFiled](https://www.mongodb.com/docs/manual/reference/operator/aggregation/addFields/#mongodb-pipeline-pipe.-addFields)  
+&nbsp;&nbsp;&nbsp;&nbsp;  - [$set](https://www.mongodb.com/docs/manual/reference/operator/aggregation/set/#mongodb-pipeline-pipe.-set)  
+&nbsp;&nbsp;&nbsp;&nbsp;  - [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/#mongodb-pipeline-pipe.-project)  
+&nbsp;&nbsp;&nbsp;&nbsp;  - [$unset](https://www.mongodb.com/docs/manual/reference/operator/aggregation/unset/#mongodb-pipeline-pipe.-unset)  
+&nbsp;&nbsp;&nbsp;&nbsp;  - [$replaceRoot](https://www.mongodb.com/docs/manual/reference/operator/aggregation/replaceRoot/#mongodb-pipeline-pipe.-replaceRoot)  
+&nbsp;&nbsp;&nbsp;&nbsp;  - [$replaceWith](https://www.mongodb.com/docs/manual/reference/operator/aggregation/replaceWith/#mongodb-pipeline-pipe.-replaceWith)
+
+Find document, give find query in body
+```js
+- PUT `${api.url}/app/colls/${coll}/docs/find}`
+```
+
 ### Advanced Mongo functions
 
 
