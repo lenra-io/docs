@@ -7,29 +7,28 @@ Routes are defined in the app manifest under the `lenraRoutes` property. The `le
 
 ```json
 {
-    "views": {
-      // ... Your application views
-    },
-    "listeners": {
-      // ... Your application listeners
-    },
-    "lenraRoutes": [
-      {
-        "path": "/",
-        "widget": {
-          "type": "view",
-          "name": "main"
-        }
-      },
-      {
-        "path": "/newPage",
-        "widget": {
-          "type": "view",
-          "name": "newPage"
-        }
+  "views": {
+    // ... Your application views
+  },
+  "listeners": {
+    // ... Your application listeners
+  },
+  "lenraRoutes": [
+    {
+      "path": "/",
+      "widget": {
+        "type": "view",
+        "name": "main"
       }
-    ]
-  }
+    },
+    {
+      "path": "/newPage",
+      "widget": {
+        "type": "view",
+        "name": "newPage"
+      }
+    }
+  ]
 }
 ```
 
