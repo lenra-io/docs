@@ -46,25 +46,3 @@ You can navigate to any route that is defined in the `lenraRoutes` property in t
     }
 }
 ```
-
-# Websocket Routes Channels
-
-The client communicates with the server via a WebSocket to get the list of routes and the corresponding UI for each route. The server listens on two channels:
-
-- `"/routes"` - This channel is used to request the list of routes from the server. When a client sends a message to this channel, the server responds with an array of route objects.
-
-- `"/route:*"` - This channel is used to request the UI for a specific route. The * character in the channel name is replaced with the path of the route. For example, to request the UI for the "/newPage" route, the client sends a message to the "/route/newPage" channel. When a client sends a message to this channel, the server responds with the JSON object that describes the UI for the corresponding view.
-
-## Websocket examples
-
-```js
-// Receive routes from the "routes" channel
-["2","2","routes","phx_join",{"mode":"lenra"}]
-["2","2","routes","phx_reply",{"response":{"lenraRoutes":[{"path":"/","widget":{"name":"main","type":"view"}},{"path":"/newPage","widget":{"name":"newPage","type":"view"}}]},"status":"ok"}]
-
-
-// Receive UI of newPage widget from "/route:/newPage" channel
-["4","4","route:/newPage","phx_join",{"mode":"lenra"}]
-["4","4","route:/newPage","phx_reply",{"response":{},"status":"ok"}]
-["4",null,"route:/newPage","ui",{"root":{"onPressed":{"code":"a6m/iXb/1L+ZgPNXqP/GDImbKoRQE9HcgD1AuhK6XPE="},"text":"NEW PAGE","type":"button"}}]
-```
