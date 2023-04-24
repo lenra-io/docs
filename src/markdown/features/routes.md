@@ -1,37 +1,31 @@
-# Defining Routes
-
-Routes are defined in the `lenra.yml` file under the `lenraRoutes` property. The `lenraRoutes` property is an array of objects, where each object represents a route. Each route object has two properties:
+Routes are defined in the app manifest under the `lenraRoutes` property. The `lenraRoutes` property is an array of objects, where each object represents a route. Each route object has two properties:
 
 - `path` - Defines the URL path that corresponds to the route.
 - `widget` - Defines the view that is associated with the route.
 
-## lenra.yml example
+## Manifest example
 
-```js
-module.exports = async () => {
-  return {
-    views: {
-      main: require('./views/main'),
-      newPage: require('./views/newPage'),
+```json
+{
+    "views": {
+      // ... Your application views
     },
-    listeners: {
-      onEnvStart: require('./listeners/onEnvStart'),
-      onSessionStart: require('./listeners/onSessionStart'),
-      onUserFirstJoin: require('./listeners/onUserFirstJoin')
+    "listeners": {
+      // ... Your application listeners
     },
-    lenraRoutes: [
+    "lenraRoutes": [
       {
-        path: "/",
-        widget: {
-          type: "view",
-          name: "main"
+        "path": "/",
+        "widget": {
+          "type": "view",
+          "name": "main"
         }
       },
       {
-        path: "/newPage",
-        widget: {
-          type: "view",
-          name: "newPage"
+        "path": "/newPage",
+        "widget": {
+          "type": "view",
+          "name": "newPage"
         }
       }
     ]
@@ -41,15 +35,15 @@ module.exports = async () => {
 
 # Navigating to a route
 
-You can navigate to any route that is defined in the `lenraRoutes` property in the `lenra.yml` file. To do that, you have to call the specific listener action `@lenra:navTo`. Here is an example of a button using this listener.
+You can navigate to any route that is defined in the `lenraRoutes` property in the app manifest. To do that, you have to call the specific listener action `@lenra:navTo`. Here is an example of a button using this listener.
 
 ```json
 {
-    type: "button",
-    text: "@lenra",
-    onPressed: {
-        action: "@lenra:navTo",
-        props: { path: "/newPage" }
+    "type": "button",
+    "text": "@lenra",
+    "onPressed": {
+        "action": "@lenra:navTo",
+        "props": { "path": "/newPage" }
     }
 }
 ```
