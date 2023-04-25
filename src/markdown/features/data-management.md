@@ -43,11 +43,6 @@ Update many document, give filter and update in body
 &nbsp;&nbsp;&nbsp;&nbsp;  - [$replaceRoot](https://www.mongodb.com/docs/manual/reference/operator/aggregation/replaceRoot/#mongodb-pipeline-pipe.-replaceRoot)  
 &nbsp;&nbsp;&nbsp;&nbsp;  - [$replaceWith](https://www.mongodb.com/docs/manual/reference/operator/aggregation/replaceWith/#mongodb-pipeline-pipe.-replaceWith)
 
-Find document, give find query in body
-```js
-- PUT `${api.url}/app/colls/${coll}/docs/find}`
-```
-
 ### Advanced Mongo functions
 
 
