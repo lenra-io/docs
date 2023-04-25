@@ -28,21 +28,6 @@ Delete a document
 ```js
 - DELETE `${api.url}/app/colls/${coll}/docs/${doc._id}`
 ```
-
-Update many document, give filter and update in body
-```js
-- PUT `${api.url}/app/colls/${coll}/docs/update}`
-```
-
-- `filter` select all document to update (like find query)  
-- `update` The modifications to apply:  
-  - [$addFiled](https://www.mongodb.com/docs/manual/reference/operator/aggregation/addFields/#mongodb-pipeline-pipe.-addFields)  
-  - [$set](https://www.mongodb.com/docs/manual/reference/operator/aggregation/set/#mongodb-pipeline-pipe.-set)  
-  - [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/#mongodb-pipeline-pipe.-project)  
-  - [$unset](https://www.mongodb.com/docs/manual/reference/operator/aggregation/unset/#mongodb-pipeline-pipe.-unset)  
-  - [$replaceRoot](https://www.mongodb.com/docs/manual/reference/operator/aggregation/replaceRoot/#mongodb-pipeline-pipe.-replaceRoot)  
-  - [$replaceWith](https://www.mongodb.com/docs/manual/reference/operator/aggregation/replaceWith/#mongodb-pipeline-pipe.-replaceWith)
-
 ### Advanced Mongo functions
 
 
@@ -69,6 +54,16 @@ We have in the *users* collection
     "age": 20
 }
 ```
+
+#### Update Many
+
+Update many document, give filter and update in body
+```js
+- PUT `${api.url}/app/colls/${coll}/docs/update}`
+```
+
+- `filter` select all document to update (like find query, see [query selectors](https://www.mongodb.com/docs/manual/reference/operator/query/#std-label-query-selectors))  
+- `update` The modifications to apply see [update operator](https://www.mongodb.com/docs/manual/reference/operator/update/#std-label-update-operators)
 
 ## View
 
