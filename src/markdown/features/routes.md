@@ -32,6 +32,31 @@ Routes are defined in the app manifest under the `lenraRoutes` property. The `le
 }
 ```
 
+It is also possible to use path parameters for your routes. For example you could go with these routes:
+
+```json
+[
+  {
+    "path": "/",
+    "view": {
+      "type": "view",
+      "name": "main"
+    }
+  },
+  {
+    "path": "/books/:id",
+    "view": {
+      "type": "view",
+      "name": "bookPage"
+    }
+  }
+]
+```
+
+<!-- TODO: Explain how it works and find how to get the path param :id from the app side. -->
+The route `/books/:id` will match .... 
+
+
 # Navigating to a route
 
 You can navigate to any route that is defined in the `lenraRoutes` property in the app manifest. To do that, you have to call the specific listener action `@lenra:navTo`. Here is an example of a button using this listener.
