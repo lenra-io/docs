@@ -17,7 +17,7 @@
     },
     "devDependencies": {
         "@types/fs-extra": "^9.0.12",
-        "@types/minify": "^6.0.1",
+        "@types/minify": "^9.1.0",
         "@types/pug": "^2.0.5",
         "jszip": "^3.10.1",
         "nodemon": "^2.0.12",
