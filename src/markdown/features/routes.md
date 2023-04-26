@@ -1,7 +1,7 @@
 Routes are defined in the app manifest under the `lenraRoutes` property. The `lenraRoutes` property is an array of objects, where each object represents a route. Each route object has two properties:
 
 - `path` - Defines the URL path that corresponds to the route.
-- `widget` - Defines the view that is associated with the route.
+- `view` - Defines the view that is associated with the route.
 
 ## Manifest example
 
@@ -16,14 +16,14 @@ Routes are defined in the app manifest under the `lenraRoutes` property. The `le
   "lenraRoutes": [
     {
       "path": "/",
-      "widget": {
+      "view": {
         "type": "view",
         "name": "main"
       }
     },
     {
       "path": "/newPage",
-      "widget": {
+      "view": {
         "type": "view",
         "name": "newPage"
       }
