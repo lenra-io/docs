@@ -7,12 +7,6 @@ Routes are defined in the app manifest under the `lenraRoutes` property. The `le
 
 ```json
 {
-  "views": {
-    // ... Your application views
-  },
-  "listeners": {
-    // ... Your application listeners
-  },
   "lenraRoutes": [
     {
       "path": "/",
