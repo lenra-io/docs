@@ -50,7 +50,7 @@ You can utilize path parameters for your routes. For instance, you can use these
 ]
 ```
 
-By using the `:id` parameter, the route `/books/:id` will match any route. You can pass the `id` parameter to the props using the `@route.id` shorthand.
+By using the `:id` parameter, the route `/books/:id` will match any route. You can pass the `id` parameter to the props using the `@path:id` shorthand.
 
 # Navigating to a route
 
