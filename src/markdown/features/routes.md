@@ -32,7 +32,7 @@ Routes are defined in the app manifest under the `lenraRoutes` property. The `le
 }
 ```
 
-It is also possible to use path parameters for your routes. For example you could go with these routes:
+You can utilize path parameters for your routes. For instance, you can use these routes:
 
 ```json
 [
@@ -47,15 +47,16 @@ It is also possible to use path parameters for your routes. For example you coul
     "path": "/books/:id",
     "view": {
       "type": "view",
-      "name": "bookPage"
+      "name": "bookPage",
+      "props": {
+        "id": "@route.id"
+      }
     }
   }
 ]
 ```
 
-<!-- TODO: Explain how it works and find how to get the path param :id from the app side. -->
-The route `/books/:id` will match .... 
-
+By using the `:id` parameter, the route `/books/:id` will match any route. You can pass the `id` parameter to the props using the `@route.id` shorthand.
 
 # Navigating to a route
 
