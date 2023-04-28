@@ -43,7 +43,7 @@ You can utilize path parameters for your routes. For instance, you can use these
       "type": "view",
       "name": "bookPage",
       "props": {
-        "id": "@route.id"
+        "id": "@path:id"
       }
     }
   }
