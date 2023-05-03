@@ -22,6 +22,8 @@ First we'll create the counter view.
 It purpose is to display the value of a counter in a [text component](/references/components-api/components/text.html) and define a [button](/references/components-api/components/button.html) to inscrement it.
 We'll put them together in a [flex component](/references/components-api/components/flex.html).
 
+Let's define it in the `src/views/couonter.js` file:
+
 ```javascript
 import { Flex, Text, Button } from "@lenra/components";
 
@@ -38,14 +40,23 @@ export default function (_data, _props) {
   ])
     // add some space between the children
     .spacing(16)
-    // 
+    // define how the elements are positionned
     .mainAxisAlignment("spaceEvenly")
     .crossAxisAlignment("center")
 }
 ```
 
+To see it, we need to define the `rootView` field in the `src/manifest.js` at the value `"counter"`.
 
+You can now run the `lenra dev` command to build and start your app, and your terminal will enter an interactive mode.
+In this mode, you will see your app's logs and will be able to run commands with keyboard shortcuts (we'll use one later).
 
-<!-- TODO: home -->
+To see your app, just go to http://localhost:4000/
+
+You will see your counter, but nothing happen when you click on the button.
+Of course, we've defined the counter value with a constant value of 0.
+Let's see how to make it dynamic.
+
+<!-- TODO: home + global counter data and listener -->
 <!-- TODO: menu + main -->
-<!-- TODO: common counter -->
+<!-- TODO: user counter -->
