@@ -113,6 +113,7 @@ We will implement the rest of them soon, but if you want to help you can look at
 | [{:target="_blank" rel="noopener"}$lte](https://www.mongodb.com/docs/manual/reference/operator/query/lte/)   | Matches values that are less than or equal to a specified value. |
 | [{:target="_blank" rel="noopener"}$in](https://www.mongodb.com/docs/manual/reference/operator/query/in/)     | Matches any of the values specified in an array. | 
 | [{:target="_blank" rel="noopener"}$nin](https://www.mongodb.com/docs/manual/reference/operator/query/nin/)   | Matches none of the values specified in an array. |
+| [{:target="_blank" rel="noopener"}$type](https://www.mongodb.com/docs/manual/reference/operator/query/type/)   | Matches all values that match the specified type. |
 
 #### Logical
 
