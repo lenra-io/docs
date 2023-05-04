@@ -128,6 +128,7 @@ We will implement the rest of them soon, but if you want to help you can look at
 | Operator | Description |
 |==========|=============|
 | [{:target="_blank" rel="noopener"}$exists](https://www.mongodb.com/docs/manual/reference/operator/query/exists/) | Matches documents that have the specified field. |
+| [{:target="_blank" rel="noopener"}$type](https://www.mongodb.com/docs/manual/reference/operator/query/type/)     | Selects documents if a field is of the specified type. |
 
 #### Array
 
