@@ -1,6 +1,6 @@
 ---
 name: Create an app from scratch
-description: We've created many templates for creating a Lenra app using the 'lenra new' command but this guide explain how to create one from scratch.
+description: We've created many templates for creating a Lenra app using the 'lenra new' command but this guide explains how to create one from scratch.
 ---
 
 Welcome to this guide on how to create your first application using Lenra technology.
@@ -20,7 +20,7 @@ So, if you are ready to embark on the journey of building your first Lenra appli
 
 ## Project configuration
 
-### Initialise the directory
+### Initialize the directory
 
 We'll first create a new directory that will contain our app and initialize git and npm in it.
 
@@ -105,8 +105,8 @@ Now that your project is configured we will define your app manifest and your fi
 
 #### The manifest and system listeners
 
-The manifest describe some static values for your app, like the root view.
-The app-lib manage the manifest by importing the `src/manifest.js` file.
+The manifest describes some static values for your app, like the root view.
+The app-lib manages the manifest by importing the `src/manifest.js` file.
 
 {:data-file="src/manifest.js"}
 ```javascript
@@ -147,7 +147,7 @@ export default function (_data, _props) {
 }
 ```
 
-Start your app server with the next command:
+Start your app server with the following command:
 
 ```bash
 npm start
@@ -162,7 +162,7 @@ wget -q --output-document - --post-data='{"view": "hello"}' --header='Content-Ty
 curl --header "Content-Type: application/json" --request POST --data '{"view": "hello"}' http://localhost:3000/
 ```
 
-You should receive the next response:
+You should receive the following response:
 ```json
 {"type":"container","child":{"type":"text","value":"Hello World"},"alignment":"center"}
 ```
@@ -240,7 +240,7 @@ Now that we have a basic app we will implement our counter app elements.
 ### The counter view
 
 First we'll create the counter view.
-It purpose is to display the value of a counter in a [text component](/references/components-api/components/text.html) and define a [button](/references/components-api/components/button.html) to inscrement it.
+Its purpose is to display the value of a counter in a [text component](/references/components-api/components/text.html) and define a [button](/references/components-api/components/button.html) to increment it.
 We'll put them together in a [flex component](/references/components-api/components/flex.html).
 
 Let's define it in the new `src/views/counter.js` file:
@@ -277,7 +277,7 @@ export const rootView = "counter";
 
 To reload (rebuild and restart) your app just press the `R` key while your terminal is in interactive mode.
 
-You will see your counter, but nothing happen when you click on the button.
+You will see your counter, but nothing happens when you click on the button.
 Of course, we've defined the counter value with a constant value of 0.
 Let's see how to dynamise it.
 
@@ -354,7 +354,7 @@ export async function onSessionStart(_props, _event, _api) {
 Since the event we use to create our first counter is only dispatched when the app is deployed, to dispatch it locally we have to stop our app and start it again.
 
 If your in the interactive mode, just press the `S` key to stop it.
-All your container will stop et the data will be cleared.
+All your container will stop and the data will be cleared.
 
 You can now re-start your app with `lenra dev`.
 
@@ -391,7 +391,7 @@ export const rootView = "home";
 ```
 
 We'll now adapt our counter view to use the response of the query and the given `text` property.
-We also will call an `increment` listener with the counter id in the the `id` property when the button is pressed:
+We also will call an `increment` listener with the counter id in the `id` property when the button is pressed:
 
 {:data-file="src/views/counter.js"}
 ```javascript
@@ -523,8 +523,8 @@ To explain how to test your like there is many users we will use a third solutio
 [{:target="_blank" rel="noopener"}localhost:4000?user=2](http://localhost:4000/?user=2)
 
 If you want to try with more users just increment the `user` query param.
-By opening many tabs ou will see that when you increment the common counter it will automatically update the value for all the tabs at the same time.
-It works the same way for the user specific counter if open many tabs with the same value for the `user` query param.
+By opening many tabs you will see that when you increment the common counter it will automatically update the value for all the tabs at the same time.
+It works the same way for the user specific counter if you open many tabs with the same value for the `user` query param.
 
 ### Let's add some layout and autocompletion
 
