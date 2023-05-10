@@ -63,7 +63,7 @@ Update many document, give filter and update in body
 ```
 
 - `filter` select all document to update (like find query, see [query selectors](https://www.mongodb.com/docs/manual/reference/operator/query/#std-label-query-selectors))  
-- `update` The modifications to apply see [update operator](https://www.mongodb.com/docs/manual/reference/operator/update/#std-label-update-operators)
+- `update` the modifications to apply see [update operators](https://www.mongodb.com/docs/manual/reference/operator/update/#std-label-update-operators)
 
 ## View
 
