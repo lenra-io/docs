@@ -57,7 +57,7 @@ We have in the *users* collection
 
 #### Update Many
 
-Update many document, give filter and update in body
+The [MongoDB updateMany function](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateMany/) udates all documents that match the specified filter for a collection. 
 ```js
 - PUT `${api.url}/app/colls/${coll}/docs/update}`
 ```
