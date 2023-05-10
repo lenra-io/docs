@@ -62,6 +62,7 @@ The [MongoDB updateMany function](https://www.mongodb.com/docs/manual/reference/
 - PUT `${api.url}/app/colls/${coll}/docs/update}`
 ```
 
+{:.list}
 - `filter` select all document to update (like find query, see [query selectors](https://www.mongodb.com/docs/manual/reference/operator/query/#std-label-query-selectors))  
 - `update` the modifications to apply see [update operators](https://www.mongodb.com/docs/manual/reference/operator/update/#std-label-update-operators)
 
