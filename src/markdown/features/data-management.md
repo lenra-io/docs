@@ -55,7 +55,7 @@ We have in the *users* collection
 }
 ```
 
-#### Update Many
+#### updateMany
 
 The [MongoDB updateMany function](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateMany/) udates all documents that match the specified filter for a collection. 
 ```js
