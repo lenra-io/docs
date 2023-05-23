@@ -42,15 +42,12 @@ You can utilize path parameters for your routes. For instance, you can use these
     "view": {
       "type": "view",
       "name": "bookPage",
-      "props": {
-        "id": "@path:id"
-      }
     }
   }
 ]
 ```
 
-By using the `:id` parameter, the route `/books/:id` will match any route. You can pass the `id` parameter to the props using the `@path:id` shorthand.
+By using the `:id` parameter, the route `/books/:id` will match any route. The value for `:id` can then be fetched from inside of the view using the context which is the third argument of the view's function.
 
 # Navigating to a route
 
