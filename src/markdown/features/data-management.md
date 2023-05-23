@@ -28,7 +28,6 @@ Delete a document
 ```js
 - DELETE `${api.url}/app/colls/${coll}/docs/${doc._id}`
 ```
-
 ### Advanced Mongo functions
 
 
@@ -55,6 +54,17 @@ We have in the *users* collection
     "age": 20
 }
 ```
+
+#### updateMany
+
+The [MongoDB updateMany function](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateMany/) udates all documents that match the specified filter for a collection. 
+```js
+- POST `${api.url}/app/colls/${coll}/updateMany`
+```
+
+{:.list}
+- `filter` select all document to update (like find query, see [query selectors](https://www.mongodb.com/docs/manual/reference/operator/query/#std-label-query-selectors))  
+- `update` the modifications to apply see [update operators](https://www.mongodb.com/docs/manual/reference/operator/update/#std-label-update-operators)
 
 ## View
 
@@ -128,6 +138,7 @@ We will implement the rest of them soon, but if you want to help you can look at
 | Operator | Description |
 |==========|=============|
 | [{:target="_blank" rel="noopener"}$exists](https://www.mongodb.com/docs/manual/reference/operator/query/exists/) | Matches documents that have the specified field. |
+| [{:target="_blank" rel="noopener"}$type](https://www.mongodb.com/docs/manual/reference/operator/query/type/)     | Selects documents if a field is of the specified type. |
 
 #### Array
 
