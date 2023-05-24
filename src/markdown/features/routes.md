@@ -47,7 +47,30 @@ You can utilize path parameters for your routes. For instance, you can use these
 ]
 ```
 
-By using the `:id` parameter, the route `/books/:id` will match any route. The value for `:id` can then be fetched from inside of the view using the context which is the third argument of the view's function.
+By using the `:id` parameter, the route `/books/:id` will match any route. The value for `:id` can then be fetched from inside of the view by doing as follows.
+
+- You have to specify to the view that you want to use context values. (In this example let's consider that the view is under the path /myView/:id)
+
+```json
+{
+    "type": "view",
+    "name": "myView",
+    "context": {
+        "me": true,
+        "pathParams": true,
+    }
+}
+```
+
+- Then you can add the context parameter to your view function.
+
+```javascript
+export default function (data, props, context) {
+  return {
+      type: "text",
+      value: JSON.stringify(context), // This will be equal to {"me":"8bf756dd-0028-4bbd-b439-083add59ba54","pathParams":{"id":1}}
+  }
+```
 
 # Navigating to a route
 
