@@ -31,7 +31,7 @@ Our document will look like that :
 
 ## Create the model class
 
-Now that we know what a task looks like, we want to create to represent it in our app. To do that, we will create a new file in the classes directory : `Task.js`
+Now that we know what a task looks like, we want to create it in our app. To do that, we will create a new file in the classes directory : `Task.js`
 
 {:data-document="src/classes/Task.js"}
 ```javascript
@@ -52,7 +52,7 @@ export class Task extends Data {
 }
 ```
 
-Note that the `_id` field does not have to be managedsince this class extends the Data class from the app library.
+Note that the `_id` field does not have to be managed since this class extends the Data class from the app library.
 This class is a simple class that allows us to easily create a class that represents a document in our database.
 
 ## Create a new task
@@ -254,15 +254,15 @@ Remember our database model. The `user` field should contain the current user ID
 
 When the document is added, the UI will be rebuilt in order to instantly display the updated interface to the user.
 
-You can restart the app by pressing the `R` key refresh your browser and you should be able to create a new task now !
+You can restart the app by pressing the `R` key, refresh your browser and you should be able to create a new task now !
 
-But wait… The task are still not visible yet.
+But wait… The task is still not visible yet.
 
 ## List the user tasks
 
 Now that we can add new tasks in our database, let's list them in the interface.
 
-To do this, create a new `taskList.js` view gets the tasks ids in the data parameter.
+To do this, create a new `taskList.js` view that gets the tasks ids in the data parameter.
 
 {:data-document="src/views/taskList.js"}
 ```javascript
