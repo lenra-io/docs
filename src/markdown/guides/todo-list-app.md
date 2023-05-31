@@ -66,7 +66,7 @@ In the `addTaskForm.js` view, we create a new function (and export it). In this 
 export default function(data, props) {
   return {
     type: "form",
-		onSubmit: {
+    onSubmit: {
       action: "submitTask"
     },
     child: {...}
@@ -83,37 +83,37 @@ Then we will declare the inputs in our form.
 export default function(data, props) {
   return {
     type: "form",
-		onSubmit: {
+    onSubmit: {
       action: "submitTask"
     },
     child:
-		// 1 - Flex component
-		{
+    // 1 - Flex component
+    {
       type: "flex",
       crossAxisAlignment: "center",
-			spacing: 2,
+      spacing: 2,
       children: [
-			  // 2 - label
-				{
-	        type: "text",
-	        value: "Your task : "
-		    },
-				// 3 - The textfield to type the description
-		    {
-	        type: "flexible",
-	        child: {
-	          type: "textfield",
-	          value: "",
-	          name: "description"
-	        }
-		    },
-				// 4 - The button to submit the form
-				{
-	        type: "button",
-	        text: "Add",
-	        submit: true,
-		    }
-			]
+        // 2 - label
+        {
+          type: "text",
+          value: "Your task : "
+        },
+        // 3 - The textfield to type the description
+        {
+          type: "flexible",
+          child: {
+            type: "textfield",
+            value: "",
+            name: "description"
+          }
+        },
+        // 4 - The button to submit the form
+        {
+          type: "button",
+          text: "Add",
+          submit: true,
+        }
+      ]
     }
   }
 }
