@@ -1,11 +1,12 @@
 body>menu.invert-colors {
     padding: 2rem 0;
-    background-color: rgb(var(--background-color-data));
+    background-color: rgb(var(--text-contrast-color-data));
     overflow: auto;
 }
 
 body>menu.invert-colors::before {
-    display: none;
+    width: 100%;
+    left: 0;
 }
 
 body>menu * {
