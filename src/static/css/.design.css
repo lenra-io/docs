@@ -38,11 +38,11 @@
     --background-color: rgba(var(--background-color-data), var(--background-color-opacity));
     --background-contrast-color-data: var(--black-data);
     --text-color-data: var(--background-contrast-color-data);
+    --text-contrast-color-data: var(--background-color-data);
     --primary-color-disabled: var(--light-primary-color-disabled);
     --invert-primary-color-disabled: var(--dark-primary-color-disabled);
     --background-image: url("/img/fond.svg");
     --font-size: 1rem;
-
     --line-height-multiplier: calc(3 / 2);
     --line-height: calc(1rem * var(--line-height-multiplier));
     --title-font-size-multiplier: 2;
@@ -158,9 +158,11 @@ p+h3 {
 }
 
 .invert-colors {
-    --background-contrast-color-data: var(--white-data);
     --text-color-data: var(--background-contrast-color-data);
+    --text-contrast-color-data: var(--black-data);
     --background-color-data: var(--black-data);
+    --background-color-opcatity: 1;
+    --background-contrast-color-data: var(--white-data);
     --logo-horizontal-image: var(--logo-horizontal-image-white);
     --logo-vertical-image: var(--logo-vertical-image-white);
     --logo-image: var(--logo-vertical-image);
@@ -170,7 +172,7 @@ p+h3 {
 .invert-colors::before {
     content: " ";
     position: absolute;
-    background-color: rgb(var(--background-color-data));
+    background-color: rgba(var(--background-color-data), var(--background-color-opcatity));
     background-image: none;
     grid-row: initial;
     grid-column: initial;
@@ -195,22 +197,19 @@ body>footer {
     max-width: 82.5rem;
 } */
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
     :root {
-        --background-contrast-color-data: var(--white-data);
-        --text-color-data: var(--background-contrast-color-data);
         --background-color-data: var(--black-data);
+        --background-contrast-color-data: var(--white-data);
+        --text-color-data: var(--white-data);
+        --text-contrast-color-data: var(--black-data);
         --logo-horizontal-image: var(--logo-horizontal-image-white);
         --logo-vertical-image: var(--logo-vertical-image-white);
         --logo-image: var(--logo-horizontal-image);
     }
 
     .invert-colors {
-        --background-contrast-color-data: var(--black-data);
-        --text-color-data: var(--background-contrast-color-data);
         --background-color-data: var(--white-data);
-        --logo-horizontal-image: var(--logo-horizontal-image-black);
-        --logo-vertical-image: var(--logo-vertical-image-black);
-        --logo-image: var(--logo-horizontal-image);
+        --background-color-opcatity: 0.1;
     }
-} */
+}
