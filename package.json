@@ -21,7 +21,7 @@
         "@types/pug": "^2.0.5",
         "jszip": "^3.10.1",
         "nodemon": "^2.0.22",
-        "yaml": "^2.2.2"
+        "yaml": "^2.3.1"
     },
     "lesta": {
         "languages": [
