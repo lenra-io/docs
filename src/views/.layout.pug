@@ -46,8 +46,8 @@ html(lang=language)
       nav.pages
         if("previous" in currentPage)
           - let prevPage = pageMap[currentPage.previous];
-          a.btn.lenra-icon-arrow-left(href="/"+prevPage.href)= (prevPage.properties.name || prevPage.properties.title)
+          a.btn.lenra-icon-arrow-left(href="/"+prevPage.href rel="prev")= (prevPage.properties.name || prevPage.properties.title)
         if("next" in currentPage)
           - let nextPage = pageMap[currentPage.next];
-          a.btn.lenra-icon-arrow-right(href="/"+nextPage.href)= (nextPage.properties.name || nextPage.properties.title)
+          a.btn.lenra-icon-arrow-right(href="/"+nextPage.href ref="next")= (nextPage.properties.name || nextPage.properties.title)
       include .footer.pug
