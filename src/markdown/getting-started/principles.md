@@ -3,27 +3,67 @@ description: Understand how our app development framework works.
 position: 0
 ---
 
-## How does Lenra work ?
+Lenra is an open source framework to create your app using any language, and deploy it without any Ops scale, built on ethical values.
+Our framework is based on four parts: data, views, listeners, and users.
 
-Lenra uses a simple but efficient realtime MVC pattern. This means that any changes to the Model will update the view in real time for every connected users.
 
-{:.list}
-- First, your views will take care of creating your UI according to your model.
-- Then your listener will first change document(s) in your mongo instance.
-- That will trigger a new realtime view re-render (back to #1).
+{:#framework.colored-blocks}
+- {:.red.lenra-icon-database}
+
+    ### Data
+    Without data, there is no app. That's why our framework starts with data. We believe that data should be simple and easy to understand.
+- {:.green.lenra-icon-grid}
+
+    ### Views
+    The views are what the user sees and interacts with. It should be clear and concise. It should be easy to use and navigate.
+- {:.blue.lenra-icon-users}
+
+    ### Users
+    They are the ones who will use our apps and benefit from them. We believe that all apps should be designed with the user in mind.
+- {:.yellow.lenra-icon-bell}
+
+    ### Listeners
+    Listeners are what make an app interactive. They listen for user input and then respond accordingly.
+    
+
+Lenra uses a simple but efficient realtime MVC pattern. This means that any [data](#data) changes will update the view in real time for every connected users.
+
+
+## Data
+
+The data in Lenra is simply a **mongo database**.
+In this database you will store **documents** that are basically **JSON objects**.
+Those JSON objects will be stored in **collections**.
+For example, create a `ingredients` collection that will store all the ingredients of your cooking app.
+Then create a `recipes` collection to store your recipes…
+
+You can also query into your documents using the [mongo query language](https://www.mongodb.com/docs/manual/tutorial/query-documents/).
+For example, let’s say you want to get all the ingredients that are currently in your fridge.
+Your query will look like that: 
+
+```json
+{
+	"coll": "ingredients",
+	"query": {
+		"inFridge": true
+	}
+}
+```
 
 ## Views
 
-The views are simple functions with 2 arguments: the **data**, a property object (**props**). This function will return a json tree composed by native components or other views. If one of the two argument changes, the view is rebuilt.
+The views are simple functions with 2 arguments: the **data** query result, a property object (**props**).
+This function will return a json tree composed by native components or other views.
+If one of the two argument changes, the view is rebuilt.
 
 You can find all of the existing components by [checking our documentation](/references/components-api/).
 
-For example, the counter view (in the template app) uses the `props` to customize the printed message and the `data` to get the counter value. When the **+** button is pressed, the `increment` listener will be called.
+For example, the counter view (in the template app) uses the `props` to customize the printed message and the `data` to get the counter value.
+When the **+** button is pressed, the `increment` listener will be called.
 
 {:data-source-file="views/counter.js"}
 ```javascript
 module.exports = (data, counter) => {
-
   return {
     "type": "flex",
     "spacing": 2,
@@ -52,7 +92,9 @@ module.exports = (data, counter) => {
 
 ## Listeners
 
-If we want to change the model, we must call a listener. Your listener is a function that is able to call the data API to get/create/update/delete a document. This function is called when an action is performed by the user on the UI (button pressed, click, checkbox checked…). 
+The listeners are event based workflows and are the only way to change the data.
+Your listener is a function that is able to call the data API to get/create/update/delete a document.
+This function is called when an action is performed by the user on the UI (button pressed, click, checkbox checked…). 
 
 The listener takes 3 arguments: a property object (**props**), the **event** that triggered this listener and an **api** object that contains all the informations needed to call the API. 
 
@@ -68,22 +110,6 @@ module.exports = async (props, event, api) => {
     let counter = res.data
     counter.count += 1;
     return apiService.updateDoc(api, "counter", counter);
-}
-```
-
-
-## Data
-
-The model in Lenra is simply a **mongo database**. In this database you will store **documents** that are basically a **JSON object**. These JSON objects will be stored in **collections**. For example, create a `ingredients` collection that will store all the ingredients of your cooking app. Then create a `recipes` collection to store your recipes…
-
-You can also query into your documents using the [mongo query language](https://www.mongodb.com/docs/manual/tutorial/query-documents/). For example, let’s say you want to get all the ingredients that are currently in your fridge. Your query will look like that: 
-
-```json
-{
-	"coll": "ingredients",
-	"query": {
-		"inFridge": true
-	}
 }
 ```
 
