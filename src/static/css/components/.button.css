@@ -6,6 +6,7 @@ button {
     --btn-text-opacity: 1;
     color: rgba(var(--btn-text-color-data), var(--btn-text-opacity));
     text-decoration: none;
+    cursor: pointer;
 }
 
 a {
@@ -245,12 +246,12 @@ nav.social.app>a::before {
 
 @media (min-width: 28.75rem) {
 
-    /* button,
+    button,
     a.btn:not(.link),
     a.btn.link:first-child {
-        display: inline-block;
+        /* display: inline-block; */
         margin-top: initial;
-    } */
+    }
 
     button+button,
     button+a.btn:not(.link),

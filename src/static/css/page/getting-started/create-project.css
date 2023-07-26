@@ -13,8 +13,8 @@
     height: var(--size);
     justify-content: center;
     align-items: center;
-    border: 0.0625rem solid rgba(var(--text-color-data), 0.15);
     border-radius: 0.5rem;
+    padding: 0;
 }
 
 #templates .soon a::before {

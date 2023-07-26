@@ -20,14 +20,15 @@ body>menu.invert-colors {
     min-width: 15rem;
     top: var(--header-height);
     bottom: 0;
-    transform: translateX(-100%);
+    right: 100%;
+    transform: translateX(0%);
     transition-property: transform;
     z-index: 10;
 }
 
 body.menu-opened>menu.invert-colors,
 body>menu.invert-colors:focus-within {
-    transform: translateX(0%);
+    transform: translateX(100%);
 }
 
 body>section>main {
@@ -59,6 +60,11 @@ body>section>main {
 
     body>menu.invert-colors {
         position: initial;
+        transition-property: none;
+    }
+
+    body.menu-opened>menu.invert-colors,
+    body>menu.invert-colors:focus-within {
         transform: translateX(0%);
     }
 

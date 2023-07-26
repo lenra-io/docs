@@ -70,3 +70,9 @@ docker compose --version
     ```bash
     set PATH="C:\my\path\to\lenra_cli;%PATH%"
     ```
+
+Check your installation using the next command:
+
+```bash
+lenra --version
+```

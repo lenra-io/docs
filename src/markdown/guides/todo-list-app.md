@@ -19,7 +19,7 @@ A task item will contain 4 properties :
 
 Our document will look like that : 
 
-{:data-document="A simple Mongo document"}
+{:data-file="A simple Mongo document"}
 ```json
 {
 	"_id": "ObjectId(634d692fcbd9f6704818309c)",
@@ -33,7 +33,7 @@ Our document will look like that :
 
 Now that we know what a task looks like, we want to create it in our app. To do that, we will create a new file in the classes directory : `Task.js`
 
-{:data-document="src/classes/Task.js"}
+{:data-file="src/classes/Task.js"}
 ```javascript
 import { Data } from "@lenra/app-server";
 
@@ -61,7 +61,7 @@ We now want to create a new view to let the user create tasks. To do that, we wi
 
 In the `addTaskForm.js` view, we create a new function (and export it). In this function, we will first add a **[form component](/references/components-api/components/form.html).**
 
-{:data-document="src/views/addTaskForm.js"}
+{:data-file="src/views/addTaskForm.js"}
 ```javascript
 export default function(data, props) {
   return {
@@ -78,7 +78,7 @@ In this view, we define the `onSubmit` listener. This tells the UI to submit the
 
 Then we will declare the inputs in our form.
 
-{:data-document="src/views/addTaskForm.js"}
+{:data-file="src/views/addTaskForm.js"}
 ```javascript
 export default function(data, props) {
   return {
@@ -137,7 +137,7 @@ This is a two in one.
 
 The [textfield component](/references/components-api/components/textfield.html) simply adds a textfield with a default value to empty (`value: “”`). The `name: “description”` connects this textfield first form up in the component tree. This way, when the form will be submitted, the event will contain a `description` field that contains the value of the textfield : 
 
-{:data-document="The event object"}
+{:data-file="The event object"}
 ```json
 {
 	"value": {
@@ -156,7 +156,7 @@ This component is a simple button in which we add the `submit: true` property. T
 
 Now that our form is ready, we just have to call it in our `main.js` component using the **[view component](/references/components-api/components/view.html)**.
 
-{:data-document="src/views/main.js"}
+{:data-file="src/views/main.js"}
 ```javascript
 export default function(data, props) {
   return {
@@ -209,7 +209,7 @@ We will now create the listener that will react to the “add” button pressed.
 
 Remember the `action: "submitTask"` property in the form `onSubmit` listener ? That’s the name of our listener. So create a `submitTask.js` file in the **listeners** directory and add this code to it : 
 
-{:data-document="src/listeners/submitTask.js"}
+{:data-file="src/listeners/submitTask.js"}
 ```javascript
 // 1 - import our Task model class
 import { Task } from "../classes/Task.js";
@@ -264,7 +264,7 @@ Now that we can add new tasks in our database, let's list them in the interface.
 
 To do this, create a new `taskList.js` view that gets the tasks ids in the data parameter.
 
-{:data-document="src/views/taskList.js"}
+{:data-file="src/views/taskList.js"}
 ```javascript
 import { DataApi } from "@lenra/app-server"
 import { Task } from "../classes/Task.js"
@@ -314,7 +314,7 @@ The result of this query is the `data` argument in our view function.
 
 I’m sure you will be able to create the `taskCard` view by yourself ! If you have some trouble, you can find the code below.
 
-{:data-document="src/views/taskCard.js"}
+{:data-file="src/views/taskCard.js"}
 ```javascript
 /**
  * @param {import("../classes/Task.js").Task[]} param0 The task query result
@@ -379,7 +379,7 @@ export default function ([task], _props) {
 
 Now we want to call our `taskList` with some **data** in it. To do this, go to the `main.js` view.
 
-{:data-document="src/views/main.js"}
+{:data-file="src/views/main.js"}
 ```javascript
 import { DataApi } from "@lenra/app-server";
 import { Task } from "../classes/Task.js";

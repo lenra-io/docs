@@ -66,7 +66,7 @@ You can find all of the existing components by [checking our documentation](/ref
 For example, the counter view (in the template app) uses the `props` to customize the printed message and the `data` to get the counter value.
 When the **+** button is pressed, the `increment` listener will be called.
 
-{:data-source-file="views/counter.js"}
+{:data-file="views/counter.js"}
 ```javascript
 export default async function(data, counter) {
   return {
@@ -117,7 +117,7 @@ The listener takes 3 arguments: a property object (**props**), the **event** tha
 
 To update the model, simply call the HTTP data API in your listener. For example, the increment listener in the node template simply increments the counter given in the props. Here, the event is irrelevant (button click).
 
-{:data-source-file="listeners/increment.js"}
+{:data-file="listeners/increment.js"}
 ```javascript
 import { Counter } from "../classes/Counter.js";
 
