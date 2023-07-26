@@ -85,6 +85,26 @@
                     "from": "^/todo-list-guide.html$",
                     "to": "/guides/todo-list-app.html",
                     "type": "permanent"
+                },
+                {
+                    "from": "^/references/cli/commands/dev/terminal.html$",
+                    "to": "/references/cli/commands/terminal/",
+                    "type": "permanent"
+                },
+                {
+                    "from": "^/references/cli/commands/dev/((index|interactive).html)?$",
+                    "to": "/references/cli/commands/dev.html",
+                    "type": "permanent"
+                },
+                {
+                    "from": "^/references/cli/commands/dev/((expose|exit).html)$",
+                    "to": "/references/cli/commands/terminal/$1",
+                    "type": "permanent"
+                },
+                {
+                    "from": "^/references/cli/commands/dev/reload.html$",
+                    "to": "/references/cli/commands/reload.html",
+                    "type": "permanent"
                 }
             ]
         }
