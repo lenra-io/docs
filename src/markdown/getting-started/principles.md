@@ -4,10 +4,14 @@ position: 0
 ---
 
 Lenra is an open source framework to create your app using any language, and deploy it without any Ops scale, built on ethical values.
+
+
+## Framework
+
 Our framework is based on four parts: data, views, listeners, and users.
 
 
-{:#framework.colored-blocks}
+{:.framework.colored-blocks}
 - {:.red.lenra-icon-database}
 
     ### Data
@@ -19,7 +23,7 @@ Our framework is based on four parts: data, views, listeners, and users.
 - {:.blue.lenra-icon-users}
 
     ### Users
-    They are the ones who will use our apps and benefit from them. We believe that all apps should be designed with the user in mind.
+    They are the ones who will use your apps and benefit from them. We believe that all apps should be designed with the user in mind.
 - {:.yellow.lenra-icon-bell}
 
     ### Listeners
@@ -28,8 +32,8 @@ Our framework is based on four parts: data, views, listeners, and users.
 
 Lenra uses a simple but efficient realtime MVC pattern. This means that any [data](#data) changes will update the view in real time for every connected users.
 
-
-## Data
+{:.red.lenra-icon-database}
+### Data
 
 The data in Lenra is simply a **mongo database**.
 In this database you will store **documents** that are basically **JSON objects**.
@@ -50,7 +54,8 @@ Your query will look like that:
 }
 ```
 
-## Views
+{:.green.lenra-icon-grid}
+### Views
 
 The views are simple functions with 2 arguments: the **data** query result, a property object (**props**).
 This function will return a json tree composed by native components or other views.
@@ -63,7 +68,7 @@ When the **+** button is pressed, the `increment` listener will be called.
 
 {:data-source-file="views/counter.js"}
 ```javascript
-module.exports = (data, counter) => {
+export default async function(data, counter) {
   return {
     "type": "flex",
     "spacing": 2,
@@ -90,11 +95,23 @@ module.exports = (data, counter) => {
 }
 ```
 
-## Listeners
+{:.blue.lenra-icon-users}
+### Users
+
+We have integrated the users management in our framework since the apps are made for them.
+So we handle account management, authentication, authorization, and user data for you.
+
+The users will have a single Lenra account that will be used for all the apps they use, but we a specific ID for each app.
+This system make it simpler for you to handle user data and give the users the a protection over there personnals data.
+
+To link a data to the current user, just use the `@me` string as the user ID in your data and queries, and it will be replaced by the unique user ID of the current user for your app.
+
+{:.yellow.lenra-icon-bell}
+### Listeners
 
 The listeners are event based workflows and are the only way to change the data.
-Your listener is a function that is able to call the data API to get/create/update/delete a document.
-This function is called when an action is performed by the user on the UI (button pressed, click, checkbox checked…). 
+A listener is a function that is able to call the data API to get/create/update/delete a document.
+This function is called when an action is performed by the user on the UI (button pressed, click, checkbox checked…) or by external events (CRON, WebHooks...). 
 
 The listener takes 3 arguments: a property object (**props**), the **event** that triggered this listener and an **api** object that contains all the informations needed to call the API. 
 
@@ -102,14 +119,20 @@ To update the model, simply call the HTTP data API in your listener. For example
 
 {:data-source-file="listeners/increment.js"}
 ```javascript
-const apiService = require("../services/api");
+import { Counter } from "../classes/Counter.js";
 
-module.exports = async (props, event, api) => {
-
-    let res = await apiService.getDoc(api, "counter", props.id);
-    let counter = res.data
+/**
+ * 
+ * @param {import("@lenra/app-server").props} props 
+ * @param {import("@lenra/app-server").event} _event 
+ * @param {import("@lenra/app-server").Api} api
+ * @returns 
+ */
+export default async function(props, _event, api) {
+    let counter = await api.data.getDoc(Counter, props.id);
     counter.count += 1;
-    return apiService.updateDoc(api, "counter", counter);
+    await api.data.updateDoc(counter);
+    return {};
 }
 ```
 
@@ -132,3 +155,5 @@ If you want to know more about our tech stack, you can visit their website by cl
 
 
 If you've already used Flutter or Mongo, you will probably see a lot of the same principles while building your app with Lenra. You can use this knowledge !
+
+Look at our [{:target="_blank" rel="noopener" .lenra-icon-github }GitHub](https://github.com/lenra-io) for more informations about our tech stack.

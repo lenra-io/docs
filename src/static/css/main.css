@@ -34,8 +34,8 @@ h1+p+:not(h2) {
     margin-top: 2rem;
 }
 
-main>:not(h1)+h2::before,
-main>:not(h2)+h3::before {
+main>:not(h1)+h2:not([class^="lenra-icon-"], [class*=" lenra-icon-"])::before,
+main>:not(h2)+h3:not([class^="lenra-icon-"], [class*=" lenra-icon-"])::before {
     --spliter-opacity: 0.3;
     content: " ";
     display: block;
@@ -50,6 +50,12 @@ main>:not(h2)+h3::before {
 
 main>:not(h3)+h4 {
     margin-top: 1.5rem;
+}
+
+p>a:is([class^="lenra-icon-"], [class*=" lenra-icon-"])::before {
+    margin-left: 0.125rem;
+    margin-right: 0.25rem;
+    color: inherit;
 }
 
 

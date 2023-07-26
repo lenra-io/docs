@@ -3,8 +3,6 @@ description: Start creating Lenra applications.
 icon: play-circle
 ---
 
-## Get to know **Lenra**
-
 {:.colored-blocks}
 - {:.blue}
     
@@ -30,7 +28,7 @@ icon: play-circle
 - {:.green}
     
     ### Deploy
-    Deploy your application and show your customers what you are capable of.
+    Deploy your Lenra application and show your customers what you are capable of.
 
     {:.btn.link.lenra-icon-arrow-right}
     [Let’s go](/getting-started/deploy-app.html)
