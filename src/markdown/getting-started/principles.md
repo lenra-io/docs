@@ -146,14 +146,14 @@ In order to build that platform we had to create a custom application system bas
 If you want to know more about our tech stack, you can visit their website by clicking on the links below:
 
 {:.list}
-- {:target="_blank" rel="noopener"}[Flutter](https://flutter.dev/)
-- {:target="_blank" rel="noopener"}[Phoenix](https://phoenixframework.org/)
-- {:target="_blank" rel="noopener"}[PostgreSQL](https://www.postgresql.org/)
-- {:target="_blank" rel="noopener"}[Mongodb](https://mongodb.com/)
-- {:target="_blank" rel="noopener"}[OpenFaaS](https://www.openfaas.com/)
-- {:target="_blank" rel="noopener"}[Kubernetes](https://kubernetes.io/)
+- {:rel="noopener"}[Flutter](https://flutter.dev/)
+- {:rel="noopener"}[Phoenix](https://phoenixframework.org/)
+- {:rel="noopener"}[PostgreSQL](https://www.postgresql.org/)
+- {:rel="noopener"}[Mongodb](https://mongodb.com/)
+- {:rel="noopener"}[OpenFaaS](https://www.openfaas.com/)
+- {:rel="noopener"}[Kubernetes](https://kubernetes.io/)
 
 
 If you've already used Flutter or Mongo, you will probably see a lot of the same principles while building your app with Lenra. You can use this knowledge !
 
-Look at our [{:target="_blank" rel="noopener" .lenra-icon-github }GitHub](https://github.com/lenra-io) for more informations about our tech stack.
+Look at our [{:.lenra-icon-github rel="noopener"}GitHub](https://github.com/lenra-io) for more informations about our tech stack.

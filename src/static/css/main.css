@@ -52,12 +52,6 @@ main>:not(h3)+h4 {
     margin-top: 1.5rem;
 }
 
-p>a:is([class^="lenra-icon-"], [class*=" lenra-icon-"])::before {
-    margin-left: 0.125rem;
-    margin-right: 0.25rem;
-    color: inherit;
-}
-
 
 @media (min-width: 35rem) {
     h1 {
