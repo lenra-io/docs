@@ -4,7 +4,7 @@ name: Create a project
 
 ## New project
 
-Once the [Lenra CLI is installed](./install.md), you can use it to create a new Lenra app.
+Once the [Lenra CLI is installed](./install.html), you can use it to create a new Lenra app.
 
 {:.or}
 - ### from **a template**
@@ -48,13 +48,13 @@ Once the [Lenra CLI is installed](./install.md), you can use it to create a new 
 
     If you don't find a template that fits your needs or you want to better understand how it works, you can create a new Lenra app from scratch.
 
-    [{:.btn.link}Read the specific guide for that](../guides/create-from-scratch.md)
+    [{:.btn.link}Read the specific guide for that](../guides/create-from-scratch.html)
 
 
 ## Start **developing**
 
 Now that you have a new Lenra app project, you can start developing it.
-Be shure you've understand the [Lenra principles](../guides/principles.md) before starting.
+Be shure you've understand the [Lenra principles](../guides/principles.html) before starting.
 
 
-[{:.btn.link.lenra-icon-arrow-right}Look at our todo list app guide](../guides/todo-list-app.md)
+[{:.btn.link.lenra-icon-arrow-right}Look at our todo list app guide](../guides/todo-list-app.html)
