@@ -34,8 +34,8 @@ h1+p+:not(h2) {
     margin-top: 2rem;
 }
 
-main>:not(h1)+h2::before,
-main>:not(h2)+h3::before {
+main>:not(h1)+h2:not([class^="lenra-icon-"], [class*=" lenra-icon-"])::before,
+main>:not(h2)+h3:not([class^="lenra-icon-"], [class*=" lenra-icon-"])::before {
     --spliter-opacity: 0.3;
     content: " ";
     display: block;
