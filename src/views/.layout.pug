@@ -31,6 +31,16 @@ html(lang=language)
         link(rel='stylesheet' as='style' type='text/css' href='/css/' + cssPath)
     script(src='/js/main.js' defer)
     script(src="https://analytics.lenra.io/js/plausible.js" data-domain="!DOMAIN!" defer)
+    //- Prism
+    - let prismVersion = '1.29.0';
+    link(rel='stylesheet' as='style' type='text/css' href=`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/themes/prism-tomorrow.min.css` media='print' onload='this.media="all"')
+    link(rel='stylesheet' as='style' type='text/css' href=`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/plugins/toolbar/prism-toolbar.min.css` media='print' onload='this.media="all"')
+    link(rel='stylesheet' as='style' type='text/css' href='/css/prism.css' media='print' onload='this.media="all"')
+    script(src=`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/prism.min.js` defer)
+    script(src=`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/plugins/autoloader/prism-autoloader.min.js` defer)
+    script(src=`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/plugins/toolbar/prism-toolbar.min.js` defer)
+    script(src=`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js` defer)
+    
   body
     include .header.pug
     include .menu.pug

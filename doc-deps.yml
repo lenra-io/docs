@@ -1,10 +1,10 @@
 components:
 - name: components-api
   url: https://github.com/lenra-io/components-api
-  version: v1.0.0-beta.81
+  version: v1.0.0-beta.85
   filePrefix: lenra-api-docs
   containsVersion: true
 - name: cli
   url: https://github.com/lenra-io/lenra_cli
-  version: v1.0.0-beta.27
+  version: v1.0.0-beta.31
   filePrefix: lenra-cli-docs

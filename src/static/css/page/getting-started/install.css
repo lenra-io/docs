@@ -1,4 +1,4 @@
-main>details {
+details[id^="download-"] {
     --text-opacity: 0.5;
     border: 0.0625rem solid;
     max-width: 25rem;
@@ -8,12 +8,12 @@ main>details {
     margin-top: 1rem;
 }
 
-main>details>summary {
+details[id^="download-"]>summary {
     position: relative;
     --btn-text-opacity: 0.8;
 }
 
-main>details>summary[class^="lenra-icon-"]::before {
+details[id^="download-"]>summary[class^="lenra-icon-"]::before {
     --size: 2.5rem;
     display: inline-block;
     width: var(--size);
@@ -29,11 +29,11 @@ main>details>summary[class^="lenra-icon-"]::before {
     background-color: rgba(var(--text-color-data), 0.1);
 }
 
-main>details>summary.lenra-icon-linux::before {
+details[id^="download-"]>summary.lenra-icon-linux::before {
     font-size: calc(3 / 2 * 1rem);
 }
 
-main>details>summary::after {
+details[id^="download-"]>summary::after {
     /* lenra-icon-chevron-right */
     content: "\e92c";
 
@@ -59,15 +59,15 @@ main>details>summary::after {
     transition-property: transform;
 }
 
-main>details[open]>summary::after {
+details[id^="download-"][open]>summary::after {
     transform: translateY(-50%) rotate(90deg);
 }
 
-main>details>ul {
+details[id^="download-"]>ul {
     padding-top: 0.5rem;
     padding-left: 2rem;
 }
 
-main>details+p {
+details[id^="download-"]+p {
     margin-top: 2rem;
 }

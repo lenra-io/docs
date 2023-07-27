@@ -114,34 +114,34 @@ We will implement the rest of them soon, but if you want to help you can look at
 
 | Operator | Description |
 |==========|=============|
-| [{:target="_blank" rel="noopener"}$eq](https://www.mongodb.com/docs/manual/reference/operator/query/eq/)     | Matches values that are equal to a specified value. |
-| [{:target="_blank" rel="noopener"}$ne](https://www.mongodb.com/docs/manual/reference/operator/query/ne/)     | Matches all values that are not equal to a specified value. |
-| [{:target="_blank" rel="noopener"}$gt](https://www.mongodb.com/docs/manual/reference/operator/query/gt/)     | Matches all values that are not equal to a specified value. |
+| [{:rel="noopener"}$eq](https://www.mongodb.com/docs/manual/reference/operator/query/eq/)     | Matches values that are equal to a specified value. |
+| [{:rel="noopener"}$ne](https://www.mongodb.com/docs/manual/reference/operator/query/ne/)     | Matches all values that are not equal to a specified value. |
+| [{:rel="noopener"}$gt](https://www.mongodb.com/docs/manual/reference/operator/query/gt/)     | Matches all values that are not equal to a specified value. |
  |
-| [{:target="_blank" rel="noopener"}$gte](https://www.mongodb.com/docs/manual/reference/operator/query/gte/)   | Matches values that are greater than or equal to a specified value. |
-| [{:target="_blank" rel="noopener"}$lt](https://www.mongodb.com/docs/manual/reference/operator/query/lt/)     | Matches values that are less than a specified value. |
-| [{:target="_blank" rel="noopener"}$lte](https://www.mongodb.com/docs/manual/reference/operator/query/lte/)   | Matches values that are less than or equal to a specified value. |
-| [{:target="_blank" rel="noopener"}$in](https://www.mongodb.com/docs/manual/reference/operator/query/in/)     | Matches any of the values specified in an array. | 
-| [{:target="_blank" rel="noopener"}$nin](https://www.mongodb.com/docs/manual/reference/operator/query/nin/)   | Matches none of the values specified in an array. |
+| [{:rel="noopener"}$gte](https://www.mongodb.com/docs/manual/reference/operator/query/gte/)   | Matches values that are greater than or equal to a specified value. |
+| [{:rel="noopener"}$lt](https://www.mongodb.com/docs/manual/reference/operator/query/lt/)     | Matches values that are less than a specified value. |
+| [{:rel="noopener"}$lte](https://www.mongodb.com/docs/manual/reference/operator/query/lte/)   | Matches values that are less than or equal to a specified value. |
+| [{:rel="noopener"}$in](https://www.mongodb.com/docs/manual/reference/operator/query/in/)     | Matches any of the values specified in an array. | 
+| [{:rel="noopener"}$nin](https://www.mongodb.com/docs/manual/reference/operator/query/nin/)   | Matches none of the values specified in an array. |
 
 #### Logical
 
 | Operator | Description |
 |==========|=============|
-| [{:target="_blank" rel="noopener"}$and](https://www.mongodb.com/docs/manual/reference/operator/query/and/)   | Joins query clauses with a logical `AND` returns all documents that match the conditions of both clauses. |
-| [{:target="_blank" rel="noopener"}$or](https://www.mongodb.com/docs/manual/reference/operator/query/or/)     | Inverts the effect of a query expression and returns documents that do *not* match the query expression. |
-| [{:target="_blank" rel="noopener"}$not](https://www.mongodb.com/docs/manual/reference/operator/query/not/)   | Joins query clauses with a logical `NOR` returns all documents that fail to match both clauses. |
-| [{:target="_blank" rel="noopener"}$nor](https://www.mongodb.com/docs/manual/reference/operator/query/nor/)   | Joins query clauses with a logical `OR` returns all documents that match the conditions of either clause. |
+| [{:rel="noopener"}$and](https://www.mongodb.com/docs/manual/reference/operator/query/and/)   | Joins query clauses with a logical `AND` returns all documents that match the conditions of both clauses. |
+| [{:rel="noopener"}$or](https://www.mongodb.com/docs/manual/reference/operator/query/or/)     | Inverts the effect of a query expression and returns documents that do *not* match the query expression. |
+| [{:rel="noopener"}$not](https://www.mongodb.com/docs/manual/reference/operator/query/not/)   | Joins query clauses with a logical `NOR` returns all documents that fail to match both clauses. |
+| [{:rel="noopener"}$nor](https://www.mongodb.com/docs/manual/reference/operator/query/nor/)   | Joins query clauses with a logical `OR` returns all documents that match the conditions of either clause. |
 
 #### Element
 
 | Operator | Description |
 |==========|=============|
-| [{:target="_blank" rel="noopener"}$exists](https://www.mongodb.com/docs/manual/reference/operator/query/exists/) | Matches documents that have the specified field. |
-| [{:target="_blank" rel="noopener"}$type](https://www.mongodb.com/docs/manual/reference/operator/query/type/)     | Selects documents if a field is of the specified type. |
+| [{:rel="noopener"}$exists](https://www.mongodb.com/docs/manual/reference/operator/query/exists/) | Matches documents that have the specified field. |
+| [{:rel="noopener"}$type](https://www.mongodb.com/docs/manual/reference/operator/query/type/)     | Selects documents if a field is of the specified type. |
 
 #### Array
 
 | Operator | Description |
 |==========|=============|
-| [{:target="_blank" rel="noopener"}$all](https://www.mongodb.com/docs/manual/reference/operator/query/all/)    | Matches arrays that contain all elements specified in the query. |
+| [{:rel="noopener"}$all](https://www.mongodb.com/docs/manual/reference/operator/query/all/)    | Matches arrays that contain all elements specified in the query. |

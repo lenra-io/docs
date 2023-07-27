@@ -22,7 +22,7 @@ So, if you are ready to embark on the journey of building your first Lenra appli
 
 ### Initialize the directory
 
-We'll first create a new directory that will contain our app and initialize git and npm in it.
+We'll first create a new directory that will contain our app:
 
 ```bash
 # create a new directory for your app
@@ -39,6 +39,7 @@ mkdir -p src/classes
 mkdir -p src/resources
 ```
 
+Initialize git:
 ```bash
 # ignore some elements
 echo '### Node
@@ -51,6 +52,7 @@ node_modules/
 git init
 ```
 
+And initialize npm:
 ```bash
 # initialize npm project
 npm init -y
@@ -228,7 +230,7 @@ In this mode, you will see your app's logs and will be able to run commands with
 lenra dev
 ```
 
-To see your app, just go to [{:target="_blank" rel="noopener"}localhost:4000](http://localhost:4000/)
+To see your app, just go to [{:rel="noopener"}localhost:4000](http://localhost:4000/)
 
 Great ! You've created an hello world app !
 Let's see how to manage the views and data by adapting it to get the template counter app.
@@ -520,7 +522,7 @@ To resolve this, you can also implement the `onSessionStart` listener to check e
 
 To explain how to test your like there is many users we will use a third solution: giving a user in the URL wth the `user` query param.
 
-[{:target="_blank" rel="noopener"}localhost:4000?user=2](http://localhost:4000/?user=2)
+[{:rel="noopener"}localhost:4000?user=2](http://localhost:4000/?user=2)
 
 If you want to try with more users just increment the `user` query param.
 By opening many tabs you will see that when you increment the common counter it will automatically update the value for all the tabs at the same time.

@@ -6,6 +6,7 @@ button {
     --btn-text-opacity: 1;
     color: rgba(var(--btn-text-color-data), var(--btn-text-opacity));
     text-decoration: none;
+    cursor: pointer;
 }
 
 a {
@@ -150,16 +151,43 @@ a.btn.link:hover::after {
     bottom: calc((100% - var(--font-size)) / 2 - 0.25rem);
 }
 
-a.btn.link.lenra-icon-arrow-right {
+/* Icons */
+
+:is(
+    a, 
+    button, 
+    summary
+):is(
+    [class^="lenra-icon-"], 
+    [class*=" lenra-icon-"]
+)::before {
+    color: inherit;
+    margin-right: 0.5rem;
+}
+
+
+
+a.btn.link:is(
+    .lenra-icon-arrow-right,
+    .lenra-icon-chevron-right
+) {
     display: inline-flex;
     flex-direction: row-reverse;
     align-items: center;
 }
 
-a.btn.link.lenra-icon-arrow-right::before {
-    color: inherit;
+a.btn.link:is(
+    .lenra-icon-arrow-right,
+    .lenra-icon-chevron-right
+)::before {
     margin-left: 0.5rem;
+    margin-right: 0;
     font-size: 120%;
+}
+
+p>a:not(.btn)[class^="lenra-icon-"]::before,
+p>a:not(.btn)[class*=" lenra-icon-"]::before {
+    margin-left: 0.125rem;
 }
 
 nav.social {
@@ -221,7 +249,7 @@ nav.social.app>a::before {
     button,
     a.btn:not(.link),
     a.btn.link:first-child {
-        display: inline-block;
+        /* display: inline-block; */
         margin-top: initial;
     }
 
