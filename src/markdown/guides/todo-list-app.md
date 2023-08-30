@@ -4,7 +4,7 @@ description: Look at this guide to create a todo list app.
 
 Now that you know the basics of a Lenra app, we can create our first app : a basic TODO List.
 
-> Note : To follow this guide, you must have basic knowledge about JavaScript and Mongo query language (see [Data management](/features/data-management.html)). To make it understandable for everyone, we will not use the [components library](https://github.com/lenra-io/components-lib-javascript) and only describe the views in JSON, but we will use the [app library](https://github.com/lenra-io/app-lib-js) since we have one for the languages managed by our templates.
+> Note : To follow this guide, you must have basic knowledge about JavaScript and Mongo query language (see [Data management](/features/data-management.html)). To make it understandable for everyone, we will not use the [{:rel="noopener" target="_blank"}components library](https://github.com/lenra-io/components-lib-javascript) and only describe the views in JSON, but we will use the [{:rel="noopener" target="_blank"}app library](https://github.com/lenra-io/app-lib-js) since we have one for the languages managed by our templates.
 
 First of all, we want to organize our model (database).
 
@@ -307,7 +307,7 @@ This property is used to query the database and get the data we need to display.
 
 The `coll` property defines the **collection** where we want to run the query. 
 
-Then the `query` is a [simple mongo query](https://www.mongodb.com/docs/manual/tutorial/query-documents/) with some adaptation due to our realtime update system (see the [Data management limitations](/features/data-management.html#limitations)).
+Then the `query` is a [{:rel="noopener" target="_blank"}simple mongo query](https://www.mongodb.com/docs/manual/tutorial/query-documents/) with some adaptation due to our realtime update system (see the [Data management limitations](/features/data-management.html#limitations)).
 This query will filter the `task` collection to give us only the task corresponding to the task `_id`.
 The result of this query is the `data` argument in our view function.
 

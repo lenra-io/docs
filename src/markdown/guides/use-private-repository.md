@@ -12,13 +12,13 @@ In this guide we will explain how to create a token and how to use it in our bac
 GitLab offers several types of access tokens that can be used to get your app's source code:
 
 {:.list}
-- [Personal access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html): to give access to all repositories
-- [Group access token](https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html): to give access to every repositories in a specific group
-- [Project access token](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html): to give access to only one repository
+- [{:rel="noopener" target="_blank"}Personal access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html): to give access to all repositories
+- [{:rel="noopener" target="_blank"}Group access token](https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html): to give access to every repositories in a specific group
+- [{:rel="noopener" target="_blank"}Project access token](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html): to give access to only one repository
 
 We will focus on the first one in this guide since it is the only free solution to use, but you should use project access tokens if possible, as they are more adapted to our needs and more secure.
 
-You can go to your [personal access token settings by clicking this link](https://gitlab.com/-/profile/personal_access_tokens) or by following these steps:
+You can go to your [{:rel="noopener" target="_blank"}personal access token settings by clicking this link](https://gitlab.com/-/profile/personal_access_tokens) or by following these steps:
 
 {:.list}
 - In the upper-right corner, select your avatar.
@@ -46,10 +46,10 @@ https://oauth2:<access_token>@gitlab.com/group/repo.git
 
 ## GitHub
 
-GitHub only offers [personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) so we will use that.
-***Actually GitHub also handles [Fine-grained tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#fine-grained-personal-access-tokens) while I'm writing this guide which are much more secure but they are still in beta version.***
+GitHub only offers [{:rel="noopener" target="_blank"}personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) so we will use that.
+***Actually GitHub also handles [{:rel="noopener" target="_blank"}Fine-grained tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#fine-grained-personal-access-tokens) while I'm writing this guide which are much more secure but they are still in beta version.***
 
-You can go to your [personal access token settings by clicking this link](https://github.com/settings/tokens) or by following these steps:
+You can go to your [{:rel="noopener" target="_blank"}personal access token settings by clicking this link](https://github.com/settings/tokens) or by following these steps:
 
 {:.list}
 - In the upper-right corner, select your avatar.
