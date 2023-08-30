@@ -15,7 +15,7 @@ Lenra is a SaaS platform that accelerates the creation of your applications and 
 It let you focus on the core of your app without loosing time on secondary issues.
 
 {: .btn.link}
-[Discover Lenra](https://www.lenra.io/discover.html)
+[{:rel="noopener" target="_blank"}Discover Lenra](https://www.lenra.io/discover.html)
 
 ## Where do I **start** ?
 

@@ -41,7 +41,7 @@ Those JSON objects will be stored in **collections**.
 For example, create a `ingredients` collection that will store all the ingredients of your cooking app.
 Then create a `recipes` collection to store your recipes…
 
-You can also query into your documents using the [mongo query language](https://www.mongodb.com/docs/manual/tutorial/query-documents/).
+You can also query into your documents using the [{:rel="noopener" target="_blank"}mongo query language](https://www.mongodb.com/docs/manual/tutorial/query-documents/).
 For example, let’s say you want to get all the ingredients that are currently in your fridge.
 Your query will look like that: 
 
@@ -146,14 +146,14 @@ In order to build that platform we had to create a custom application system bas
 If you want to know more about our tech stack, you can visit their website by clicking on the links below:
 
 {:.list}
-- {:rel="noopener"}[Flutter](https://flutter.dev/)
-- {:rel="noopener"}[Phoenix](https://phoenixframework.org/)
-- {:rel="noopener"}[PostgreSQL](https://www.postgresql.org/)
-- {:rel="noopener"}[Mongodb](https://mongodb.com/)
-- {:rel="noopener"}[OpenFaaS](https://www.openfaas.com/)
-- {:rel="noopener"}[Kubernetes](https://kubernetes.io/)
+- [{:rel="noopener" target="_blank"}Flutter](https://flutter.dev/)
+- [{:rel="noopener" target="_blank"}Phoenix](https://phoenixframework.org/)
+- [{:rel="noopener" target="_blank"}PostgreSQL](https://www.postgresql.org/)
+- [{:rel="noopener" target="_blank"}Mongodb](https://mongodb.com/)
+- [{:rel="noopener" target="_blank"}OpenFaaS](https://www.openfaas.com/)
+- [{:rel="noopener" target="_blank"}Kubernetes](https://kubernetes.io/)
 
 
 If you've already used Flutter or Mongo, you will probably see a lot of the same principles while building your app with Lenra. You can use this knowledge !
 
-Look at our [{:.lenra-icon-github rel="noopener"}GitHub](https://github.com/lenra-io) for more informations about our tech stack.
+Look at our [{:.lenra-icon-github rel="noopener" target="_blank"}GitHub](https://github.com/lenra-io) for more informations about our tech stack.

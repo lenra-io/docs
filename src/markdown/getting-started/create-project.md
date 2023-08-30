@@ -12,7 +12,7 @@ Once the [Lenra CLI is installed](./install.html), you can use it to create a ne
     Creating an app from a template is the easiest way to start.
     The Lenra templates are just git repositories with a basic app that implements the Lenra app API.
 
-    You can find the list of available templates [{:rel="noopener"}here](https://github.com/search?q=topic%3Alenra+topic%3Atemplate&sort=stargazers&type=repositories).
+    You can find the list of available templates [{:rel="noopener" target="_blank"}here](https://github.com/search?q=topic%3Alenra+topic%3Atemplate&sort=stargazers&type=repositories).
 
     To create a new Lenra project you can just run the [`lenra new` command](../references/cli/commands/new.html).
     Pass a list of GitHub topics to find the list of corresponding templates.
@@ -35,14 +35,14 @@ Once the [Lenra CLI is installed](./install.html), you can use it to create a ne
     We have created a few templates to help you start your next project.
 
     {:#templates}
-    - [{:.btn rel="noopener"}![JavaScript](/img/languages/javascript.svg)](https://github.com/lenra-io/template-javascript)
-    - [{:.btn rel="noopener"}![TypeScript](/img/languages/typescript.svg)](https://github.com/lenra-io/template-typescript)
-    - [{:.btn rel="noopener"}![Rust](/img/languages/rust.svg)](https://github.com/lenra-io/template-rust)
-    - [{:.btn rel="noopener"}![Python](/img/languages/python.svg)](https://github.com/lenra-io/template-python)
+    - [{:.btn rel="noopener" target="_blank"}![JavaScript](/img/languages/javascript.svg)](https://github.com/lenra-io/template-javascript)
+    - [{:.btn rel="noopener" target="_blank"}![TypeScript](/img/languages/typescript.svg)](https://github.com/lenra-io/template-typescript)
+    - [{:.btn rel="noopener" target="_blank"}![Rust](/img/languages/rust.svg)](https://github.com/lenra-io/template-rust)
+    - [{:.btn rel="noopener" target="_blank"}![Python](/img/languages/python.svg)](https://github.com/lenra-io/template-python)
     - {:.soon}
-        [{:.btn rel="noopener"}![PHP](/img/languages/php.svg)](https://github.com/lenra-io/template-php)
+        [{:.btn rel="noopener" target="_blank"}![PHP](/img/languages/php.svg)](https://github.com/lenra-io/template-php)
     - {:.soon}
-        [{:.btn rel="noopener"}![Elixir](/img/languages/elixir.svg)](https://github.com/lenra-io/template-elixir)
+        [{:.btn rel="noopener" target="_blank"}![Elixir](/img/languages/elixir.svg)](https://github.com/lenra-io/template-elixir)
 
 - ### from **scratch**
 

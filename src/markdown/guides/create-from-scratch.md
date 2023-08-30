@@ -75,7 +75,7 @@ To make the app creation simpler we've created two libraries.
 The first library is the app lib that contains all the elements to run the application and call the Lenra API.
 This makes the Lenra app simpler to understand since only the views, listeners and resources are kept in the app sources.
 
-You can find one for your favorite language [on GitHub](https://github.com/search?q=topic%3Aapp-lib+topic%3Alenra&type=Repositories).
+You can find one for your favorite language [{:rel="noopener" target="_blank"}on GitHub](https://github.com/search?q=topic%3Aapp-lib+topic%3Alenra&type=Repositories).
 
 ```bash
 npm i @lenra/app-server
@@ -95,7 +95,7 @@ npm pkg set scripts.index='app-lenra index'
 The second library is the components lib that contains [the interface components](../references/components-api/components/) to create the views.
 It adds autocompletion and it's simpler to describe the views compared to describing it as JSON.
 
-You can find one for your favorite language [on GitHub](https://github.com/search?q=topic%3Acomponents-lib+topic%3Alenra&type=Repositories).
+You can find one for your favorite language [{:rel="noopener" target="_blank"}on GitHub](https://github.com/search?q=topic%3Acomponents-lib+topic%3Alenra&type=Repositories).
 
 ```bash
 npm i @lenra/components
@@ -230,7 +230,7 @@ In this mode, you will see your app's logs and will be able to run commands with
 lenra dev
 ```
 
-To see your app, just go to [{:rel="noopener"}localhost:4000](http://localhost:4000/)
+To see your app, just go to [{:rel="noopener" target="_blank"}localhost:4000](http://localhost:4000/)
 
 Great ! You've created an hello world app !
 Let's see how to manage the views and data by adapting it to get the template counter app.
@@ -522,7 +522,7 @@ To resolve this, you can also implement the `onSessionStart` listener to check e
 
 To explain how to test your like there is many users we will use a third solution: giving a user in the URL wth the `user` query param.
 
-[{:rel="noopener"}localhost:4000?user=2](http://localhost:4000/?user=2)
+[{:rel="noopener" target="_blank"}localhost:4000?user=2](http://localhost:4000/?user=2)
 
 If you want to try with more users just increment the `user` query param.
 By opening many tabs you will see that when you increment the common counter it will automatically update the value for all the tabs at the same time.
