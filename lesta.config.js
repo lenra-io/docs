@@ -1,13 +1,16 @@
-import { Page, PageManager, pugPageLister, RobotsManager, SitemapManager } from '@lenra/lesta';
+import { nginxBuilder, Page, PageManager, pugPageLister, RobotsManager, SitemapManager } from '@lenra/lesta';
 import { getFilesRecursively } from '@lenra/lesta/lib/utils.js';
-import * as Path from 'path';
-import * as fs from 'fs';
-import Showdown from 'showdown';
 import fm from 'front-matter';
+import * as fs from 'fs';
+import lunr from 'lunr';
+import { parse } from 'node-html-parser';
+import * as Path from 'path';
+import Showdown from 'showdown';
 
 const languageFileRegex = /^(.+)[.]([a-z]{2})([.](md|html))$/
 const attributesMatchingRegex = /#\S+|\.\S+|([a-zA-Z0-9_-]+)(=("(\\"|[^"])*"|'(\\'|[^'])*'|\S*))?/g;
-const converter = new Showdown.Converter({tables: true});
+const converter = new Showdown.Converter({ tables: true });
+const cwd = process.cwd();
 
 const customClassExt = {
     type: 'output',
@@ -278,4 +281,45 @@ function sortPageLevel(pages) {
         }
     });
     return pages;
+}
+
+export const generators = {
+    nginx: nginxBuilderOverride
+}
+
+async function nginxBuilderOverride(configuration, managers) {
+    let ret = await nginxBuilder(configuration, managers);
+
+    // list all the html files
+    const buildPath = Path.join(cwd, configuration.buildDir);
+    const wwwPath = Path.join(buildPath, 'www');
+    const files = await getFilesRecursively(wwwPath)
+        .then(files => files.filter(file => file.endsWith(".html")));
+
+    // index the files with lunr
+    const index = lunr((builder) => {
+        builder.ref("href");
+        builder.field("title");
+        builder.field("body");
+        files.forEach(file => {
+            const document = parse(fs.readFileSync(file, 'utf8'));
+            const main = document.querySelector("main");
+            const title = main.querySelector("h1").text;
+            main.querySelectorAll("header").forEach(el => el.remove());
+            main.querySelectorAll("*+*").forEach(el => el.insertAdjacentHTML("beforebegin", " "));
+            const body = main.text;
+            const indexContent = {
+                href: Path.relative(wwwPath, file),
+                title,
+                body
+            };
+
+            builder.add(indexContent);
+            fs.writeFileSync(file + ".index.json", JSON.stringify(indexContent), 'utf8');
+        });
+    });
+    // save the index in a json file
+    const indexPath = Path.join(wwwPath, 'lunr.json');
+    fs.writeFileSync(indexPath, JSON.stringify(index), 'utf8');
+    return ret;
 }
