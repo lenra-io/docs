@@ -19,8 +19,8 @@ main>table td {
 }
 
 main>table th {
-    color: rgb(var(--background-color-data));
-    background-color: rgb(var(--text-color-data));
+    color: rgb(var(--white-data));
+    background-color: rgb(var(--black-data));
 }
 
 main>table th:first-of-type {
@@ -29,4 +29,10 @@ main>table th:first-of-type {
 
 main>table th:last-of-type {
     border-top-right-radius: 0.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    main>table th {
+        background-color: rgba(var(--white-data), 0.1);
+    }
 }
