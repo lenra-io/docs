@@ -1,10 +1,21 @@
 Lenra Data system is based on Mongo.
-Using our API, you can access and manage this data and utilize the [View component](/references/components-api/components/view.html) to adapt your application interface.
+
+There is two ways to handle data in Lenra:
+- in the listeners: you can use the [API](#api) to manage your data
+- in the views: you can use the [View component](/references/components-api/components/view.html) to adapt your application interface
+
 
 ## API
 
 To manage the data in your application, you can utilize our REST API.
-To make a basic API call within Listeners, you can use the "api" object that is passed as the third parameter. This object provides you with the server URL and your authentication token.
+To make a basic API call within Listeners, you can use the "api" object that is passed as the third parameter.
+This object provides you with the server URL and your authentication token.
+
+Set the authentication token in the header of your request:
+
+```http
+Authorization: Bearer ${api.token}
+```
 
 ### CRUD
 
@@ -28,8 +39,44 @@ Delete a document
 ```js
 - DELETE `${api.url}/app/colls/${coll}/docs/${doc._id}`
 ```
+
+### Transactions
+
+To handle multiple operations in one request, you can use the [{:rel="noopener" target="_blank"}Mongo transactions](https://www.mongodb.com/docs/manual/core/transactions/).
+
+You can start a transaction by creating it via the API:
+
+```js
+- POST `${api.url}/app/colls/${coll}/transaction`
+```
+
+This will return a transaction token.
+
+Then you can add operations ([CRUD](#crud) and/or [advanced Mongo functions](#advanced-mongo-functions)) to the transaction by using the transaction token instead of the API token in the header of your request:
+
+```http
+Authorization: Bearer ${transactionToken}
+```
+
+When you are done, you can commit the transaction to execute all the operations:
+
+```js
+- POST `${api.url}/app/colls/${coll}/transaction/commit`
+```
+
+Or you can abort the transaction to cancel all the operations:
+
+```js
+- POST `${api.url}/app/colls/${coll}/transaction/abort`
+```
+
+You also need to use the transaction token in the header of those final requests.
+
+
 ### Advanced Mongo functions
 
+- [find](#find)
+- [updateMany](#updatemany)
 
 #### find
 
