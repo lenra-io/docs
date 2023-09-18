@@ -13,6 +13,8 @@
     "dependencies": {
         "@lenra/lesta": "github:lenra-io/lesta",
         "front-matter": "^4.0.2",
+        "lunr": "^2.3.9",
+        "node-html-parser": "^6.1.6",
         "showdown": "^2.1.0"
     },
     "devDependencies": {
@@ -20,7 +22,7 @@
         "@types/minify": "^9.1.0",
         "@types/pug": "^2.0.5",
         "jszip": "^3.10.1",
-        "nodemon": "^2.0.22",
+        "nodemon": "^3.0.1",
         "yaml": "^2.3.1"
     },
     "lesta": {
@@ -32,7 +34,8 @@
                 "default-src": [
                     "unsafe-inline",
                     "analytics.lenra.io",
-                    "https://cdnjs.cloudflare.com/ajax/libs/prism/"
+                    "https://cdnjs.cloudflare.com/ajax/libs/prism/",
+                    "https://unpkg.com/lunr/"
                 ]
             },
             "rewriteRules": [

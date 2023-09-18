@@ -21,8 +21,10 @@ mixin createMenuItem(menuPage, level)
 
 mixin createMenuItems(pages, level)
     each page in pages
-        li(class=(page.path==currentPage.path ? 'selected' : ''))
-            +createMenuItem(page, level)
+        if (!page.properties.igonreMenu)
+            li(class=(page.path==currentPage.path ? 'selected' : ''))
+                +createMenuItem(page, level)
+        
 
 menu.invert-colors
     +createMenuItems(childrenPages(), 1)

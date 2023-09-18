@@ -5,36 +5,36 @@
 @import '.components.css';
 @import '.font.css';
 
+
+main>header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 h1 {
     text-align: center;
     margin-bottom: 2rem;
 }
 
-h1>a.btn.link:first-child {
-    display: block;
-    width: fit-content;
-    margin: 0 auto;
-    margin-top: 0.5rem;
-    font-size: 1rem;
+main>header>a.btn.link {
+    margin-top: 0;
 }
 
-h1>a.btn.link::before {
+main>header>a.btn.link::before {
     display: inline-block;
     font-size: 1.25rem;
     margin-right: 0.5rem;
     color: inherit;
-    vertical-align: middle;
+    vertical-align: text-top;
 }
 
-h1+p {
-    text-align: center;
-}
-
-h1+p+:not(h2) {
+main>header+p+:not(h2) {
     margin-top: 2rem;
 }
 
-main>:not(h1)+h2:not([class^="lenra-icon-"], [class*=" lenra-icon-"])::before,
+main>:not(header)+h2:not([class^="lenra-icon-"], [class*=" lenra-icon-"])::before,
 main>:not(h2)+h3:not([class^="lenra-icon-"], [class*=" lenra-icon-"])::before {
     --spliter-opacity: 0.3;
     content: " ";
@@ -53,16 +53,83 @@ main>:not(h3)+h4 {
 }
 
 
+
+/* Ariane */
+
+nav.ariane {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    padding-top: 0.25rem;
+}
+
+nav.ariane>* {
+    padding: 0.25rem 0;
+    line-height: 2;
+}
+
+nav.ariane>a::after {
+    bottom: 0.5rem;
+}
+
+nav.ariane>a:hover::after {
+    bottom: 0.25rem;
+}
+
+nav.ariane>*:not(:first-child) {
+    white-space: nowrap;
+}
+
+nav.ariane>*:not(:first-child)::before {
+    /* lenra-icon-chevron-right */
+    content: "\e92c";
+
+    font-family: 'Lenra-icons' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --text-opacity: 0.8;
+    font-size: calc(3 / 2 * 1rem);
+
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.5rem;
+}
+
+nav.ariane>*:not(:first-child)::after {
+    width: auto;
+    right: 0;
+    left: calc(1.5rem + 2 * 0.5rem);
+}
+
+
 @media (min-width: 35rem) {
+    main>header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-gap: 1rem;
+    }
+
     h1 {
         display: flex;
         justify-content: space-between;
+        grid-column: 1 / 3;
     }
 
-    h1>a.btn.link:first-child {
-        display: inline-block;
-        flex-grow: 0;
-        flex-shrink: 0;
-        margin: 0;
+    main>header>a.btn.link {
+        align-self: start;
+        grid-column: 2;
+    }
+
+    nav.ariane {
+        justify-content: start;
+        align-self: start;
     }
 }
