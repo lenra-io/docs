@@ -2,7 +2,7 @@ header
   block header
     button(onclick="this.parentNode.parentNode.classList.toggle('menu-opened')") Open/Close Menu
     a(href="/") Lenra Docs
-    form
-        input#search(type="search" name="search" placeholder="Search a guide, a feature, a component...")
+    form(action="/search.html" method="GET")
+        input#search(type="search" name="q" placeholder="Search a guide, a feature, a component..." autocomplete="off")
         button.lenra-icon-search(type="submit") Search
     a.btn.primary(href="https://dev.lenra.io/#/register" target="_blank" rel="noopener") Register on Lenra
