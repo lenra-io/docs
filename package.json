@@ -14,7 +14,7 @@
         "@lenra/lesta": "github:lenra-io/lesta",
         "front-matter": "^4.0.2",
         "lunr": "^2.3.9",
-        "node-html-parser": "^6.1.6",
+        "node-html-parser": "^6.1.10",
         "showdown": "^2.1.0"
     },
     "devDependencies": {
