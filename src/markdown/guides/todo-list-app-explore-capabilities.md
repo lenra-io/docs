@@ -1,18 +1,12 @@
 ---
-description: Look at this guide to create a todo list app.
+description: Look at this guide to add lenra multi-platform client to your todo-list app.
 ---
 
 Now that you know the basics of a Lenra app, we can create our first app : a basic TODO List.
 
-> Note : To follow this guide, you must have basic knowledge about JavaScript and Mongo query language (see [Data management](/features/data-management.html)). To make it understandable for everyone, we will describe the app using JSON routes, but we will use the [app library](https://github.com/lenra-io/app-lib-js) since we have one for the languages managed by our templates.
+> Note : To follow this guide, you must have basic knowledge about JavaScript and Mongo query language (see [Data management](/features/data-management.html)). To make it understandable for everyone, we will not use the [components library](https://github.com/lenra-io/components-lib-javascript) and only describe the views in JSON, but we will use the [app library](https://github.com/lenra-io/app-lib-js) since we have one for the languages managed by our templates.
 
-First of all, download a client-lib's example, in this guide we'll use client-lib-flutter which allow us to create a client in flutter easily downloadable [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Flenra-io%2Fclient-lib-flutter%2Ftree%2Fbeta%2Fexample).
-
-
-We'll start our 
-
-
-Now we want to organize our model (database).
+First of all, we want to organize our model (database).
 
 We will have only one collection : the **task** collection that will store all of our tasks.
 
@@ -37,9 +31,9 @@ Our document will look like that :
 
 ## Create the model class
 
-Now that we know what a task looks like, we want to create it in our lenra-app. To do that, we will create a new file in the classes directory : `Task.js`
+Now that we know what a task looks like, we want to create it in our app. To do that, we will create a new file in the classes directory : `Task.js`
 
-{:data-file="lenra-app/src/classes/Task.js"}
+{:data-file="src/classes/Task.js"}
 ```javascript
 import { Data } from "@lenra/app-server";
 
@@ -63,63 +57,66 @@ This class is a simple class that allows us to easily create a class that repres
 
 ## Create a new task
 
-We now want to create a new view to let the user create tasks. To do that, locate the `floatingActionButton` that contain an `Icon +` in the `lib/main.dart` file.
+We now want to create a new view to let the user create tasks. To do that, we will create a new file in the views directory : `addTaskForm.js`
 
-In the `floatingActionButton` view, we create a new function (and export it). In this function, we will first add a **[form component](/references/components-api/components/form.html).**
+In the `addTaskForm.js` view, we create a new function (and export it). In this function, we will first add a **[form component](/references/components-api/components/form.html).**
 
-{:data-file="lib/main.dart"}
-```dart
-FloatingActionButton(
-  // Open modal to ask for todo description
-  onPressed: () => showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      TextEditingController controller = TextEditingController();
-      return AlertDialog(
-        title: const Text('Add Todo'),
-        content: TextField(
-          controller: controller,
-          decoration:
-              const InputDecoration(hintText: 'Enter todo description'),
-        ),
-        actions: [
-          TextButton(
-            child: const Text('Cancel'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          TextButton(
-            child: const Text('Add'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
+{:data-file="src/views/addTaskForm.js"}
+```javascript
+export default function(data, props) {
+  return {
+    type: "form",
+    onSubmit: {
+      action: "submitTask"
     },
-  ),
-  tooltip: 'Add Todo',
-  child: const Icon(Icons.add),
-),
+    child: {...}
+  }
+}
 ```
 
-In this view, we define the `onAddTodo` listener. This tells the UI to submit the `submitTask` action when the form is submitted.
+In this view, we define the `onSubmit` listener. This tells the UI to submit the `submitTask` action when the form is submitted.
 
-Then we will tell the listener to get the inputs values from the form and sent it to the app through the `event` object of the listener.
+Then we will declare the inputs in our form.
 
-Just edit the `onPressed` callback of the `Add` button :
-
-{:data-file="lib/main.dart"}
-```dart
-callListener({
-  "code": json['onAddTodo']["code"],
-  "event": {
-    "value": {
-      "description": controller.text,
+{:data-file="src/views/addTaskForm.js"}
+```javascript
+export default function(data, props) {
+  return {
+    type: "form",
+    onSubmit: {
+      action: "submitTask"
+    },
+    child:
+    // 1 - Flex component
+    {
+      type: "flex",
+      crossAxisAlignment: "center",
+      spacing: 2,
+      children: [
+        // 2 - label
+        {
+          type: "text",
+          value: "Your task : "
+        },
+        // 3 - The textfield to type the description
+        {
+          type: "flexible",
+          child: {
+            type: "textfield",
+            value: "",
+            name: "description"
+          }
+        },
+        // 4 - The button to submit the form
+        {
+          type: "button",
+          text: "Add",
+          submit: true,
+        }
+      ]
     }
   }
-});
+}
 ```
 
 Let's see what happens here :
