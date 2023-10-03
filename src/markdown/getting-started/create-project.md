@@ -12,7 +12,17 @@ Once the [Lenra CLI is installed](./install.html), you can use it to create a ne
     Creating an app from a template is the easiest way to start.
     The Lenra templates are just git repositories with a basic app that implements the Lenra app API.
 
-    You can find the list of available templates [{:rel="noopener" target="_blank"}here](https://github.com/search?q=topic%3Alenra+topic%3Atemplate&sort=stargazers&type=repositories).
+    You can find the list of [{:rel="noopener" target="_blank"}available templates on GitHub](https://github.com/search?q=topic%3Alenra+topic%3Atemplate&sort=stargazers&type=repositories).
+
+    {:#templates}
+    - ![JavaScript](/img/languages/javascript.svg)
+    - ![TypeScript](/img/languages/typescript.svg)
+    - ![Rust](/img/languages/rust.svg)
+    - ![Python](/img/languages/python.svg)
+    - {:.soon}
+        ![PHP](/img/languages/php.svg)
+    - {:.soon}
+        ![Elixir](/img/languages/elixir.svg)
 
     To create a new Lenra project you can just run the [`lenra new` command](../references/cli/commands/new.html).
     Pass a list of GitHub topics to find the list of corresponding templates.
@@ -30,19 +40,6 @@ Once the [Lenra CLI is installed](./install.html), you can use it to create a ne
     lenra dev
     ```
 
-    #### Maintained by the **Lenra team**
-
-    We have created a few templates to help you start your next project.
-
-    {:#templates}
-    - [{:.btn rel="noopener" target="_blank"}![JavaScript](/img/languages/javascript.svg)](https://github.com/lenra-io/template-javascript)
-    - [{:.btn rel="noopener" target="_blank"}![TypeScript](/img/languages/typescript.svg)](https://github.com/lenra-io/template-typescript)
-    - [{:.btn rel="noopener" target="_blank"}![Rust](/img/languages/rust.svg)](https://github.com/lenra-io/template-rust)
-    - [{:.btn rel="noopener" target="_blank"}![Python](/img/languages/python.svg)](https://github.com/lenra-io/template-python)
-    - {:.soon}
-        [{:.btn rel="noopener" target="_blank"}![PHP](/img/languages/php.svg)](https://github.com/lenra-io/template-php)
-    - {:.soon}
-        [{:.btn rel="noopener" target="_blank"}![Elixir](/img/languages/elixir.svg)](https://github.com/lenra-io/template-elixir)
 
 - ### from **scratch**
 
@@ -54,7 +51,10 @@ Once the [Lenra CLI is installed](./install.html), you can use it to create a ne
 ## Start **developing**
 
 Now that you have a new Lenra app project, you can start developing it.
-Be shure you've understand the [Lenra principles](../guides/principles.html) before starting.
+Be shure you've understand the [Lenra principles](../guides/principles.html) before starting since Lenra is a bit different of the classical frameworks.
 
+One of most important thing to know is that Lenra is how to [manage data](../features/data-management.md).
 
-[{:.btn.link.lenra-icon-arrow-right}Look at our todo list app guide](../guides/todo-list-app.html)
+Find all the features you need for your app in the [features list](../features/).
+
+You also can look at [{:.btn.link.lenra-icon-arrow-right}our todo list app guide](../guides/todo-list-app.html)

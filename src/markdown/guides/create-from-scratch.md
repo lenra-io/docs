@@ -1,5 +1,5 @@
 ---
-name: Create an app from scratch
+name: Create an Lenra template from scratch
 description: We've created many templates for creating a Lenra app using the 'lenra new' command but this guide explains how to create one from scratch.
 ---
 
@@ -30,7 +30,7 @@ mkdir my-app
 # go into it
 cd my-app
 # create the views directory
-mkdir -p src/views
+mkdir -p src/views/lenra
 # create the listners directory
 mkdir -p src/listeners
 # create the classes directory
@@ -68,17 +68,15 @@ code .
 
 ### Import dependencies
 
-To make the app creation simpler we've created two libraries.
+To make the app creation simpler we've created a library that let you define your app resources, but will manage the rest.
 
-#### App lib
+You can find equivalent libraries for your favorite language [{:rel="noopener" target="_blank"}on GitHub](https://github.com/search?q=topic:app-lib+topic:lenra&type=Repositories).
 
-The first library is the app lib that contains all the elements to run the application and call the Lenra API.
-This makes the Lenra app simpler to understand since only the views, listeners and resources are kept in the app sources.
+For JavaScript, we've created the `@lenra/app` library that contains the app server and the Lenra API client and Lenra components for both JSON views and Lenra views (still in beta).
 
-You can find one for your favorite language [{:rel="noopener" target="_blank"}on GitHub](https://github.com/search?q=topic%3Aapp-lib+topic%3Alenra&type=Repositories).
 
 ```bash
-npm i @lenra/app-server
+npm i @lenra/app
 ```
 
 We can now define two npm scripts:
@@ -90,29 +88,51 @@ npm pkg set scripts.index='app-lenra index'
 ```
 
 
-#### Components lib
-
-The second library is the components lib that contains [the interface components](../references/components-api/components/) to create the views.
-It adds autocompletion and it's simpler to describe the views compared to describing it as JSON.
-
-You can find one for your favorite language [{:rel="noopener" target="_blank"}on GitHub](https://github.com/search?q=topic%3Acomponents-lib+topic%3Alenra&type=Repositories).
-
-```bash
-npm i @lenra/components
-```
-
 ### Creation of the app
 
 Now that your project is configured we will define your app manifest and your first view.
 
 #### The manifest and system listeners
 
-The manifest describes some static values for your app, like the root view.
+The manifest describes some static values for your app, like the routes and there corresponding views.
 The app-lib manages the manifest by importing the `src/manifest.js` file.
+
+There is two kind of routes and views in Lenra apps:
+- the JSON routes and views that are defined in the `json` field of the manifest.
+- the Lenra routes and views that are defined in the `lenra` field of the manifest.
+
+If you want to know more about the views differences, see [the principles page](../getting-started/principles.md#views-1).
+
+The app templates use both kind routes and views, but you can use only one of them if you want.
 
 {:data-file="src/manifest.js"}
 ```javascript
-export const rootView = "hello";
+import { View } from "@lenra/app";
+
+/**
+ * @type {import("@lenra/app").Manifest["json"]}
+ */
+export const json = {
+    routes: [
+        {
+            path: "/hello",
+            view: View("hello")
+        }
+    ]
+};
+
+/**
+ * @type {import("@lenra/app").Manifest["lenra"]}
+ */
+export const lenra = {
+    routes: [
+        {
+            path: "/",
+            view: View("hello")
+        }
+    ]
+};
+
 ```
 
 We also will define a file containing the Lenra's system events (`src/listeners/systemEvents.js`) that must be implemented by the apps:
@@ -166,7 +186,7 @@ curl --header "Content-Type: application/json" --request POST --data '{"view": "
 
 You should receive the following response:
 ```json
-{"type":"container","child":{"type":"text","value":"Hello World"},"alignment":"center"}
+{"_type":"container","child":{"_type":"text","value":"Hello World"},"alignment":"center"}
 ```
 
 ### Packaging your app
@@ -211,11 +231,6 @@ generator:
     # the exposed port of your app
     ports:
       - 3000
-    healthcheck:
-      cmd: curl --fail http://localhost:8080/_/health
-      start: 3s
-      interval: 3s
-      timeout: 1s
     # manage elements ignored from the Docker build context
     ignores:
       - "**"

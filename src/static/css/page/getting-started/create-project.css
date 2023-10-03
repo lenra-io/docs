@@ -5,8 +5,8 @@
     gap: 1.5rem;
 }
 
-#templates a {
-    --size: 7.5rem;
+#templates>li {
+    --size: 5rem;
     position: relative;
     display: flex;
     width: var(--size);
@@ -17,13 +17,13 @@
     padding: 0;
 }
 
-#templates .soon a::before {
+#templates>li.soon::before {
     content: "Soon";
     position: absolute;
     top: 0.5rem;
     right: -1rem;
     display: inline-block;
-    padding: calc(0.5rem / 4) calc(0.5rem * 1.5);
+    padding: calc(0.5rem / 4) calc(0.5rem);
     margin-left: calc(0.5rem * 2);
     text-transform: uppercase;
     font-size: calc(6 / 9 * 1rem);
@@ -33,7 +33,7 @@
     border-radius: calc(0.5rem / 4);
 }
 
-#templates a>img {
+#templates>li>img {
     max-height: calc(var(--size) * 5 / 12);
     max-width: calc(var(--size) * 3 / 4);
 }
