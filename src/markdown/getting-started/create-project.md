@@ -2,7 +2,7 @@
 name: Create a project
 ---
 
-## New project
+## New Lenra app
 
 Once the [Lenra CLI is installed](./install.html), you can use it to create a new Lenra app.
 
@@ -25,7 +25,7 @@ Once the [Lenra CLI is installed](./install.html), you can use it to create a ne
         ![Elixir](/img/languages/elixir.svg)
 
     To create a new Lenra project you can just run the [`lenra new` command](../references/cli/commands/new.html).
-    Pass a list of GitHub topics to find the list of corresponding templates.
+    Pass a list of GitHub topics to find the list of corresponding templates (for example the language you want to use).
     If none is specified, the CLI will let you choose in the full list.
     You also can specify the name of a target directory for the new app with the `--path` option.
 
@@ -48,7 +48,7 @@ Once the [Lenra CLI is installed](./install.html), you can use it to create a ne
     [{:.btn.link}Read the specific guide for that](../guides/create-from-scratch.html)
 
 
-## Start **developing**
+## Start developing
 
 Now that you have a new Lenra app project, you can start developing it.
 Be shure you've understand the [Lenra principles](../guides/principles.html) before starting since Lenra is a bit different of the classical frameworks.
@@ -56,5 +56,9 @@ Be shure you've understand the [Lenra principles](../guides/principles.html) bef
 One of most important thing to know is that Lenra is how to [manage data](../features/data-management.md).
 
 Find all the features you need for your app in the [features list](../features/).
+
+<!-- TODO: add showcase app when it's ready -->
+
+<!-- Explain Lenra views and JSON views -->
 
 You also can look at [{:.btn.link.lenra-icon-arrow-right}our todo list app guide](../guides/todo-list-app.html)

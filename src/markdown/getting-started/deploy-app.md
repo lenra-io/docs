@@ -4,10 +4,29 @@ name: Deploy your app
 
 When your application is ready to be shared with others you might find interest into deploying it to the online platform.
 
+## Prerequisites
+
+If you don't have a Lenra app yet, you can [create one](./create-project.md).
+
+Before deploying your app, you need to push to a git repository.
+This repo have to be accessible from the internet, so you can use GitHub, GitLab, BitBucket or any other git hosting service.
+You can use a private repository, but you will need to follow [our dedicated guide](../guides/use-private-repository.md).
+
+Make sure your app is working in production mode locally (using [the Lenra CLI](./install.md)) before deploying it by running the next command in your app directory:
+
+```bash
+# Build the app for production
+lenra build --production
+# Start the app previously built
+lenra start
+```
+
+You can then test your app by opening [http://localhost:4000](http://localhost:4000) in your browser or starting your custom client.
+
+
 ## Deploy your app
 
 Create an account on [{:rel="noopener" target="_blank"}dev.lenra.io](https://dev.lenra.io).
-
 
 After successfully completing this step you will be redirected to the creation of your first project, just enter a name and the URL of the app git repository.
 For private repositories, follow [our dedicated guide](../guides/use-private-repository.html).
