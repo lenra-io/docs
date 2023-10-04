@@ -82,4 +82,4 @@ They are called when an action is performed by the user on the UI (button presse
 
 A listener takes 3 arguments: a property object (**props**), the **event** that triggered this listener and an **api** object that contains all the informations needed to call the API. 
 
-To update the model, simply call the [HTTP data API](../features/data-management.md) in your listener.
+To update the model, simply call the [HTTP data API](../features/data-management.html) in your listener.

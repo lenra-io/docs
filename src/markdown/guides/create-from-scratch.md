@@ -101,7 +101,7 @@ There is two kind of routes and views in Lenra apps:
 - the JSON routes and views that are defined in the `json` field of the manifest.
 - the Lenra routes and views that are defined in the `lenra` field of the manifest.
 
-If you want to know more about the views differences, see [the principles page](../getting-started/principles.md#views-1).
+If you want to know more about the views differences, see [the principles page](../getting-started/principles.html#views-1).
 
 The app templates use both kind routes and views, but you can use only one of them if you want.
 

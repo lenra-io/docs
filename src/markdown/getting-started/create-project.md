@@ -51,14 +51,18 @@ Once the [Lenra CLI is installed](./install.html), you can use it to create a ne
 ## Start developing
 
 Now that you have a new Lenra app project, you can start developing it.
-Be shure you've understand the [Lenra principles](../guides/principles.html) before starting since Lenra is a bit different of the classical frameworks.
+Be shure you've understand the [Lenra principles](./principles.html) before starting since Lenra is a bit different of the classical frameworks.
 
-One of most important thing to know is that Lenra is how to [manage data](../features/data-management.md).
+### Features
 
-Find all the features you need for your app in the [features list](../features/).
+One of most important thing to know is that Lenra is how to [manage data](../features/data-management.html).
+
+Find all the features you need for your app in the [{:.btn.link.lenra-icon-arrow-right}features list](../features/)
+
+### Guides
+
+There is also [some guides](../guides/) that can explain you the next steps for creating your app.
 
 <!-- TODO: add showcase app when it's ready -->
 
-<!-- Explain Lenra views and JSON views -->
-
-You also can look at [{:.btn.link.lenra-icon-arrow-right}our todo list app guide](../guides/todo-list-app.html)
+You should look at our [{:.btn.link.lenra-icon-arrow-right}todo list app guide](../guides/todo-list-app.html)

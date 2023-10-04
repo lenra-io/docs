@@ -2,7 +2,7 @@ Lenra Data system is based on Mongo.
 
 There is two ways to handle data in Lenra:
 - in the listeners: you can use the [API](#api) to manage your data
-- in the views: you can use the [View component](/references/components-api/components/view.html) to adapt your application interface
+- in the views: you can use the [View component](../references/components-api/components/view.html) to adapt your application interface
 
 
 ## API
