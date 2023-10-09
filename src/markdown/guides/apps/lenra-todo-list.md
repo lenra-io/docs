@@ -69,16 +69,17 @@ In the `addTaskForm.js` view, we create a new function (and export it). In this 
 ```javascript
 export default function(data, props) {
   return {
-    type: "form",
+    _type: "form",
     onSubmit: {
-      action: "submitTask"
+      _type: "listener",
+      name: "submitTask"
     },
     child: {...}
   }
 }
 ```
 
-In this view, we define the `onSubmit` listener. This tells the UI to submit the `submitTask` action when the form is submitted.
+In this view, we define the `onSubmit` listener. This tells the UI to submit the `submitTask` listener when the form is submitted.
 
 Then we will declare the inputs in our form.
 
@@ -87,34 +88,35 @@ Then we will declare the inputs in our form.
 ```javascript
 export default function(data, props) {
   return {
-    type: "form",
+    _type: "form",
     onSubmit: {
-      action: "submitTask"
+      _type: "listener",
+      name: "submitTask"
     },
     child:
     // 1 - Flex component
     {
-      type: "flex",
+      _type: "flex",
       crossAxisAlignment: "center",
       spacing: 2,
       children: [
         // 2 - label
         {
-          type: "text",
+          _type: "text",
           value: "Your task : "
         },
         // 3 - The textfield to type the description
         {
-          type: "flexible",
+          _type: "flexible",
           child: {
-            type: "textfield",
+            _type: "textfield",
             value: "",
             name: "description"
           }
         },
         // 4 - The button to submit the form
         {
-          type: "button",
+          _type: "button",
           text: "Add",
           submit: true,
         }
@@ -167,7 +169,7 @@ Now that our form is ready, we just have to call it in our `main.js` component u
 ```javascript
 export default function(data, props) {
   return {
-    type: "flex",
+    _type: "flex",
     direction: "vertical",
     crossAxisAlignment: "center",
     padding: {
@@ -179,7 +181,7 @@ export default function(data, props) {
     spacing: 8,
     children: [
       {
-        type: "text",
+        _type: "text",
         value: "Lenra Todo List",
         style: {
           fontWeight: "w800",
@@ -187,7 +189,7 @@ export default function(data, props) {
         }
       },
       {
-        type: "view",
+        _type: "view",
         name: "addTaskForm",
       }
     ]
@@ -211,7 +213,7 @@ You should be able to type some text in the textfield. But for now the “add”
 
 We will now create the listener that will react to the “add” button pressed.
 
-Remember the `action: "submitTask"` property in the form `onSubmit` listener ? That’s the name of our listener. So create a `submitTask.js` file in the **listeners** directory and add this code to it :
+Remember the `name: "submitTask"` property in the form `onSubmit` listener ? That’s the name of our listener. So create a `submitTask.js` file in the **listeners** directory and add this code to it :
 
 {:data-file="src/listeners/submitTask.js"}
 
@@ -276,9 +278,9 @@ import { Task } from "../classes/Task.js"
 
 export default function (data, _props) {
   return {
-    type: "flexible",
+    _type: "flexible",
     child: {
-      type: "flex",
+      _type: "flex",
       direction: "vertical",
       scroll: true,
       children: taskList(data),
@@ -289,14 +291,14 @@ export default function (data, _props) {
 function taskList(tasks) {
   if (tasks == undefined || tasks.length <= 0) {
     return [{
-      type: "text",
+      _type: "text",
       value: "No tasks"
     }]
   }
 
   return tasks.map(task => {
     return {
-      type: "view",
+      _type: "view",
       name: "taskCard",
       find: {
         coll: DataApi.collectionName(Task),
@@ -328,15 +330,16 @@ I’m sure you will be able to create the `taskCard` view by yourself ! If you h
  */
 export default function ([task], _props) {
   return {
-    type: "actionable",
+    _type: "actionable",
     onPressed: {
-      action: "toggleTask",
+      _type: "listener",
+      name: "toggleTask",
       props: {
         task: task._id,
       }
     },
     child: {
-      type: "container",
+      _type: "container",
       padding: {
         bottom: 2,
         left: 5,
@@ -347,31 +350,32 @@ export default function ([task], _props) {
         bottom: {}
       },
       child: {
-        type: "flex",
+        _type: "flex",
         spacing: 2,
         fillParent: true,
         crossAxisAlignment: "center",
         mainAxisAlignment: "spaceBetween",
         children: [
           {
-            type: "flexible",
+            _type: "flexible",
             child: {
-              type: "text",
+              _type: "text",
               value: task.description,
               style: {
                 decoration: task.done ? "lineThrough" : "none",
               }
             }
           }, {
-            type: "actionable",
+            _type: "actionable",
             onPressed: {
-              action: "deleteTask",
+              _type: "listener",
+              name: "deleteTask",
               props: {
                 task: task._id,
               }
             },
             child: {
-              type: "icon",
+              _type: "icon",
               value: "delete",
               color: 0xFFFF0000
             }
@@ -392,7 +396,7 @@ import { Task } from "../classes/Task.js";
 
 export default function (data, props) {
   return {
-    type: "flex",
+    _type: "flex",
     direction: "vertical",
     crossAxisAlignment: "center",
     padding: {
@@ -404,7 +408,7 @@ export default function (data, props) {
     spacing: 8,
     children: [
       {
-        type: "text",
+        _type: "text",
         value: "Lenra Todo List",
         style: {
           fontWeight: "w800",
@@ -413,7 +417,7 @@ export default function (data, props) {
       },
       // Call the taskList view with some data.
       {
-        type: "view",
+        _type: "view",
         name: "taskList",
         find: {
           coll: DataApi.collectionName(Task),
@@ -425,7 +429,7 @@ export default function (data, props) {
         }
       },
       {
-        type: "view",
+        _type: "view",
         name: "addTaskForm",
       }
     ]
