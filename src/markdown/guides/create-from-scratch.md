@@ -391,57 +391,53 @@ Great, the data is created, but how to use it ?
 #### Make the view dynamic
 
 Now that we have a global counter data we will use it in our counter view.
-To use data in a view you have to query it in your view declaration.
-
-Our first step is to create a parent view to declare our counter view with the query.
-We also give a `text` property to our view.
-
-Let's create the new `src/views/home.js` file and set it as the root view:
-
-{:data-file="src/views/home.js"}
-
-```javascript
-import { DataApi, View } from "@lenra/app";
-import { Counter } from "../classes/Counter.js";
-
-export default function (_data, _props) {
-    return View("counter")
-        .data(DataApi.collectionName(Counter))
-        .props({ text: "The common counter" })
-}
-```
+To use data in a view you have to query it in your view declaration directly in the manifest.
 
 {:data-file="src/manifest.js"}
-
 ```javascript
-export const rootView = "home";
+// add the Counter class import
+import { Counter } from "./classes/Counter.js";
+
+/**
+ * @type {import("@lenra/app").Manifest["json"]}
+ */
+export const json = {
+    routes: [
+        {
+            path: "/counter/global",
+            view: View("counter")
+              // add the find query
+              .find(Counter, {
+                "user": "global"
+              })
+        }
+    ]
+};
 ```
 
-We'll now adapt our counter view to use the response of the query and the given `text` property.
-We also will call an `increment` listener with the counter id in the `id` property when the button is pressed:
+We'll now adapt our counter view to use the response of the query.
+We also will call an `increment` listener with the counter id in the `id` property:
 
 {:data-file="src/views/counter.js"}
 
 ```javascript
-import { Flex, Text, Button } from "@lenra/app";
+import { Listener } from "@lenra/app";
+import { Counter } from "../classes/Counter.js";
 
 /**
  * 
- * @param {import("../classes/Counter").Counter[]} param0 
- * @param {import("@lenra/app-server").props} param1 
- * @returns 
+ * @param {Counter[]} param0 
+ * @param {*} _props 
+ * @returns {import("@lenra/app").JsonViewResponse}
  */
-export default function ([counter], { text }) {
-    return Flex([
-        Text(`${text}: ${counter.count}`),
-        Button("+")
-            .onPressed("increment", { id: counter._id })
-    ])
-        // add some space between the children
-        .spacing(16)
-        // define how the elements are positionned
-        .mainAxisAlignment("spaceEvenly")
-        .crossAxisAlignment("center")
+export default function ([counter], _props) {
+  return {
+    value: counter.count,
+    onIncrement: Listener("increment")
+      .props({
+        id: counter._id
+      })
+  };
 }
 ```
 
@@ -458,18 +454,18 @@ import { Counter } from "../classes/Counter.js";
 
 /**
  * 
- * @param {import("@lenra/app-server").props} props 
- * @param {import("@lenra/app-server").event} _event 
- * @param {import("@lenra/app-server").Api} api
+ * @param {import("@lenra/app").props} props 
+ * @param {import("@lenra/app").event} _event 
+ * @param {import("@lenra/app").Api} api
  * @returns 
  */
-export default async function(props, _event, api) {
-    // Get the wanted counter data
-    let counter = await api.data.getDoc(Counter, props.id);
-    // increment the count field
-    counter.count += 1;
-    // update the data in the base
-    await api.data.updateDoc(counter);
+export default async function (props, _event, api) {
+    // We call the MongoDB updateMany method to increment the counter
+    await api.data.coll(Counter).updateMany({ _id: props.id }, {
+        $inc: {
+            count: 1
+        }
+    });
 }
 ```
 
@@ -524,24 +520,30 @@ export async function onSessionStart(_props, _event, _api) {
 }
 ```
 
-Now we adapt the home view to have the two counters (user specific and global) and some layout:
+Now we create a second route to have the two counters (user specific and global) and some layout:
 
-{:data-file="src/views/home.js"}
+{:data-file="src/manifest.js"}
 
 ```javascript
-import { DataApi, Flex, View } from "@lenra/app";
-import { Counter } from "../classes/Counter.js";
-
-export default function (_data, _props) {
-    return Flex([
-        View("counter")
-            .data(DataApi.collectionName(Counter), { user: "@me" })
-            .props({ text: "My personnal counter" }),
-        View("counter")
-            .data(DataApi.collectionName(Counter), { user: "global" })
-            .props({ text: "The common counter" }),
-    ])
-}
+/**
+ * @type {import("@lenra/app").Manifest["json"]}
+ */
+export const json = {
+    routes: [
+        {
+            path: "/counter/global",
+            view: View("counter").find(Counter, {
+                "user": "global"
+            })
+        },
+        {
+            path: "/counter/me",
+            view: View("counter").find(Counter, {
+                "user": "@me"
+            })
+        }
+    ]
+};
 ```
 
 If you reload your app now, you'll have a problem since the current user you're making your tests with has already joined the app.
@@ -554,6 +556,8 @@ To explain how to test your like there is many users we will use a third solutio
 If you want to try with more users just increment the `user` query param.
 By opening many tabs you will see that when you increment the common counter it will automatically update the value for all the tabs at the same time.
 It works the same way for the user specific counter if you open many tabs with the same value for the `user` query param.
+
+## Lenra views implementation
 
 ### Let's add some layout and autocompletion
 
