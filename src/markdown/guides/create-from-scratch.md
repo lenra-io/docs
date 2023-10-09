@@ -134,7 +134,6 @@ export const lenra = {
         }
     ]
 };
-
 ```
 
 We also will define a file containing the Lenra's system events (`src/listeners/systemEvents.js`) that must be implemented by the apps:
@@ -250,9 +249,11 @@ To see your app, just go to [{:rel="noopener" target="_blank"}localhost:4000](ht
 Great ! You've created an hello world app !
 Let's see how to manage the views and data by adapting it to get the template counter app.
 
-## The application elements
+## The JSON views implementation
 
-Now that we have a basic app we will implement our counter app elements.
+Now that we have a basic app we will implement our counter app elements starting with the JSON view.
+
+If you want to get the app result look at the examples in [our client lib projects](https://github.com/search?q=topic%3Aclient+topic%3Alib+org%3Alenra-io&type=repositories):
 
 ### The counter JSON view
 
@@ -264,8 +265,6 @@ Let's define it in the new `src/views/counter.js` file:
 {:data-file="src/views/counter.js"}
 
 ```javascript
-import { Listener } from "@lenra/app";
-
 /**
  * 
  * @param {*} _data 
@@ -273,34 +272,42 @@ import { Listener } from "@lenra/app";
  * @returns {import("@lenra/app").JsonViewResponse}
  */
 export default function (_data, _props) {
+  const count = 0;
   return {
-    value: counter.count,
-    onIncrement: Listener("increment")
-      .props({
-        id: counter._id
-      })
+    value: count,
+    onIncrement: {}
   };
 }
 ```
 
-To see it, we need to define the `rootView` field in the `src/manifest.js` at the value `"counter"`.
+To see it, we need to define the view in the manifest.
 
 {:data-file="src/manifest.js"}
 
 ```javascript
-export const rootView = "counter";
+/**
+ * @type {import("@lenra/app").Manifest["json"]}
+ */
+export const json = {
+    routes: [
+        {
+            path: "/counter/global",
+            view: View("counter")
+        }
+    ]
+};
 ```
 
 To reload (rebuild and restart) your app just press the `R` key while your terminal is in interactive mode.
 
-You will see your counter, but nothing happens when you click on the button.
+Refresh the client and you will see your counter, but nothing happens when you click on the button.
 Of course, we've defined the counter value with a constant value of 0.
 Let's see how to dynamise it.
 
 ### The counter data
 
 To dynamise our counter view we will need to manage a state to it.
-With Lenra manage a state, you will need to store it in the MongoDB database of your app.
+To manage a state with Lenra, you will need to store it in the MongoDB database of your app.
 
 To manage your app data you will need to use our API from a listener.
 The JavaScript app-lib eases the data management by using classes.
@@ -312,7 +319,7 @@ We will create a new class file, `src/classes/Counter.js`, for the `Counter` cla
 {:data-file="src/classes/Counter.js"}
 
 ```javascript
-import { Data } from "@lenra/app-server";
+import { Data } from "@lenra/app";
 
 export class Counter extends Data {
     /**
@@ -351,11 +358,12 @@ import { Counter } from "../classes/Counter.js";
  * @param {import("@lenra/app-server").Api} api 
  */
 export async function onEnvStart(_props, _event, api) {
+    const counterColl = api.data.coll(Counter);
     // get the global counters
-    const counters = await api.data.find(Counter, { user: "global" })
+    let counters = await counterColl.find(Counter, { user: "global" })
     // if there is none, create one
     if (counters.length == 0) {
-        await api.data.createDoc(new Counter("global", 0));
+        await counterColl.createDoc(new Counter("global", 0));
         console.log("Global counter created");
     }
 }
