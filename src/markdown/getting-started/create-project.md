@@ -65,4 +65,4 @@ There is also [some guides](../guides/) that can explain you the next steps for 
 
 <!-- TODO: add showcase app when it's ready -->
 
-You should look at our [{:.btn.link.lenra-icon-arrow-right}todo list app guide](../guides/todo-list-app.html)
+You should look at our [{:.btn.link.lenra-icon-arrow-right}app guides](../guides/apps/)

@@ -1,6 +1,6 @@
 ---
+name: Todo list with Lenra views
 description: Look at this guide to create a todo list app.
-position: 1
 ---
 
 Now that you know the basics of a Lenra app, we can create our first app : a basic TODO List.
