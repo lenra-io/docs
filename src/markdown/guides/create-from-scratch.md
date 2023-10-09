@@ -2,7 +2,6 @@
 name: Create an Lenra template from scratch
 description: We've created many templates for creating a Lenra app using the 'lenra new' command but this guide explains how to create one from scratch.
 ---
-
 Welcome to this guide on how to create your first application using Lenra technology.
 In this guide, we will take you through the process of building an application that works similar to the provided application templates.
 Whether you are a beginner or have some experience in programming, this guide will help you create your own functional application with ease.
@@ -40,6 +39,7 @@ mkdir -p src/resources
 ```
 
 Initialize git:
+
 ```bash
 # ignore some elements
 echo '### Node
@@ -53,6 +53,7 @@ git init
 ```
 
 And initialize npm:
+
 ```bash
 # initialize npm project
 npm init -y
@@ -74,19 +75,18 @@ You can find equivalent libraries for your favorite language [{:rel="noopener" t
 
 For JavaScript, we've created the `@lenra/app` library that contains the app server and the Lenra API client and Lenra components for both JSON views and Lenra views (still in beta).
 
-
 ```bash
 npm i @lenra/app
 ```
 
 We can now define two npm scripts:
+
 ```bash
 # Start the app server
 npm pkg set scripts.start='app-lenra'
 # Index the views and listeners to have autocompletion
 npm pkg set scripts.index='app-lenra index'
 ```
-
 
 ### Creation of the app
 
@@ -98,6 +98,7 @@ The manifest describes some static values for your app, like the routes and ther
 The app-lib manages the manifest by importing the `src/manifest.js` file.
 
 There is two kind of routes and views in Lenra apps:
+
 - the JSON routes and views that are defined in the `json` field of the manifest.
 - the Lenra routes and views that are defined in the `lenra` field of the manifest.
 
@@ -106,6 +107,7 @@ If you want to know more about the views differences, see [the principles page](
 The app templates use both kind routes and views, but you can use only one of them if you want.
 
 {:data-file="src/manifest.js"}
+
 ```javascript
 import { View } from "@lenra/app";
 
@@ -138,6 +140,7 @@ export const lenra = {
 We also will define a file containing the Lenra's system events (`src/listeners/systemEvents.js`) that must be implemented by the apps:
 
 {:data-file="src/listeners/systemEvents.js"}
+
 ```javascript
 export async function onEnvStart(_props, _event, api) {
     // this event is dispatched when your app is deployed
@@ -154,19 +157,14 @@ export async function onSessionStart(_props, _event, _api) {
 
 #### Your first view
 
-We will now create the first view of our app in the file `src/views/hello.js`.
+We will now create the first view of our app in the file `src/views/hello.js` that will be used by both Lenra and JSON routes.
 The app-lib will manage all the exported functions in the `src/views` directory as views and in the `src/listeners` directory as listeners.
 This view will only display the text `Hello world` in the center of the screen.
 
 {:data-file="src/views/hello.js"}
-```javascript
-import { Container, Text } from "@lenra/components";
 
-export default function (_data, _props) {
-    return Container(
-        Text("Hello World")
-    ).alignment("center")
-}
+```javascript
+import { Container, Text } from "@lenra/app
 ```
 
 Start your app server with the following command:
@@ -185,6 +183,7 @@ curl --header "Content-Type: application/json" --request POST --data '{"view": "
 ```
 
 You should receive the following response:
+
 ```json
 {"_type":"container","child":{"_type":"text","value":"Hello World"},"alignment":"center"}
 ```
@@ -199,6 +198,7 @@ To get more informations about how to create this file, see [the dedicated page]
 For this guide we will just use the JavaScript template's one explaining it:
 
 {:data-file="lenra.yml"}
+
 ```yaml
 componentsApi: "1.0"
 # Your app generator
@@ -254,40 +254,39 @@ Let's see how to manage the views and data by adapting it to get the template co
 
 Now that we have a basic app we will implement our counter app elements.
 
-### The counter view
+### The counter JSON view
 
 First we'll create the counter view.
-Its purpose is to display the value of a counter in a [text component](/references/components-api/components/text.html) and define a [button](/references/components-api/components/button.html) to increment it.
-We'll put them together in a [flex component](/references/components-api/components/flex.html).
+Its purpose is to display the value of a counter and define a listener to increment it.
 
 Let's define it in the new `src/views/counter.js` file:
 
 {:data-file="src/views/counter.js"}
+
 ```javascript
-import { Flex, Text, Button } from "@lenra/components";
+import { Listener } from "@lenra/app";
 
 /**
- * @param {import("@lenra/app-server").data} _data 
- * @param {import("@lenra/app-server").props} _props 
- * @returns 
+ * 
+ * @param {*} _data 
+ * @param {*} _props 
+ * @returns {import("@lenra/app").JsonViewResponse}
  */
 export default function (_data, _props) {
-  const count = 0;
-  return Flex([
-    Text(`Counter value: ${count}`),
-    Button("+")
-  ])
-    // add some space between the children
-    .spacing(16)
-    // define how the elements are positionned
-    .mainAxisAlignment("spaceEvenly")
-    .crossAxisAlignment("center")
+  return {
+    value: counter.count,
+    onIncrement: Listener("increment")
+      .props({
+        id: counter._id
+      })
+  };
 }
 ```
 
 To see it, we need to define the `rootView` field in the `src/manifest.js` at the value `"counter"`.
 
 {:data-file="src/manifest.js"}
+
 ```javascript
 export const rootView = "counter";
 ```
@@ -311,6 +310,7 @@ The JavaScript app-lib eases the data management by using classes.
 We will create a new class file, `src/classes/Counter.js`, for the `Counter` class:
 
 {:data-file="src/classes/Counter.js"}
+
 ```javascript
 import { Data } from "@lenra/app-server";
 
@@ -329,9 +329,9 @@ export class Counter extends Data {
 ```
 
 Counter class contains two fields:
+
 - `count`: the counter value.
 - `user`: the user that own the counter. We will use it later.
-
 
 #### Create the global counter
 
@@ -340,6 +340,7 @@ We will use the system event listeners that [we've created in the first part of 
 Edit the `src/listeners/systemEvents.js` to implement the `onEnvStart` listener:
 
 {:data-file="src/listeners/systemEvents.js"}
+
 ```javascript
 import { Counter } from "../classes/Counter.js";
 
@@ -390,9 +391,9 @@ We also give a `text` property to our view.
 Let's create the new `src/views/home.js` file and set it as the root view:
 
 {:data-file="src/views/home.js"}
+
 ```javascript
-import { DataApi } from "@lenra/app-server";
-import { View } from "@lenra/components";
+import { DataApi, View } from "@lenra/app";
 import { Counter } from "../classes/Counter.js";
 
 export default function (_data, _props) {
@@ -403,6 +404,7 @@ export default function (_data, _props) {
 ```
 
 {:data-file="src/manifest.js"}
+
 ```javascript
 export const rootView = "home";
 ```
@@ -411,8 +413,9 @@ We'll now adapt our counter view to use the response of the query and the given 
 We also will call an `increment` listener with the counter id in the `id` property when the button is pressed:
 
 {:data-file="src/views/counter.js"}
+
 ```javascript
-import { Flex, Text, Button } from "@lenra/components";
+import { Flex, Text, Button } from "@lenra/app";
 
 /**
  * 
@@ -440,8 +443,8 @@ Let's implement the `increment` listener.
 
 Now that your counter view is based on your counter data we will implement the `increment` listener to increment the given counter `count` field in a new `src/listeners/increment.js` file:
 
-
 {:data-file="src/listeners/increment.js"}
+
 ```javascript
 import { Counter } from "../classes/Counter.js";
 
@@ -472,6 +475,7 @@ To target the current user while managing data with Lenra you can use the `@me` 
 Let's create the data when the user join the app for the first time by editing our `src/listeners/systemEvents.js` file:
 
 {:data-file="src/listeners/systemEvents.js"}
+
 ```javascript
 import { Counter } from "../classes/Counter.js";
 
@@ -515,9 +519,9 @@ export async function onSessionStart(_props, _event, _api) {
 Now we adapt the home view to have the two counters (user specific and global) and some layout:
 
 {:data-file="src/views/home.js"}
+
 ```javascript
-import { DataApi } from "@lenra/app-server";
-import { Flex, View } from "@lenra/components";
+import { DataApi, Flex, View } from "@lenra/app";
 import { Counter } from "../classes/Counter.js";
 
 export default function (_data, _props) {
@@ -561,6 +565,7 @@ We now can use it by importing the file in our modules.
 Let's add some layout to our home view and replace the counter view name by the constant:
 
 {:data-file="src/views/home.js"}
+
 ```javascript
 import { DataApi } from "@lenra/app-server";
 import { Flex, View } from "@lenra/components";
@@ -586,6 +591,7 @@ export default function (_data, _props) {
 Now we will create a top menu bar containing the Lenra logo and a centered title:
 
 {:data-file="src/views/menu.js"}
+
 ```javascript
 import { Container, Flex, colors, padding, Image, Flexible, Text } from "@lenra/components";
 
@@ -626,7 +632,7 @@ export default function(_data, _props) {
 }
 ```
 
-Download the Lenra logo like that: 
+Download the Lenra logo like that:
 
 ```bash
 wget -O src/resources/logo.png https://raw.githubusercontent.com/lenra-io/template-javascript/main/src/resources/logo.png
@@ -635,6 +641,7 @@ wget -O src/resources/logo.png https://raw.githubusercontent.com/lenra-io/templa
 Now we can create a main view that contains our menu and home view:
 
 {:data-file="src/views/main.js"}
+
 ```javascript
 import { Flex, View } from "@lenra/components";
 import { views } from "../index.gen.js";

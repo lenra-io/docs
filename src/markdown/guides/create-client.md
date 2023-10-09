@@ -1,7 +1,6 @@
 ---
 name: Create an external client
 ---
-
 The Lenra client is still in beta and it need some features (that we are working on) to give a good user experience for your app.
 This make it usable as is for PoC or back-end developers that don't want to have an advanced front, but for front-end developers it's limited.
 
@@ -9,7 +8,52 @@ That why we've created another kind of client for your Lenra apps thanks to the 
 
 ## JSON Views
 
+The JSON Views work the same way as Lenra views, but instead of defining components you can define your own result strutures.
 
+You can define listeners anywhere in your structures by defining a JSON object corresponding to a Listener structure:
+
+```json
+{
+  "_type": "listener",
+  "name": "my listener name"
+}
+```
+
+You can also add props in your listener structure to give properties to your listener execution.
+
+Here is an example of JSON view for the counter template app:
+
+```js
+import { Listener } from "@lenra/app";
+import { Counter } from "../classes/Counter.js";
+
+/**
+ * 
+ * @param {Counter[]} param0 
+ * @param {*} _props 
+ * @returns {import("@lenra/app").JsonViewResponse}
+ */
+export default function ([counter], _props) {
+  return {
+    value: counter.count,
+    onIncrement: Listener("increment")
+      .props({
+        id: counter._id
+      })
+  };
+}
+
+```
+
+To expose a JSON view you need to define a corresponding JSON route.
+See the [route documentation](../features/routes.html) to learn more about them.
+
+## Create an external client
+
+To create an external client, you first need to define what client technology you will use.
+Look at [the client libs](https://github.com/search?q=topic%3Alenra+topic%3Aclient+topic%3Aclient+topic%3Alib&type=repositories) to ease Lenra integration in your existing client project.
+
+Find [client example projects on GitHub](https://github.com/search?q=topic%3Alenra+topic%3Aclient+topic%3Aclient+topic%3Aexample&type=repositories) to start from an existing project.
 
 ## Configure an external client
 

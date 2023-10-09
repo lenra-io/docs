@@ -1,7 +1,6 @@
 ---
 name: Deploy your app
 ---
-
 When your application is ready to be shared with others you might find interest into deploying it to the online platform.
 
 ## Prerequisites
@@ -22,7 +21,6 @@ lenra start
 ```
 
 You can then test your app by opening [http://localhost:4000](http://localhost:4000) in your browser or starting your custom client.
-
 
 ## Deploy your app
 
