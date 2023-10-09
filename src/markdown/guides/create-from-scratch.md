@@ -559,6 +559,38 @@ It works the same way for the user specific counter if you open many tabs with t
 
 ## Lenra views implementation
 
+Now that we have working JSON views we will create Lenra views that will do the same thing.
+
+### The counter Lenra view
+
+We will now create the Lenra view that will do the same thing as the JSON one, but with interface components.
+The view will also need a `text` property to have a different text for each counter.
+
+{:data-file="src/views/lenra/counter.js"}
+
+```javascript
+import { Flex, Text, Button } from "@lenra/app";
+
+/**
+ * 
+ * @param {import("../../classes/Counter").Counter[]} param0 
+ * @param {{text: string}} param1 
+ * @returns 
+ */
+export default function ([counter], { text }) {
+  return Flex([
+    Text(`${text}: ${counter.count}`),
+    Button("+")
+      .onPressed("increment", {
+        "id": counter._id
+      })
+  ])
+    .spacing(16)
+    .mainAxisAlignment("spaceEvenly")
+    .crossAxisAlignment("center")
+}
+```
+
 ### Let's add some layout and autocompletion
 
 Now that we have a working app we will make it a little prettier by adding some layout.
@@ -570,27 +602,25 @@ To index your app elements you just have to run the next command:
 npm run index
 ```
 
-This command will generate a `src/index.gen.js` file that contains some constants with the names of your views and listeners.
+Let's create our home view that will contain two counters:
 
-We now can use it by importing the file in our modules.
-
-Let's add some layout to our home view and replace the counter view name by the constant:
-
-{:data-file="src/views/home.js"}
+{:data-file="src/views/lenra/home.js"}
 
 ```javascript
-import { DataApi } from "@lenra/app-server";
-import { Flex, View } from "@lenra/components";
-import { Counter } from "../classes/Counter.js";
-import { views } from "../index.gen.js";
+import { DataApi, Flex, View } from "@lenra/app";
+import { Counter } from "../../classes/Counter.js";
 
 export default function (_data, _props) {
     return Flex([
-        View(views.counter)
-            .data(DataApi.collectionName(Counter), { user: "@me" })
+        View("lenra.counter")
+            .find(Counter, {
+                user: "@me"
+            })
             .props({ text: "My personnal counter" }),
-        View(views.counter)
-            .data(DataApi.collectionName(Counter), { user: "global" })
+        View("lenra.counter")
+            .find(Counter, {
+                user: "global"
+            })
             .props({ text: "The common counter" }),
     ])
         .direction("vertical")
@@ -605,7 +635,7 @@ Now we will create a top menu bar containing the Lenra logo and a centered title
 {:data-file="src/views/menu.js"}
 
 ```javascript
-import { Container, Flex, colors, padding, Image, Flexible, Text } from "@lenra/components";
+import { Container, Flex, colors, padding, Image, Flexible, Text } from "@lenra/app";
 
 export default function(_data, _props) {
   return Container(
@@ -655,13 +685,12 @@ Now we can create a main view that contains our menu and home view:
 {:data-file="src/views/main.js"}
 
 ```javascript
-import { Flex, View } from "@lenra/components";
-import { views } from "../index.gen.js";
+import { Flex, View } from "@lenra/app";
 
 export default function (_data, _props) {
   return Flex([
-    View(views.menu),
-    View(views.home)
+    View("lenra.menu"),
+    View("lenra.home")
   ])
     .direction("vertical")
     .scroll(true)
@@ -670,17 +699,64 @@ export default function (_data, _props) {
 }
 ```
 
+We will now add the views to the manifest:
+
+{:data-file="src/manifest.js"}
+
+```javascript
+/**
+ * @type {import("@lenra/app").Manifest["lenra"]}
+ */
+export const lenra = {
+    routes: [
+        {
+            path: "/",
+            view: View("lenra.main")
+        }
+    ]
+};
+```
+
+So the full manifest is:
+
+{:data-file="src/manifest.js"}
+
+```javascript
+import { View } from "@lenra/app";
+import { Counter } from "./classes/Counter.js";
+
+/**
+ * @type {import("@lenra/app").Manifest["json"]}
+ */
+export const json = {
+    routes: [
+        {
+            path: "/counter/global",
+            view: View("counter").find(Counter, {
+                "user": "global"
+            })
+        },
+        {
+            path: "/counter/me",
+            view: View("counter").find(Counter, {
+                "user": "@me"
+            })
+        }
+    ]
+};
+
+/**
+ * @type {import("@lenra/app").Manifest["lenra"]}
+ */
+export const lenra = {
+    routes: [
+        {
+            path: "/",
+            view: View("lenra.main")
+        }
+    ]
+};
+```
+
 And that's it !
 Your template app is finished.
-
-You can test with the [`lenra check template` command](../references/cli/commands/check/template.html).
-
-From the interactive mode of Lenra CLI press `Ctrl + C` to enter in the Lenra terminal.
-You can now run directly Lenra commands like those ones:
-
-```bash
-# Expose your application port (always 8080)
-expose app
-# check the template
-check template
-```
