@@ -9,7 +9,9 @@
 
 mixin createMenuItem(menuPage, level)
     - let pageName = menuPage.properties.name || menuPage.properties.title;
-    - let className = menuPage.properties.icon ? "lenra-icon-" + menuPage.properties.icon : "";
+    - let classes = menuPage.properties.classes || [];
+    - if (menuPage.properties.icon) classes.push("lenra-icon-" + menuPage.properties.icon)
+    - let className = classes.join(" ");
     a(class=className href='/'+menuPage.href)= pageName
     - let subPages = childrenPages(menuPage);
     if (subPages.length && level<3)

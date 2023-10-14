@@ -1,6 +1,8 @@
 ---
 name: Lenra Components API
-classes: ["beta"]
+classes:
+- tag
+- beta
 ---
 
 The Lenra's Components API describes the possible component JSON data managed by the Lenra's client to display app UI.

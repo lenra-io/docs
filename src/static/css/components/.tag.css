@@ -1,0 +1,28 @@
+.tag::after {
+    --size: 0.5rem;
+    position: relative;
+    display: inline-block;
+    padding: calc(var(--size) / 4) calc(var(--size) * 1.5);
+    margin-left: var(--size);
+    text-transform: uppercase;
+    font-size: calc(var(--size) * 12 / 9);
+    font-weight: 400;
+    background-color: rgb(var(--secondary-color-data));
+    color: rgb(var(--white-data));
+    border-radius: calc(var(--size) / 4);
+    top: 50%;
+    right: 0;
+    left: auto;
+    bottom: auto;
+    width: auto;
+    letter-spacing: calc(var(--size) / 10);
+}
+
+a.tag::after {
+    border: none;
+    opacity: 1;
+}
+
+.tag.beta::after {
+    content: "beta";
+}
