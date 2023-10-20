@@ -54,7 +54,7 @@ You can utilize path parameters for your routes. For instance, you can use these
 ```
 
 By using the `:id` parameter, the route `/books/:id` will match any route.
-The value for `:id` can be used in the view query like in the example above by prefixing the variable name by `@route.`.
+The value for `:id` can be used in the view query as you can see in the example above by prefixing the variable name by `@route.`.
 The `:id` parameter can also be fetched from inside of the view by doing as follows.
 
 - You have to specify to the view that you want to use context values. (In this example let's consider that the view is under the path /myView/:id)

@@ -7,7 +7,7 @@ In order to build that platform we had to create a custom application system bas
 {:style="width: 100%"}
 ![Lenra architecture](/img/architecture.svg)
 
-If you want to know more about our tech stack, you can visit their website by clicking on the links below:
+If you want to know more about our tech stack, you can visit the websites for each tool by clicking on the links below:
 
 {:.list}
 - [{:rel="noopener" target="_blank"}Flutter](https://flutter.dev/)

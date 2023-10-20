@@ -17,4 +17,4 @@ The `See my application` button of your app dashboard will give you the URL to s
 When your application is private, only you and the users you've invited can access it.
 
 To invite a user, just enter the user e-mail address and the platform will send an invitation e-mail.
-Please make sure that the e-mail you have is the one used by the user to connect to Lenra.
+Please make sure that the e-mail you provide is the one used by the user to connect to Lenra.

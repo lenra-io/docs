@@ -10,7 +10,7 @@ There is two ways to handle data in Lenra:
 The `@me` value is a special string that represents the current user.
 It can be used for document manipulation and queries.
 
-To use it, you need just need to set the `@me` value to a field of the document like is done in our templates (see [the create a tempalte from scratch guide](../guides/create-from-scratch.html) to better understand how to use it).
+To use it, you just need to set the `@me` value to a field of the document as done in our templates (see [the create a template from scratch guide](../guides/create-from-scratch.html) to better understand how to use it).
 
 ## API
 

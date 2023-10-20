@@ -55,10 +55,10 @@ If one of the two argument changes, the view is rebuilt.
 There is two kind of views in Lenra apps:
 - the JSON views that are used by external clients.
     They let you define any kind of JSON structure as output.
-    The JSON views are preferred for front-end developers.
+    The JSON views are recommended for front-end developers.
 - the Lenra views that are used by the Lenra client.
-    They output needs to be a [Lenra component](../references/components-api/).
-    The Lenra views are preferred for back-end developers.
+    Their output needs to be a [Lenra component](../references/components-api/).
+    The Lenra views are recommended for back-end developers.
 
 
 {:.blue.lenra-icon-users}

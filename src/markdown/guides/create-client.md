@@ -2,13 +2,13 @@
 name: Create an external client
 ---
 The Lenra client is still in beta and it need some features (that we are working on) to give a good user experience for your app.
-This make it usable as is for PoC or back-end developers that don't want to have an advanced front, but for front-end developers it's limited.
+This makes it usable as is for PoC or back-end developers that don't want to have an advanced front, but it might seem limited for front-end developers.
 
 That why we've created another kind of client for your Lenra apps thanks to the JSON views.
 
 ## JSON Views
 
-The JSON Views work the same way as Lenra views, but instead of defining components you can define your own result strutures.
+The JSON Views work the same way as Lenra views, but instead of defining components you can define your own result structures.
 
 You can define listeners anywhere in your structures by defining a JSON object corresponding to a Listener structure:
 
