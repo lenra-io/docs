@@ -1,5 +1,8 @@
-ul.list
+ul.list.subpages
     each child in currentPage.children
         - let page = pageMap[child];
+        - let classes = page.properties.classes || [];
+        - if (page.properties.icon) classes.push("lenra-icon-" + page.properties.icon)
+        - let className = classes.join(" ");
         li
-            a(href="/"+child)= (page.properties.name || page.properties.title)
+            a(href="/"+child class=className)= (page.properties.name || page.properties.title)

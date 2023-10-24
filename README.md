@@ -3,6 +3,7 @@
 Lenra's documentation web site
 
 ## Development
+
 To launch the server in dev mode, run the following commands:
 
 ```bash
