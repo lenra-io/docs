@@ -42,12 +42,20 @@ You can utilize path parameters for your routes. For instance, you can use these
     "view": {
       "type": "view",
       "name": "bookPage",
+      "find": {
+        "type": "book",
+        "query": {
+          "id": "@route.id"
+        }
+      }
     }
   }
 ]
 ```
 
-By using the `:id` parameter, the route `/books/:id` will match any route. The value for `:id` can then be fetched from inside of the view by doing as follows.
+By using the `:id` parameter, the route `/books/:id` will match any route.
+The value for `:id` can be used in the view query as you can see in the example above by prefixing the variable name by `@route.`.
+The `:id` parameter can also be fetched from inside of the view by doing as follows.
 
 - You have to specify to the view that you want to use context values. (In this example let's consider that the view is under the path /myView/:id)
 
@@ -72,7 +80,7 @@ export default function (data, props, context) {
   }
 ```
 
-# Navigating to a route
+## Navigating to a route
 
 You can navigate to any route that is defined in the `lenraRoutes` property in the app manifest. To do that, you have to call the specific listener action `@lenra:navTo`. Here is an example of a button using this listener.
 

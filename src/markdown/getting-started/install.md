@@ -26,11 +26,10 @@ docker compose --version
 
 {:.or}
 - ### using **cargo**
-    Simply install the latest package using the [{:rel="noopener" target="_blank"}cargo CLI](https://doc.rust-lang.org/cargo/getting-started/installation.html) and since we are still in beta, you'll have to define the version.
-    The next command will install the latest beta version:
+    Simply install the latest package using the [{:rel="noopener" target="_blank"}cargo CLI](https://doc.rust-lang.org/cargo/getting-started/installation.html):
 
     ```bash
-    cargo install lenra_cli@~1.0.0-beta.0
+    cargo install lenra_cli
     ```
 
     For more installation instructions, you can directly check the CLI repository.
@@ -39,21 +38,21 @@ docker compose --version
 - ### using **the binary**
     <details id="download-linux" open><summary class="lenra-icon-linux">Lenra for Linux</summary>
 
-    - [{:.btn.link.lenra-icon-download target="_blank" rel="noopener" target="_blank"}lenra-linux-x86_64.tar.gz](https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-linux-x86_64.tar.gz)
+    - [{:.btn.link.lenra-icon-download target="_blank" rel="noopener" target="_blank"}lenra-linux-x86_64](https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-linux-x86_64)
 
-    - [{:.btn.link.lenra-icon-download target="_blank" rel="noopener" target="_blank"}lenra-linux-aarch64.tar.gz](https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-linux-aarch64.tar.gz)
+    - [{:.btn.link.lenra-icon-download target="_blank" rel="noopener" target="_blank"}lenra-linux-aarch64](https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-linux-aarch64)
 
     </details>
     <details id="download-windows"><summary class="lenra-icon-windows">Lenra for Windows</summary>
 
-    - [{:.btn.link.lenra-icon-download target="_blank" rel="noopener" target="_blank"}lenra-windows-x86_64.tar.gz](https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-windows-x86_64.tar.gz)
-    <!-- - [{:.btn.link.lenra-icon-download target="_blank" rel="noopener" target="_blank"}lenra-windows-aarch64.tar.gz](https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-windows-aarch64.tar.gz) -->
+    - [{:.btn.link.lenra-icon-download target="_blank" rel="noopener" target="_blank"}lenra-windows-x86_64.exe](https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-windows-x86_64.exe)
+    <!-- - [{:.btn.link.lenra-icon-download target="_blank" rel="noopener" target="_blank"}lenra-windows-aarch64.exe](https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-windows-aarch64.exe) -->
 
     </details>
     <details id="download-macos"><summary class="lenra-icon-apple">Lenra for MacoS</summary>
 
-    - [{:.btn.link.lenra-icon-download target="_blank" rel="noopener" target="_blank"}lenra-macos-x86_64.tar.gz](https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-macos-x86_64.tar.gz)
-    - [{:.btn.link.lenra-icon-download target="_blank" rel="noopener" target="_blank"}lenra-macos-aarch64.tar.gz](https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-macos-aarch64.tar.gz)
+    - [{:.btn.link.lenra-icon-download target="_blank" rel="noopener" target="_blank"}lenra-macos-x86_64](https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-macos-x86_64)
+    - [{:.btn.link.lenra-icon-download target="_blank" rel="noopener" target="_blank"}lenra-macos-aarch64](https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-macos-aarch64)
 
     </details>
 

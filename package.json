@@ -86,7 +86,7 @@
                 },
                 {
                     "from": "^/todo-list-guide.html$",
-                    "to": "/guides/todo-list-app.html",
+                    "to": "/guides/apps/lenra-todo-list.html",
                     "type": "permanent"
                 },
                 {
@@ -107,6 +107,11 @@
                 {
                     "from": "^/references/cli/commands/dev/reload.html$",
                     "to": "/references/cli/commands/reload.html",
+                    "type": "permanent"
+                },
+                {
+                    "from": "^/guides/todo-list-app.html$",
+                    "to": "/guides/apps/lenra-todo-list.html",
                     "type": "permanent"
                 }
             ]

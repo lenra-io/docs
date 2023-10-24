@@ -18,6 +18,12 @@ h1 {
     margin-bottom: 2rem;
 }
 
+h1:is([class^="lenra-icon-"], [class*=" lenra-icon-"])::before {
+    margin-right: 0.5rem;
+    vertical-align: baseline;
+    font-size: 80%;
+}
+
 main>header>a.btn.link {
     margin-top: 0;
 }
@@ -52,6 +58,11 @@ main>:not(h3)+h4 {
     margin-top: 1.5rem;
 }
 
+.list.subpages {
+    padding: 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
 
 
 /* Ariane */
@@ -118,8 +129,7 @@ nav.ariane>*:not(:first-child)::after {
     }
 
     h1 {
-        display: flex;
-        justify-content: space-between;
+        text-align: left;
         grid-column: 1 / 3;
     }
 

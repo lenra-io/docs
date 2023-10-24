@@ -53,7 +53,10 @@ html(lang=language)
               include .ariane.pug
               if(currentPage.sourceFile)
                 a.btn.link.lenra-icon-github(href=currentPage.sourceFile target="_blank" rel="noopener") Contribute
-              h1= (currentPage.title || currentPage.name)
+              - let classes = currentPage.classes || [];
+              - if (currentPage.icon) classes.push("lenra-icon-" + currentPage.icon)
+              - let className = classes.join(" ");
+              h1(class=className)= (currentPage.title || currentPage.name)
           block content
             if(currentPage.content)
               | !{currentPage.content}
