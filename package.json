@@ -18,7 +18,7 @@
         "showdown": "^2.1.0"
     },
     "devDependencies": {
-        "@types/fs-extra": "^11.0.1",
+        "@types/fs-extra": "^11.0.3",
         "@types/minify": "^9.1.2",
         "@types/pug": "^2.0.5",
         "jszip": "^3.10.1",
