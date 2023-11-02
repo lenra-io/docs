@@ -2,7 +2,7 @@ Crons on Lenra are a way to schedule tasks to be executed at specific times. A c
 
 ## Creating a cron that runs each minute
 
-To create a cron on Lenra, make a POST request to the `/app/crons` endpoint with the following required parameters:
+To create a cron on Lenra, make a POST request to the `/app-api/v1/crons` endpoint with the following required parameters:
 
 - `listener_name`: a string corresponding to the name of the listener on the application.
 - `schedule`: a string corresponding to the cron 5 star format `* * * * *`.
