@@ -56,7 +56,7 @@ docker compose --version
 
     </details>
 
-    Download the latest binary, unpack it where you want and update your $PATH environment variable to use it.
+    Download the latest binary, save it where you want and update your $PATH environment variable to use it as `lenra` (or `lenra.exe` for Windows).
 
     For unix based system users, you can use the next command to add it to your $PATH temporarily:
 
