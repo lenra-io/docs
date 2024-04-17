@@ -1,28 +1,31 @@
-Routes are defined in the app manifest under the `lenraRoutes` property. The `lenraRoutes` property is an array of objects, where each object represents a route. Each route object has two properties:
+Routes are defined in the app manifest under the `routes` property of the `json` and `lenra` providers. The `routes` property is an array of objects, where each object represents a route. Each route object has two properties:
 
 - `path` - Defines the URL path that corresponds to the route.
 - `view` - Defines the view that is associated with the route.
+- `roles` - Defines the roles that are allowed to access the route. The default value is `["user"]`. [Read more about roles](#routeroles)
 
 ## Manifest example
 
 ```json
 {
-  "lenraRoutes": [
-    {
-      "path": "/",
-      "view": {
-        "type": "view",
-        "name": "main"
+  "lenra": {
+    "routes": [
+      {
+        "path": "/",
+        "view": {
+          "type": "view",
+          "name": "main"
+        }
+      },
+      {
+        "path": "/newPage",
+        "view": {
+          "type": "view",
+          "name": "newPage"
+        }
       }
-    },
-    {
-      "path": "/newPage",
-      "view": {
-        "type": "view",
-        "name": "newPage"
-      }
-    }
-  ]
+    ]
+  }
 }
 ```
 
@@ -80,9 +83,9 @@ export default function (data, props, context) {
   }
 ```
 
-## Navigating to a route
+## Navigating to a Lenra route
 
-You can navigate to any route that is defined in the `lenraRoutes` property in the app manifest. To do that, you have to call the specific listener action `@lenra:navTo`. Here is an example of a button using this listener.
+You can navigate to any route that is defined in the `lenra.routes` property in the app manifest. To do that, you have to call the specific listener action `@lenra:navTo`. Here is an example of a button using this listener.
 
 ```json
 {
@@ -94,3 +97,32 @@ You can navigate to any route that is defined in the `lenraRoutes` property in t
     }
 }
 ```
+
+## Route roles
+
+There are for now only two roles managed by Lenra:
+- `guest`: This role is used for users that are not logged in.
+- `user`: This role is used for users that are logged in.
+
+The route roles are defined in the app manifest under the `roles` property of the route object.
+The default value is `["user"]` to only allow the authenticated users.
+If you want to allow both logged in and not logged in users to access the route, you can set the `roles` property to `["guest", "user"]`.
+
+```json
+{
+  "lenra": {
+    "routes": [
+      {
+        "path": "/",
+        "view": {
+          "type": "view",
+          "name": "main"
+        },
+        "roles": ["guest", "user"]
+      }
+    ]
+  }
+}
+```
+
+If you want to make your accessible to guest users you'll have to [make it public](../guides/manage-access.html#publicaccess).
