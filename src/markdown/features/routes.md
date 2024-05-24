@@ -125,4 +125,4 @@ If you want to allow both logged in and not logged in users to access the route,
 }
 ```
 
-If you want to make your accessible to guest users you'll have to [make it public](../guides/manage-access.html#publicaccess).
+If you want to make your app accessible to guest users you'll have to [make it public](../guides/manage-access.html#publicaccess).
