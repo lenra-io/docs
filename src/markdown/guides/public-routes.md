@@ -36,7 +36,7 @@ Here is an example of a public route:
 
 ## Use a public route in a front-end app
 
-To use a public as a not authenticated user with the [{:rel="noopener" target="_blank"} Lenra JavaScript client lib](https://github.com/lenra-io/client-lib-js) you just have to use the `openSocket()` method to connect to the Lenra server without token and then open the route:
+To use the [{:rel="noopener" target="_blank"} Lenra JavaScript client lib](https://github.com/lenra-io/client-lib-js) as an unauthenticated user, simply use the `openSocket()` method to connect to the Lenra server without a token, and then open the desired route :
 
 ```js
 import { LenraApp } from '@lenra/client';
